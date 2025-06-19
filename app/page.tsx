@@ -123,6 +123,27 @@ export default function Home() {
         <Testimonial />
         <Button className="mx-auto block cursor-pointer hover:bg-teal-500 hover:text-white transition-all duration-300" variant="outline">Become a member</Button>
       </section>
+      <section className="bg-[#F9FAFB] py-20">
+        <div className="container mx-auto px-3">
+          <h2 className={`text-4xl font-extrabold ${playfair.className} text-center`}>Support the Library</h2>
+          <p className="text-gray-700 mt-7 text-center">As Thailand&apos;s oldest non-profit, your support helps us continue inspiring generations.</p>
+
+          <div className="border border-gray-200 mt-8 max-w-4xl mx-auto rounded-lg p-8 flex items-center justify-center">
+            <div className="w-1/2"><h4 className={`${playfair.className} text-3xl font-semibold`}>Make a <span className="text-teal-500">Difference</span>
+            </h4>
+              <p className="text-gray-700 mt-7 text-sm">Your contributions help us acquire new books,
+                maintain our historic building, expand digital
+                resources, and fund community programs
+                to continue providing accessible literary and
+                educational resources for everyone.</p>
+              <Button className="bg-teal-500 mt-8 block cursor-pointer hover:bg-teal-600">Donate now</Button>
+              <Button variant="outline" className="mt-4 block cursor-pointer hover:bg-teal-500 hover:text-white transition-all duration-300">Volunteer Opportunities</Button>
+            </div>
+            <div className="w-1/2 pl-2"><img src="images/libraryexterior.jpg" alt="Support 1" className="w-full h-48 object-cover" /></div>
+          </div>
+
+        </div>
+      </section>
     </>
   )
 }
