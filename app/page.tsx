@@ -22,11 +22,11 @@ export default function Home() {
           priority
         />
         <div className="relative z-10 flex items-center justify-center flex-col h-screen">
-          <div className='max-w-3xl mx-auto text-center'>
-            <h1 className={`text-white text-6xl font-extrabold ${playfair.className}`}>
+          <div className='max-w-3xl mx-auto text-center px-4'>
+            <h1 className={`text-white text-4xl lg:text-6xl font-extrabold ${playfair.className}`}>
               Bangkok&apos;s Historic <br />English-Language Library
             </h1>
-            <p className="text-white text-lg mt-8">
+            <p className="text-white text-base lg:text-lg mt-8">
               An oasis for readers, families, and the community since 1869
             </p>
             <div className="mt-8 flex gap-4 justify-center">
