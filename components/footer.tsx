@@ -1,26 +1,17 @@
+import { Clock, Mail, Phone } from "lucide-react"
+
+import { MapPin } from "lucide-react"
+import Link from "next/link"
+
 const navigation = {
-  solutions: [
-    { name: 'Marketing', href: '#' },
-    { name: 'Analytics', href: '#' },
-    { name: 'Automation', href: '#' },
-    { name: 'Commerce', href: '#' },
-    { name: 'Insights', href: '#' },
-  ],
-  support: [
-    { name: 'Submit ticket', href: '#' },
-    { name: 'Documentation', href: '#' },
-    { name: 'Guides', href: '#' },
-  ],
-  company: [
+  ourLibrary: [
+    { name: 'Events', href: '#' },
+    { name: 'Kids', href: '#' },
+    { name: 'Membership', href: '#' },
+    { name: 'Visit', href: '#' },
     { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
-  ],
-  legal: [
-    { name: 'Terms of service', href: '#' },
-    { name: 'Privacy policy', href: '#' },
-    { name: 'License', href: '#' },
+    { name: 'Contact', href: '#' },
+
   ],
   social: [
     {
@@ -71,22 +62,10 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm/6 font-semibold text-white">Solutions</h3>
+              <div className="col-span-2 columns-2">
+                <h3 className="text-sm/6 font-semibold text-white">Our Library</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.solutions.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-sm/6 text-white hover:text-yellow-500 hover:font-extrabold transition">
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-white">Support</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.support.map((item) => (
+                  {navigation.ourLibrary.map((item) => (
                     <li key={item.name}>
                       <a href={item.href} className="text-sm/6 text-white hover:text-yellow-500 hover:font-extrabold transition">
                         {item.name}
@@ -97,28 +76,29 @@ export default function Footer() {
               </div>
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm/6 font-semibold text-white">Company</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.company.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-sm/6 text-white hover:text-yellow-500 hover:font-extrabold transition">
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
+              <div className="mt-10 md:mt-0">
+                <h3 className="text-sm/6 font-semibold text-white">Contact Info</h3>
+                <ul role="list" className="mt-6 space-y-4 text-sm text-white" >
+                  <li className="flex items-base gap-2">
+                    <div className="w-5 h-5 mr-2"><MapPin /></div>
+                    <div>195 Surawong Road
+                      <br /> Suriyawongse, Bangrak
+                      <br /> Bangkok, Thailand 10500
+                      <Link href="https://maps.app.goo.gl/imrNzFDX3ZzqCi7GA" target="_blank" rel="noopener noreferrer" className="block font-semibold mt-2 text-white hover:text-yellow-500 hover:font-extrabold transition">Google map →</Link>
+                    </div>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-5 h-5 mr-2"><Phone /></div>
+                    <Link href="tel:0831736675" className="text-white hover:text-yellow-500 hover:font-extrabold transition">08 3173 6675</Link></li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-5 h-5 mr-2"><Mail /></div>
+                    <Link href="mailto:info@neilsonhayslibrary.org" className="text-white hover:text-yellow-500 hover:font-extrabold transition">info@neilsonhayslibrary.org</Link></li>
                 </ul>
               </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-white">Legal</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.legal.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-sm/6 text-white hover:text-yellow-500 hover:font-bold transition-all duration-300">
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
+              <div>
+                <h3 className="text-sm/6 font-semibold text-white">Opening Hours</h3>
+                <ul role="list" className="mt-6 space-y-4 text-white text-sm">
+                  <li className="flex items-base gap-2"><div className="w-5 h-5 mr-2"><Clock /></div> Tuesday to Sunday <br />9:30 - 17:00</li>
                 </ul>
               </div>
             </div>
@@ -155,7 +135,7 @@ export default function Footer() {
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
           <div className="flex gap-x-6 md:order-2">
             {navigation.social.map((item) => (
-              <a key={item.name} href={item.href} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-800">
+              <a key={item.name} href={item.href} target="_blank" rel="noopener noreferrer  " className="text-white hover:text-gray-800">
                 <span className="sr-only">{item.name}</span>
                 <item.icon aria-hidden="true" className="size-6" />
               </a>
@@ -165,7 +145,7 @@ export default function Footer() {
             &copy; {year} Neilson Hays Library. All rights reserved.
           </p>
         </div>
-      </div>
-    </footer>
+      </div >
+    </footer >
   )
 }

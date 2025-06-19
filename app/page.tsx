@@ -35,7 +35,12 @@ export default function Home() {
           <div><QuickNav /></div>
         </div>
       </section>
-      <section className="h-screen">next section</section>
+      <section className="min-h-screen container mx-auto">
+        <div className="text-center py-20">
+          <h2 className={`text-4xl font-extrabold ${playfair.className}`}>What&apos;s On at the <span className="text-teal-500">Library</span></h2>
+          <p className="text-gray-600 mt-7">Discover our diverse range of events, from author talks to workshops and community.</p>
+        </div>
+      </section>
     </>
   )
 }
