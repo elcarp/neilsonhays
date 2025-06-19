@@ -1,4 +1,4 @@
-import { BookHeart, BookOpen, Calendar, Coffee, Info, Mail, MapPin, UserRound, Users2 } from "lucide-react"
+import { BookHeart, BookOpen, Calendar, Coffee, Users2 } from "lucide-react"
 import Link from "next/link"
 
 const nav = [
