@@ -7,30 +7,22 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Popover,
-  PopoverButton,
   PopoverGroup,
-  PopoverPanel,
 } from '@headlessui/react'
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
+import { BookHeart } from "lucide-react"
+import { Button } from "../ui/button"
 
-const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
+const events = [
   {
-    name: 'Security', description: 'Your customers data will be safe and secure', href: '#', icon: FingerPrintIcon
+    name: 'LitFest', description: "A festival rooted in Bangkok's rich culture, where Thai and international storytellers come together to celebrate the power of words.", href: '#', icon: BookHeart
   },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+
 ]
 const callsToAction = [
   { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
@@ -58,7 +50,7 @@ export default function Example() {
       clearTimeout(timeoutId)
       setTimeoutId(null)
     }
-    setOpenPopover('product')
+    setOpenPopover('event')
   }
 
   const handleMouseLeave = () => {
@@ -77,9 +69,11 @@ export default function Example() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
-              alt=""
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+            <Image
+              src={isScrolled ? "/logo.svg" : "/logo-white.svg"}
+              alt="Logo"
+              width={32}
+              height={32}
               className="h-8 w-auto"
             />
           </a>
@@ -103,21 +97,21 @@ export default function Example() {
           >
             <button className={`flex items-center gap-x-1 text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
               }`}>
-              Product
+              Events
               <ChevronDownIcon aria-hidden="true" className={`size-5 flex-none transition-colors ${isScrolled ? 'text-gray-400' : 'text-white/70'
                 }`} />
             </button>
 
-            {openPopover === 'product' && (
+            {openPopover === 'event' && (
               <div className="absolute top-full -left-8 z-50 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
-                  {products.map((item) => (
+                  {events.map((item) => (
                     <div
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                     >
                       <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        <item.icon aria-hidden="true" className="size-6 text-gray-600 group-hover:text-indigo-600" />
+                        <item.icon aria-hidden="true" className="size-6 text-gray-600 group-hover:text-teal-600" />
                       </div>
                       <div className="flex-auto">
                         <a href={item.href} className="block font-semibold text-gray-900">
@@ -147,22 +141,30 @@ export default function Example() {
 
           <a href="#" className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
             }`}>
-            Features
+            Kids
           </a>
           <a href="#" className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
             }`}>
-            Marketplace
+            Membership
           </a>
           <a href="#" className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
             }`}>
-            Company
+            Visit
+          </a>
+          <a href="#" className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
+            }`}>
+            About
+          </a>
+          <a href="#" className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
+            }`}>
+            Contact
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
+          <Button variant="outline" onClick={() => console.log('link')} className={`text-sm/6 bg-transparent font-semibold transition-colors text-white ${isScrolled ? 'bg-teal-500 border-teal-500' : 'bg-transparent'
             }`}>
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+            Become a Member
+          </Button>
         </div>
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -171,9 +173,11 @@ export default function Example() {
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                alt=""
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+              <Image
+                src="/logo.svg"
+                alt="Logo"
+                width={32}
+                height={32}
                 className="h-8 w-auto"
               />
             </a>
@@ -191,11 +195,11 @@ export default function Example() {
               <div className="space-y-2 py-6">
                 <Disclosure as="div" className="-mx-3">
                   <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                    Product
+                    Events
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-open:rotate-180" />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products, ...callsToAction].map((item) => (
+                    {[...events, ...callsToAction].map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"
