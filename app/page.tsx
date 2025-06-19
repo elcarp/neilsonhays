@@ -1,12 +1,32 @@
 import QuickNav from "@/components/quick-nav"
 import { Button } from "@/components/ui/button"
+import { Calendar } from "lucide-react"
 import { Playfair_Display } from "next/font/google"
 import Image from "next/image"
+import Link from "next/link"
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
 })
+
+const events =
+  [
+    {
+      title: "Book Club: 'The Glass Palace'", date: '2025-04-22', description: "Monthly book club meeting discussing Amitav Ghosh's historical novel about Burma, Malaya, and India.", image: '/images/bookclub.jpg', href: '#'
+    },
+    {
+      title: 'Poetry Evening', date: '2025-04-18', description: 'A night of poetry readings featuring both English and Thai language works.Open mic session follows.', image: '/images/poetryevening.jpg', href: '#'
+    },
+    {
+      title: 'Author Talk: Bangkok Stories', date: '2025-04-15', description: "Join acclaimed author Alex discussion of her new book exploring Bangkok's rich history.", image: '/images/authortalk.jpg', href: '#'
+    },
+    {
+      title: 'Digital Resources Workshop', date: '2025-04-30', description: "Learn to use the library's expanding digital collections and e- resources. Perfect for all age groups.", image: '/images/digitalresources.jpg', href: '#'
+    },
+
+
+  ]
 
 export default function Home() {
 
@@ -32,13 +52,29 @@ export default function Home() {
               <Button className="cursor-pointer bg-teal-500 hover:bg-teal-600" variant="default">Explore Upcoming Events</Button>
               <Button className="cursor-pointer bg-transparent text-white" variant="outline">Become a Member</Button></div>
           </div>
-          <div><QuickNav /></div>
+          <div className="px-8">
+            <QuickNav />
+          </div>
         </div>
       </section>
       <section className="min-h-screen container mx-auto">
-        <div className="text-center py-20">
+        <div className="text-center py-20 px-8">
           <h2 className={`text-4xl font-extrabold ${playfair.className}`}>What&apos;s On at the <span className="text-teal-500">Library</span></h2>
           <p className="text-gray-600 mt-7">Discover our diverse range of events, from author talks to workshops and community.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
+            {events.map((event) => (
+              <div key={event.title} className="bg-white rounded-lg shadow-md overflow-hidden">
+                <Image src={event.image} alt={event.title} width={500} height={500} className="w-full h-48 object-cover" />
+                <div className="p-4">
+                  <div className="flex items-center gap-2 text-sm text-teal-500"><Calendar width={15} />
+                    <span className="text-sm text-teal-500 font-bold">{event.date}</span></div>
+                  <h3 className={`text-left text-lg font-semibold my-3 ${playfair.className} font-bold`}>{event.title}</h3>
+                  <p className="text-left text-sm text-gray-600">{event.description}</p>
+                  <Link href={event.href} className="block mt-8 text-left text-sm text-teal-500 font-bold">Learn More</Link>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

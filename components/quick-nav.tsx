@@ -12,7 +12,7 @@ const nav = [
 export default function QuickNav() {
 
   return (
-    <div className="flex gap-4 text-white text-center text-sm mt-10">
+    <div className="flex gap-2 text-white text-center text-sm mt-10">
       {nav.map((item) => (
         <Link key={item.title} href={item.href} className="w-24 h-24 flex items-center justify-center">
           <div className="flex flex-col items-center justify-center">
