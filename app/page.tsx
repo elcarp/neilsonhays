@@ -24,7 +24,7 @@ export default function Home() {
         <div className="relative z-10 flex items-center justify-center flex-col h-screen">
           <div className='max-w-3xl mx-auto text-center'>
             <h1 className={`text-white text-6xl font-extrabold ${playfair.className}`}>
-              Bangkok's Historic <br />English-Language Library
+              Bangkok&apos;s Historic <br />English-Language Library
             </h1>
             <p className="text-white text-lg mt-8">
               An oasis for readers, families, and the community since 1869
