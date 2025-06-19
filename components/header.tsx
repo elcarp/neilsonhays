@@ -16,7 +16,7 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import { BookHeart } from "lucide-react"
-import { Button } from "../ui/button"
+import { Button } from "./ui/button"
 
 const events = [
   {
