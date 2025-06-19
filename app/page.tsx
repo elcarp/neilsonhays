@@ -1,6 +1,6 @@
 import QuickNav from "@/components/quick-nav"
 import { Button } from "@/components/ui/button"
-import { Calendar } from "lucide-react"
+import { Calendar, Check } from "lucide-react"
 import { Playfair_Display } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
@@ -77,6 +77,23 @@ export default function Home() {
           </div>
         </div>
         <Button className="bg-teal-500 mx-auto block cursor-pointer hover:bg-teal-600">View Full Events Calendar</Button>
+      </section>
+      <section className="bg-[#F9FAFB] py-20">
+        <div className="container mx-auto flex items-base">
+          <div className="w-1/2">
+            <img src="/images/kidslibrary.jpg" alt="Kids Library" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-1/2 px-6">
+            <h2 className={`text-4xl font-extrabold ${playfair.className} border-b border-teal-500 pb-5 text-center `}>For Young Readers and Families</h2>
+            <p className="text-gray-600 mt-7">Spark curiosity and connection with hands-on programs for children and families.</p>
+            <ul className="mt-5">
+              <li className="flex items-base my-2"><Check width={15} className="text-teal-500" /> <span className="ml-3 text-sm">Storytime for toddlers</span>  </li>
+              <li className="flex items-base my-2"><Check width={15} className="text-teal-500" /> <span className="ml-3 text-sm">Family reading programs</span></li>
+              <li className="flex items-base my-2"><Check width={15} className="text-teal-500" /> <span className="ml-3 text-sm">Crafts and activities</span></li>
+            </ul>
+            <Button className="bg-teal-500 mt-8 block cursor-pointer hover:bg-teal-600">See Kids' Programs</Button>
+          </div>
+        </div>
       </section>
     </>
   )
