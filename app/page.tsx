@@ -35,6 +35,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className="h-screen">next section</section>
     </>
   )
 }
