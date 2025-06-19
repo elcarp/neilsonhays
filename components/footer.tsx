@@ -88,6 +88,8 @@ const navigation = {
 }
 
 export default function Footer() {
+  const date = new Date()
+  const year = date.getFullYear()
   return (
     <footer className="bg-teal-500">
       <div className="mx-auto max-w-7xl px-6 pt-20 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
@@ -185,7 +187,7 @@ export default function Footer() {
             ))}
           </div>
           <p className="mt-8 text-sm/6 text-white md:order-1 md:mt-0">
-            &copy; 2024 Your Company, Inc. All rights reserved.
+            &copy; {year} Neilson Hays Library. All rights reserved.
           </p>
         </div>
       </div>
