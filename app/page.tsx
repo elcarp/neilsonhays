@@ -1,6 +1,7 @@
 import QuickNav from "@/components/quick-nav"
+import Testimonial from "@/components/testimonial"
 import { Button } from "@/components/ui/button"
-import { Calendar, Check } from "lucide-react"
+import { BookOpen, Calendar, Check, User2 } from "lucide-react"
 import { Playfair_Display } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
@@ -24,10 +25,20 @@ const events =
     {
       title: 'Digital Resources Workshop', date: '2025-04-30', description: "Learn to use the library's expanding digital collections and e- resources. Perfect for all age groups.", image: '/images/digitalresources.jpg', href: '#'
     },
-
-
   ]
 
+const memberBenefits = [
+  { title: 'Extensive Collection', description: 'Access to a wide range of books, magazines, and digital resources in English and Thai.', icon: BookOpen },
+  {
+    title: 'Prioity Access to Events',
+    description: 'Enjoy author talks, book discussions, workshops, and cultural activities designed for diverse interests and age groups.',
+    icon: Calendar
+  },
+  {
+    title: 'Family-Friendly Programs', description: "Participate in specialized children's storytimes, family- friendly activities, and educational programs for young readers.",
+    icon: User2
+  }
+]
 export default function Home() {
 
   return (
@@ -94,6 +105,23 @@ export default function Home() {
             <Button className="bg-teal-500 mt-8 block cursor-pointer hover:bg-teal-600">See Kids' Programs</Button>
           </div>
         </div>
+      </section>
+      <section className="py-20">
+        <div className="container mx-auto px-3">
+          <h2 className={`text-4xl font-extrabold ${playfair.className} text-center`}><span className="text-teal-500">Membership</span> Has Its Rewards</h2>
+          <p className="text-gray-700 mt-7 text-center">Become part of Bangkok&apos;s historic literary community with a library membership that offers more than just books.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 justify-center max-w-4xl mx-auto px-4">
+            {memberBenefits.map((benefit) => (
+              <div key={benefit.title} className="border border-gray-200 rounded-lg p-4">
+                <benefit.icon className="text-teal-500" />
+                <h3 className={`text-lg font-semibold my-3 ${playfair.className}`}>{benefit.title}</h3>
+                <span className="text-gray-600 text-sm">{benefit.description}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <Testimonial />
+        <Button className="mx-auto block cursor-pointer hover:bg-teal-500 hover:text-white transition-all duration-300" variant="outline">Become a member</Button>
       </section>
     </>
   )
