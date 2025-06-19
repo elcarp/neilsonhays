@@ -58,7 +58,7 @@ export default function Home() {
         </div>
       </section>
       <section className="min-h-screen container mx-auto">
-        <div className="text-center py-20 px-8">
+        <div className="text-center pt-20 pb-15 px-8">
           <h2 className={`text-4xl font-extrabold ${playfair.className}`}>What&apos;s On at the <span className="text-teal-500">Library</span></h2>
           <p className="text-gray-600 mt-7">Discover our diverse range of events, from author talks to workshops and community.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
@@ -76,6 +76,7 @@ export default function Home() {
             ))}
           </div>
         </div>
+        <Button className="bg-teal-500 mx-auto block cursor-pointer hover:bg-teal-600">View Full Events Calendar</Button>
       </section>
     </>
   )
