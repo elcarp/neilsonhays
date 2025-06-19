@@ -146,7 +146,7 @@ export default function Header() {
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Button variant="outline" onClick={() => console.log('link')} className={`text-sm/6 bg-transparent font-semibold transition-colors text-white ${isScrolled ? 'bg-teal-500 border-teal-500' : 'bg-transparent'
+          <Button variant="outline" onClick={() => console.log('link')} className={`cursor-pointer text-sm/6 bg-transparent font-semibold transition-colors text-white ${isScrolled ? 'bg-teal-500 border-teal-500' : 'bg-transparent'
             }`}>
             Become a Member
           </Button>
