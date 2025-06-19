@@ -1,4 +1,4 @@
-import Header from "@/components/header"
+import QuickNav from "@/components/quick-nav"
 import { Button } from "@/components/ui/button"
 import { Playfair_Display } from "next/font/google"
 import Image from "next/image"
@@ -12,7 +12,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
       <section className="h-screen w-screen bg-black relative">
         <Image
           src="/images/hero-bg.jpg"
@@ -33,6 +32,7 @@ export default function Home() {
               <Button className="cursor-pointer bg-teal-500 hover:bg-teal-600" variant="default">Explore Upcoming Events</Button>
               <Button className="cursor-pointer bg-transparent text-white" variant="outline">Become a Member</Button></div>
           </div>
+          <div><QuickNav /></div>
         </div>
       </section>
       <section className="h-screen">next section</section>

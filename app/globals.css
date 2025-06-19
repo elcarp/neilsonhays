@@ -108,6 +108,10 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --green: #168547;
+  --teal: #23a0a7;
+  --yellow: #f9a230;
+  --red: #cc202b;
 }
 
 @layer base {

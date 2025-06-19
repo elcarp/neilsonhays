@@ -26,7 +26,7 @@ const events = [
 ]
 
 
-export default function Example() {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [openPopover, setOpenPopover] = useState<string | null>(null)
