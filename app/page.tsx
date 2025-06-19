@@ -102,7 +102,7 @@ export default function Home() {
               <li className="flex items-base my-2"><Check width={15} className="text-teal-500" /> <span className="ml-3 text-sm">Family reading programs</span></li>
               <li className="flex items-base my-2"><Check width={15} className="text-teal-500" /> <span className="ml-3 text-sm">Crafts and activities</span></li>
             </ul>
-            <Button className="bg-teal-500 mt-8 block cursor-pointer hover:bg-teal-600">See Kids&pos; Programs</Button>
+            <Button className="bg-teal-500 mt-8 block cursor-pointer hover:bg-teal-600">See Kids Programs</Button>
           </div>
         </div>
       </section>
