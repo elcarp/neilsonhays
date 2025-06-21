@@ -1,13 +1,20 @@
 import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
 
+// Extend Window interface to include Lenis
+declare global {
+  interface Window {
+    lenis?: Lenis | null
+  }
+}
+
 export function useLenis() {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
     // Check if Lenis is already initialized
-    if ((window as any).lenis) {
-      lenisRef.current = (window as any).lenis
+    if (window.lenis) {
+      lenisRef.current = window.lenis
       return
     }
 
@@ -18,7 +25,7 @@ export function useLenis() {
     })
 
     // Make Lenis instance globally available
-    ;(window as any).lenis = lenisRef.current
+    window.lenis = lenisRef.current
 
     // RAF function
     function raf(time: number) {
@@ -33,7 +40,7 @@ export function useLenis() {
       if (lenisRef.current) {
         lenisRef.current.destroy()
         lenisRef.current = null
-        ;(window as any).lenis = null
+        window.lenis = null
       }
     }
   }, [])

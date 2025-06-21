@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react'
 import Lenis from 'lenis'
 
+// Extend Window interface to include Lenis
+declare global {
+  interface Window {
+    lenis?: Lenis | null
+  }
+}
+
 export function useLenisInstance() {
   const [lenis, setLenis] = useState<Lenis | null>(null)
 
   useEffect(() => {
     // Function to get Lenis instance
     const getLenisInstance = () => {
-      const lenisInstance = (window as any).lenis as Lenis
+      const lenisInstance = window.lenis
       if (lenisInstance) {
         setLenis(lenisInstance)
         return true
