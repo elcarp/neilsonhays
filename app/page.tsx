@@ -8,6 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import { useLenisInstance } from "./hooks/useLenisInstance"
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -47,11 +48,45 @@ export default function Home() {
   const kidsRef = useRef(null)
   const membershipRef = useRef(null)
   const supportRef = useRef(null)
+  const lenis = useLenisInstance()
 
   const eventsInView = useInView(eventsRef, { once: false })
   const kidsInView = useInView(kidsRef, { once: false })
   const membershipInView = useInView(membershipRef, { once: false })
   const supportInView = useInView(supportRef, { once: false })
+
+  const scrollToSection = (sectionId: string) => {
+    console.log('scrollToSection called with:', sectionId)
+    console.log('Lenis instance:', lenis)
+
+    const element = document.getElementById(sectionId)
+    console.log('Target element:', element)
+
+    if (element) {
+      if (lenis) {
+        console.log('Using Lenis scroll')
+        // Use Lenis smooth scroll if available
+        lenis.scrollTo(element, {
+          offset: -100,
+          duration: 2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        })
+      } else {
+        console.log('Using native scroll fallback')
+        // Fallback to native smooth scroll
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+        // Add offset for header
+        setTimeout(() => {
+          window.scrollBy(0, -100)
+        }, 100)
+      }
+    } else {
+      console.log('Element not found:', sectionId)
+    }
+  }
 
   return (
     <>
@@ -72,7 +107,7 @@ export default function Home() {
               An oasis for readers, families, and the community since 1869
             </p>
             <div className="mt-8 flex gap-4 justify-center">
-              <Button className="cursor-pointer bg-teal-500 hover:bg-teal-600" variant="default">Explore Upcoming Events</Button>
+              <Button className="cursor-pointer bg-teal-500 hover:bg-teal-600" variant="default" onClick={() => scrollToSection('events')}>Explore Upcoming Events</Button>
               <Button className="cursor-pointer bg-transparent text-white" variant="outline">Become a Member</Button></div>
           </div>
           <div className="px-8">
@@ -86,7 +121,7 @@ export default function Home() {
         animate={eventsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 1 }}
       >
-        <section className="min-h-screen container mx-auto">
+        <section className="min-h-screen container mx-auto" id="events">
           <div className="text-center pt-20 pb-15 px-8">
             <h2 className={`text-4xl font-extrabold ${playfair.className}`}>What&apos;s On at the <span className="text-teal-500">Library</span></h2>
             <p className="text-gray-600 mt-7">Discover our diverse range of events, from author talks to workshops and community.</p>

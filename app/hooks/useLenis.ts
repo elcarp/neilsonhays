@@ -5,6 +5,12 @@ export function useLenis() {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
+    // Check if Lenis is already initialized
+    if ((window as any).lenis) {
+      lenisRef.current = (window as any).lenis
+      return
+    }
+
     // Initialize Lenis with minimal configuration
     lenisRef.current = new Lenis({
       duration: 1.2,
