@@ -155,14 +155,14 @@ const blogs: Blog[] = [
 ]
 
 interface IBlurImage {
-  height?: any
-  width?: any
-  src?: string | any
-  objectFit?: any
-  className?: string | any
-  alt?: string | undefined
-  layout?: any
-  [x: string]: any
+  height?: number | `${number}`
+  width?: number | `${number}`
+  src: string
+  objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
+  className?: string
+  alt?: string
+  layout?: 'fill' | 'fixed' | 'intrinsic' | 'responsive'
+  [key: string]: unknown
 }
 
 export const BlurImage = ({

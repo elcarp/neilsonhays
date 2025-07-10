@@ -10,11 +10,6 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { useLenisInstance } from './hooks/useLenisInstance'
 
-const playfair = Playfair_Display({
-  variable: '--font-playfair',
-  subsets: ['latin'],
-})
-
 const events = [
   {
     title: "Book Club: 'The Glass Palace'",
@@ -122,9 +117,7 @@ export default function Home() {
         />
         <div className='relative z-10 flex items-center justify-center flex-col h-screen'>
           <div className='max-w-3xl mx-auto text-center px-4'>
-            <h1
-              className={`text-white text-4xl lg:text-6xl font-extrabold ${playfair.className}`}
-            >
+            <h1 className={`text-white text-4xl lg:text-6xl font-extrabold`}>
               Bangkok&apos;s Historic <br />
               English-Language Library
             </h1>
@@ -160,7 +153,7 @@ export default function Home() {
       >
         <section className='min-h-screen container mx-auto' id='events'>
           <div className='text-center pt-20 pb-15 px-8'>
-            <h2 className={`text-4xl font-extrabold ${playfair.className}`}>
+            <h2 className={`text-4xl font-extrabold`}>
               What&apos;s On at the{' '}
               <span className='text-teal-500'>Library</span>
             </h2>
@@ -189,7 +182,7 @@ export default function Home() {
                       </span>
                     </div>
                     <h3
-                      className={`text-left text-lg font-semibold my-3 ${playfair.className} font-bold`}
+                      className={`text-left text-lg font-semibold my-3 font-bold`}
                     >
                       {event.title}
                     </h3>
@@ -231,7 +224,7 @@ export default function Home() {
             </div>
             <div className='w-1/2 px-6'>
               <h2
-                className={`text-4xl font-extrabold ${playfair.className} border-b border-teal-500 pb-5 text-center `}
+                className={`text-4xl font-extrabold border-b border-teal-500 pb-5 text-center `}
               >
                 For Young Readers and Families
               </h2>
@@ -242,7 +235,9 @@ export default function Home() {
               <ul className='mt-5'>
                 <li className='flex items-base my-2'>
                   <Check width={15} className='text-teal-500' />{' '}
-                  <span className='ml-3 text-sm'>Storytime for toddlers</span>{' '}
+                  <span className='ml-3 text-sm'>
+                    Storytime for toddlers
+                  </span>{' '}
                 </li>
                 <li className='flex items-base my-2'>
                   <Check width={15} className='text-teal-500' />{' '}
@@ -270,9 +265,7 @@ export default function Home() {
       >
         <section className='py-20'>
           <div className='container mx-auto px-3'>
-            <h2
-              className={`text-4xl font-extrabold ${playfair.className} text-center`}
-            >
+            <h2 className={`text-4xl font-extrabold text-center`}>
               <span className='text-teal-500'>Membership</span> Has Its Rewards
             </h2>
             <p className='text-gray-700 mt-7 text-center'>
@@ -286,9 +279,7 @@ export default function Home() {
                   className='border border-gray-200 rounded-lg p-4'
                 >
                   <benefit.icon className='text-teal-500' />
-                  <h3
-                    className={`text-lg font-semibold my-3 ${playfair.className}`}
-                  >
+                  <h3 className={`text-lg font-semibold my-3`}>
                     {benefit.title}
                   </h3>
                   <span className='text-gray-600 text-sm'>
@@ -315,9 +306,7 @@ export default function Home() {
       >
         <section className='bg-[#F9FAFB] py-20'>
           <div className='container mx-auto px-3'>
-            <h2
-              className={`text-4xl font-extrabold ${playfair.className} text-center`}
-            >
+            <h2 className={`text-4xl font-extrabold text-center`}>
               Support the Library
             </h2>
             <p className='text-gray-700 mt-7 text-center'>
@@ -327,7 +316,7 @@ export default function Home() {
 
             <div className='border border-gray-200 mt-8 max-w-4xl mx-auto rounded-lg p-8 flex items-center justify-center'>
               <div className='w-1/2'>
-                <h4 className={`${playfair.className} text-3xl font-semibold`}>
+                <h4 className={`text-3xl font-semibold`}>
                   Make a <span className='text-teal-500'>Difference</span>
                 </h4>
                 <p className='text-gray-700 mt-7 text-sm'>
