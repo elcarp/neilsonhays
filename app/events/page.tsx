@@ -7,21 +7,15 @@ import { GridPatternContainer } from '@/components/ui/grid-pattern'
 
 export default function Events() {
   return (
-    <div className='min-h-screen bg-teal-700 pt-35'>
+    <div className='min-h-screen bg-teal-700 py-24 sm:py-32'>
       <div className='container px-8 mx-auto'>
-        <div className='relative overflow-hidden py-20 md:py-0'>
-          <div className='py-4 md:py-10 overflow-hidden relative  px-4 md:px-8'>
-            <GridPatternContainer className='opacity-50' />
-            <div className='relative z-20 py-10 '>
-              <h1
-                className={cn(
-                  `scroll-m-20 text-4xl font-bold text-center md:text-left tracking-tight text-white mb-6 `
-                )}
-              >
+        <div className='relative overflow-hidden'>
+          <div className='overflow-hidden relative pb-20 px-4 md:px-8'>
+            <div className='mx-auto max-w-4xl sm:text-center'>
+              <h1 className='text-5xl font-semibold tracking-tight text-pretty text-white sm:text-6xl sm:text-balance'>
                 Events
               </h1>
-
-              <p className='text-lg text-white max-w-xl !mb-6 text-center md:text-left'>
+              <p className='mx-auto mt-6 max-w-2xl text-lg font-medium text-pretty text-white sm:text-xl/8'>
                 Checkout our upcoming events and workshops.
               </p>
             </div>

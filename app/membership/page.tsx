@@ -18,9 +18,9 @@ export default function Membership() {
     <div className='bg-teal-700 py-24 sm:py-32'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-4xl sm:text-center'>
-          <h2 className='text-5xl font-semibold tracking-tight text-pretty text-white sm:text-6xl sm:text-balance'>
+          <h1 className='text-5xl font-semibold tracking-tight text-pretty text-white sm:text-6xl sm:text-balance'>
             Membership
-          </h2>
+          </h1>
           <p className='mx-auto mt-6 max-w-2xl text-lg font-medium text-pretty text-white sm:text-xl/8'>
             Join the Community
           </p>
