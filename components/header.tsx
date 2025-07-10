@@ -37,12 +37,17 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [openPopover, setOpenPopover] = useState<string | null>(null)
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const handleScroll = () => {
       const scrollTop = window.scrollY
       setIsScrolled(scrollTop > 0)
     }
+
+    // Set initial scroll state
+    handleScroll()
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -65,7 +70,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${mounted && isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
         }`}
     >
       <nav
@@ -76,7 +81,7 @@ export default function Header() {
           <Link href='/' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Neilson Hays Library</span>
             <Image
-              src={isScrolled ? '/logo.svg' : '/logo-white.svg'}
+              src={mounted && isScrolled ? '/logo.svg' : '/logo-white.svg'}
               alt='Logo'
               width={32}
               height={32}
@@ -88,7 +93,7 @@ export default function Header() {
           <button
             type='button'
             onClick={() => setMobileMenuOpen(true)}
-            className={`-m-2.5 cursor-pointer inline-flex items-center justify-center rounded-md p-2.5 transition-colors ${isScrolled ? 'text-gray-700' : 'text-white'
+            className={`-m-2.5 cursor-pointer inline-flex items-center justify-center rounded-md p-2.5 transition-colors ${mounted && isScrolled ? 'text-gray-700' : 'text-white'
               }`}
           >
             <span className='sr-only'>Open main menu</span>
@@ -102,13 +107,13 @@ export default function Header() {
             onMouseLeave={handleMouseLeave}
           >
             <button
-              className={`flex items-center gap-x-1 text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
+              className={`flex items-center gap-x-1 text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
                 }`}
             >
               Events
               <ChevronDownIcon
                 aria-hidden='true'
-                className={`size-5 flex-none transition-colors ${isScrolled ? 'text-gray-400' : 'text-white/70'
+                className={`size-5 flex-none transition-colors ${mounted && isScrolled ? 'text-gray-400' : 'text-white/70'
                   }`}
               />
             </button>
@@ -146,35 +151,35 @@ export default function Header() {
 
           <a
             href='#'
-            className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
+            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
               }`}
           >
             Kids
           </a>
           <a
             href='/membership'
-            className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
+            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
               }`}
           >
             Membership
           </a>
           <a
             href='#'
-            className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
+            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
               }`}
           >
             Visit
           </a>
           <a
             href='#'
-            className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
+            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
               }`}
           >
             About
           </a>
           <a
             href='#'
-            className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
+            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
               }`}
           >
             Contact
@@ -184,8 +189,7 @@ export default function Header() {
           <Link href='/membership'>
             <Button
               variant='outline'
-              onClick={() => console.log('link')}
-              className={`cursor-pointer text-sm/6 bg-transparent font-semibold transition-colors text-white ${isScrolled ? 'bg-teal-500 border-teal-500' : 'bg-transparent'
+              className={`cursor-pointer text-sm/6 bg-transparent font-semibold transition-colors text-white ${mounted && isScrolled ? 'bg-teal-500 border-teal-500' : 'bg-transparent'
                 }`}
             >
               Become a Member
