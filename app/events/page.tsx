@@ -1,32 +1,21 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 import { BlurImage } from '@/components/ui/blur-image'
-import { GridPatternContainer } from '@/components/ui/grid-pattern'
+import PageTitle from '@/components/ui/page-title'
 
 export default function Events() {
   return (
     <div className='min-h-screen bg-teal-700 py-24 sm:py-32'>
-      <div className='container px-8 mx-auto'>
-        <div className='relative overflow-hidden'>
-          <div className='overflow-hidden relative pb-20 px-4 md:px-8'>
-            <div className='mx-auto max-w-4xl sm:text-center'>
-              <h1 className='text-5xl font-semibold tracking-tight text-pretty text-white sm:text-6xl sm:text-balance'>
-                Events
-              </h1>
-              <p className='mx-auto mt-6 max-w-2xl text-lg font-medium text-pretty text-white sm:text-xl/8'>
-                Checkout our upcoming events and workshops.
-              </p>
-            </div>
-          </div>
-          <div className='flex flex-col items-center justify-between pb-20 max-w-7xl mx-auto px-4 md:px-8'>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-20'>
-              {blogs.map((blog, index) => (
-                <BlogCard blog={blog} key={blog.title + index} />
-              ))}
-            </div>
-          </div>
+      <PageTitle
+        title='Events'
+        description='Checkout our upcoming events and workshops.'
+      />
+      <div className='mt-20 flex flex-col items-center justify-between pb-20 max-w-7xl mx-auto px-4 md:px-8'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-20'>
+          {blogs.map((blog, index) => (
+            <BlogCard blog={blog} key={blog.title + index} />
+          ))}
         </div>
       </div>
     </div>

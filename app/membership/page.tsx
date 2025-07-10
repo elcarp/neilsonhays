@@ -1,3 +1,4 @@
+import PageTitle from '@/components/ui/page-title'
 import { CheckIcon } from 'lucide-react'
 
 const includedFeatures = [
@@ -17,18 +18,11 @@ export default function Membership() {
   return (
     <div className='bg-teal-700 py-24 sm:py-32'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-        <div className='mx-auto max-w-4xl sm:text-center'>
-          <h1 className='text-5xl font-semibold tracking-tight text-pretty text-white sm:text-6xl sm:text-balance'>
-            Membership
-          </h1>
-          <p className='mx-auto mt-6 max-w-2xl text-lg font-medium text-pretty text-white sm:text-xl/8'>
-            Join the Community
-          </p>
-          <p className='text-white italic mt-3'>
-            “The only thing that you absolutely have to know, is the location of
-            the library.” — Albert Einstein
-          </p>
-        </div>
+        <PageTitle
+          title='Membership'
+          description='Join the Community'
+          quote='The only thing that you absolutely have to know, is the location of the library. — Albert Einstein'
+        />
         <div className='bg-white mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none'>
           <div className='p-8 sm:p-10 lg:flex-auto'>
             <h3 className='text-3xl font-semibold tracking-tight text-gray-900'>
