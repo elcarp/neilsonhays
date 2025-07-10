@@ -181,14 +181,16 @@ export default function Header() {
           </a>
         </PopoverGroup>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
-          <Button
-            variant='outline'
-            onClick={() => console.log('link')}
-            className={`cursor-pointer text-sm/6 bg-transparent font-semibold transition-colors text-white ${isScrolled ? 'bg-teal-500 border-teal-500' : 'bg-transparent'
-              }`}
-          >
-            Become a Member
-          </Button>
+          <Link href='/membership'>
+            <Button
+              variant='outline'
+              onClick={() => console.log('link')}
+              className={`cursor-pointer text-sm/6 bg-transparent font-semibold transition-colors text-white ${isScrolled ? 'bg-teal-500 border-teal-500' : 'bg-transparent'
+                }`}
+            >
+              Become a Member
+            </Button>
+          </Link>
         </div>
       </nav>
       <Dialog
@@ -275,7 +277,7 @@ export default function Header() {
               </div>
               <div className='py-6'>
                 <a
-                  href='#'
+                  href='/membership'
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
                 >
                   Become a Member
