@@ -1,14 +1,9 @@
 'use client'
-import { Playfair_Display } from 'next/font/google'
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-const playfair = Playfair_Display({
-  variable: '--font-playfair',
-  subsets: ['latin'],
-})
 export default function Events() {
   return (
     <div className='min-h-screen bg-teal-500 pt-35'>
@@ -19,7 +14,7 @@ export default function Events() {
             <div className='relative z-20 py-10 '>
               <h1
                 className={cn(
-                  `scroll-m-20 text-4xl font-bold text-center md:text-left tracking-tight text-white mb-6 ${playfair.className}`
+                  `scroll-m-20 text-4xl font-bold text-center md:text-left tracking-tight text-white mb-6 `
                 )}
               >
                 Events
@@ -228,8 +223,8 @@ export function GridPattern() {
             <div
               key={`${col}-${row}`}
               className={`w-10 h-10 flex flex-shrink-0 rounded-[1px] ${index % 2 === 0
-                  ? 'bg-gray-100 dark:bg-neutral-800'
-                  : 'bg-gray-100 dark:bg-neutral-800 shadow-[0px_0px_0px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_0px_3px_rgba(0,0,0,0.2)_inset]'
+                ? 'bg-gray-100 dark:bg-neutral-800'
+                : 'bg-gray-100 dark:bg-neutral-800 shadow-[0px_0px_0px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_0px_3px_rgba(0,0,0,0.2)_inset]'
                 }`}
             />
           )
