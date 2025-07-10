@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 
 export default function Events() {
   return (
-    <div className='min-h-screen bg-teal-500 pt-35'>
+    <div className='min-h-screen bg-teal-700 pt-35'>
       <div className='container px-8 mx-auto'>
         <div className='relative overflow-hidden py-20 md:py-0'>
           <div className='py-4 md:py-10 overflow-hidden relative  px-4 md:px-8'>
@@ -188,6 +188,7 @@ export const BlurImage = ({
         src={src}
         width={width}
         height={height}
+        objectFit={objectFit}
         loading='lazy'
         decoding='async'
         blurDataURL={src}
@@ -223,8 +224,8 @@ export function GridPattern() {
             <div
               key={`${col}-${row}`}
               className={`w-10 h-10 flex flex-shrink-0 rounded-[1px] ${index % 2 === 0
-                ? 'bg-gray-100 dark:bg-neutral-800'
-                : 'bg-gray-100 dark:bg-neutral-800 shadow-[0px_0px_0px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_0px_3px_rgba(0,0,0,0.2)_inset]'
+                  ? 'bg-gray-100 dark:bg-neutral-800'
+                  : 'bg-gray-100 dark:bg-neutral-800 shadow-[0px_0px_0px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_0px_3px_rgba(0,0,0,0.2)_inset]'
                 }`}
             />
           )
