@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { BlurImage } from '@/components/ui/blur-image'
+import { GridPatternContainer } from '@/components/ui/grid-pattern'
 
 export default function Events() {
   return (
@@ -38,7 +40,7 @@ export default function Events() {
   )
 }
 
-export const BlogCard = ({ blog }: { blog: Blog }) => {
+const BlogCard = ({ blog }: { blog: Blog }) => {
   const truncate = (text: string, length: number) => {
     return text.length > length ? text.slice(0, length) + '...' : text
   }
@@ -92,6 +94,7 @@ type Blog = {
   author: string
   authorAvatar: string
 }
+
 const blogs: Blog[] = [
   {
     title: 'Changelog for 2024',
@@ -153,84 +156,3 @@ const blogs: Blog[] = [
     authorAvatar: 'https://assets.aceternity.com/manu.png',
   },
 ]
-
-interface IBlurImage {
-  height?: number | `${number}`
-  width?: number | `${number}`
-  src: string
-  objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
-  className?: string
-  alt?: string
-  layout?: 'fill' | 'fixed' | 'intrinsic' | 'responsive'
-  [key: string]: unknown
-}
-
-export const BlurImage = ({
-  height,
-  width,
-  src,
-  className,
-  objectFit,
-  alt,
-  layout,
-  ...rest
-}: IBlurImage) => {
-  const [isLoading, setLoading] = useState(true)
-  return (
-    <>
-      <Image
-        className={cn(
-          'transition duration-300 transform',
-          isLoading ? 'blur-sm scale-105' : 'blur-0 scale-100',
-          className
-        )}
-        onLoadingComplete={() => setLoading(false)}
-        src={src}
-        width={width}
-        height={height}
-        objectFit={objectFit}
-        loading='lazy'
-        decoding='async'
-        blurDataURL={src}
-        layout={layout}
-        alt={alt ? alt : 'Avatar'}
-        {...rest}
-      />
-    </>
-  )
-}
-
-export function GridPatternContainer({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn(
-        'absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,white,transparent)]',
-        className
-      )}
-    >
-      <GridPattern />
-    </div>
-  )
-}
-export function GridPattern() {
-  const columns = 30
-  const rows = 11
-  return (
-    <div className='flex bg-gray-200 dark:bg-neutral-700 flex-shrink-0 flex-wrap justify-center items-center gap-x-px gap-y-px  scale-105'>
-      {Array.from({ length: rows }).map((_, row) =>
-        Array.from({ length: columns }).map((_, col) => {
-          const index = row * columns + col
-          return (
-            <div
-              key={`${col}-${row}`}
-              className={`w-10 h-10 flex flex-shrink-0 rounded-[1px] ${index % 2 === 0
-                  ? 'bg-gray-100 dark:bg-neutral-800'
-                  : 'bg-gray-100 dark:bg-neutral-800 shadow-[0px_0px_0px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_0px_3px_rgba(0,0,0,0.2)_inset]'
-                }`}
-            />
-          )
-        })
-      )}
-    </div>
-  )
-}
