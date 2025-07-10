@@ -131,12 +131,14 @@ export default function Home() {
               >
                 Explore Upcoming Events
               </Button>
-              <Button
-                className='cursor-pointer bg-transparent text-white'
-                variant='outline'
-              >
-                Become a Member
-              </Button>
+              <Link href='/membership'>
+                <Button
+                  className='cursor-pointer bg-transparent text-white'
+                  variant='outline'
+                >
+                  Become a Member
+                </Button>
+              </Link>
             </div>
           </div>
           <div className='px-8'>
@@ -289,12 +291,14 @@ export default function Home() {
             </div>
           </div>
           <Testimonial />
-          <Button
-            className='mx-auto block cursor-pointer hover:bg-teal-500 hover:text-white transition-all duration-300'
-            variant='outline'
-          >
-            Become a member
-          </Button>
+          <Link href='/membership'>
+            <Button
+              className='mx-auto block cursor-pointer hover:bg-teal-500 hover:text-white transition-all duration-300'
+              variant='outline'
+            >
+              Become a member
+            </Button>
+          </Link>
         </section>
       </motion.div>
       <motion.div

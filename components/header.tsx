@@ -26,8 +26,7 @@ const events = [
   },
   {
     name: 'All Events',
-    description:
-      "View all upcoming events and workshops.",
+    description: 'View all upcoming events and workshops.',
     href: '/events',
     icon: Calendar,
   },
@@ -153,7 +152,7 @@ export default function Header() {
             Kids
           </a>
           <a
-            href='#'
+            href='/membership'
             className={`text-sm/6 font-semibold transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
               }`}
           >
@@ -250,7 +249,7 @@ export default function Header() {
                   Kids
                 </a>
                 <a
-                  href='#'
+                  href='/membership'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
                 >
                   Membership
