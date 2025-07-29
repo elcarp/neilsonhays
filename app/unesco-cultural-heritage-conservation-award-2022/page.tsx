@@ -3,7 +3,7 @@ import PageTitle from '@/components/ui/page-title'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Image from 'next/image'
-import { Award, Users, Building2, Heart, Globe, Star } from 'lucide-react'
+import { Award, Building2, Globe, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -12,10 +12,6 @@ export default function UnescoCulturalHeritageConservationAward2022() {
   const significanceRef = useRef(null)
   const acceptanceRef = useRef(null)
   const juryRef = useRef(null)
-  const awardInView = useInView(awardRef, { once: true })
-  const significanceInView = useInView(significanceRef, { once: true })
-  const acceptanceInView = useInView(acceptanceRef, { once: true })
-  const juryInView = useInView(juryRef, { once: true })
 
   const awardDetails = [
     {
