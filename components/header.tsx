@@ -171,7 +171,7 @@ export default function Header() {
             Visit
           </a>
           <a
-            href='#'
+            href='/about'
             className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
               }`}
           >
@@ -267,7 +267,7 @@ export default function Header() {
                   Visit
                 </a>
                 <a
-                  href='#'
+                  href='/about'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
                 >
                   About

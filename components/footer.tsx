@@ -5,11 +5,11 @@ import Link from "next/link"
 
 const navigation = {
   ourLibrary: [
-    { name: 'Events', href: '#' },
+    { name: 'Events', href: '/events' },
     { name: 'Kids', href: '#' },
-    { name: 'Membership', href: '#' },
+    { name: 'Membership', href: '/membership' },
     { name: 'Visit', href: '#' },
-    { name: 'About', href: '#' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '#' },
 
   ],
