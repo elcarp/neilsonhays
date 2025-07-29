@@ -12,7 +12,7 @@ import {
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
-import { BookHeart, Calendar, History, Info } from 'lucide-react'
+import { Award, BookHeart, Calendar, Hammer, History, Info } from 'lucide-react'
 import { Button } from './ui/button'
 import Link from 'next/link'
 
@@ -45,6 +45,18 @@ const about = [
       "Learn about the library's history and its impact on the community.",
     href: '/history',
     icon: History,
+  },
+  {
+    name: 'UNESCO Cultural Heritage Conservation Award 2022',
+    description: 'Learn about the library\'s UNESCO Cultural Heritage Conservation Award 2022.',
+    href: '/unesco-cultural-heritage-conservation-award-2022',
+    icon: Award,
+  },
+  {
+    name: 'Restoration',
+    description: 'Learn about the library\'s restoration.',
+    href: '/restoration',
+    icon: Hammer,
   },
 ]
 
