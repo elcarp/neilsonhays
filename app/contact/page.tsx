@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react'
-import Image from 'next/image'
+import Link from "next/link"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -48,8 +48,8 @@ export default function Contact() {
             Get in Touch
           </h1>
           <p className="text-xl text-teal-100 max-w-2xl mx-auto">
-            We'd love to hear from you. Whether you have a question about our services,
-            want to become a member, or just want to say hello, we're here to help.
+            We&apos;d love to hear from you. Whether you have a question about our services,
+            want to become a member, or just want to say hello, we&apos;re here to help.
           </p>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function Contact() {
               <div className="text-center py-8">
                 <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Message Sent!</h3>
-                <p className="text-gray-600">Thank you for contacting us. We'll get back to you soon.</p>
+                <p className="text-gray-600">Thank you for contacting us. We&apos;ll get back to you soon.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -240,26 +240,26 @@ export default function Contact() {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h2>
 
               <div className="space-y-4">
-                <a
+                <Link
                   href="/membership"
                   className="block w-full bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-md font-semibold text-center transition-colors"
                 >
                   Become a Member
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/events"
                   className="block w-full bg-white hover:bg-gray-50 text-teal-600 py-3 px-6 rounded-md font-semibold text-center border-2 border-teal-600 transition-colors"
                 >
                   View Upcoming Events
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/about"
                   className="block w-full bg-white hover:bg-gray-50 text-gray-700 py-3 px-6 rounded-md font-semibold text-center border-2 border-gray-300 transition-colors"
                 >
                   Learn About Our History
-                </a>
+                </Link>
               </div>
             </div>
           </div>
