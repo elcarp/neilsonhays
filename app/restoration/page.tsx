@@ -3,7 +3,7 @@ import PageTitle from '@/components/ui/page-title'
 import { motion } from 'framer-motion'
 import { useRef } from 'react'
 import Image from 'next/image'
-import { Hammer, Heart, Users, Clock, Award, Building2 } from 'lucide-react'
+import { Hammer, Users, Clock, Building2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 

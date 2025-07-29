@@ -37,7 +37,7 @@ export default function UnescoCulturalHeritageConservationAward2022() {
       icon: Building2,
       title: 'Century-Old Library',
       description: 'Built in 1922 by Italian architect Mario Tamagno',
-      color: 'text-green-400',
+      color: 'text-teal-400',
     },
   ]
 
@@ -327,7 +327,7 @@ export default function UnescoCulturalHeritageConservationAward2022() {
               </div>
             </div>
 
-            <div className='bg-green-900/20 p-8 rounded-lg border border-green-700'>
+            <div className='bg-teal-900/20 p-8 rounded-lg border border-teal-700'>
               <blockquote className='text-xl italic text-white mb-4'>
                 &ldquo;The awards give people a sense of pride and sense of
                 ownership of their own heritage.&rdquo;
