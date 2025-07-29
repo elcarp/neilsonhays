@@ -229,9 +229,11 @@ export default function Home() {
                   <span className='ml-3 text-sm'>Crafts and activities</span>
                 </li>
               </ul>
-              <Button className='bg-teal-500 mt-8 block cursor-pointer hover:bg-teal-600'>
-                See Kids Programs
-              </Button>
+              <Link href='/kids'>
+                <Button className='bg-teal-500 mt-8 block cursor-pointer hover:bg-teal-600'>
+                  See Kids Programs
+                </Button>
+              </Link>
             </div>
           </div>
         </section>

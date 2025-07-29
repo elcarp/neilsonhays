@@ -17,7 +17,8 @@ export default function Kids() {
     {
       icon: BookOpen,
       title: 'Children&apos;s Corner',
-      description: 'A cosy and inviting space for young members to enjoy stories',
+      description:
+        'A cosy and inviting space for young members to enjoy stories',
       color: 'text-blue-400',
     },
     {
@@ -36,7 +37,7 @@ export default function Kids() {
       icon: PenTool,
       title: 'Monthly Workshops',
       description: 'Creative Writing and CoderDojo sessions for young adults',
-      color: 'text-purple-400',
+      color: 'text-pink-400',
     },
   ]
 
@@ -63,13 +64,15 @@ export default function Kids() {
     {
       icon: PenTool,
       title: 'Creative Writing Workshop',
-      description: 'A place for young people to foster creativity and confidence in writing',
+      description:
+        'A place for young people to foster creativity and confidence in writing',
       color: 'text-blue-400',
     },
     {
       icon: Code,
       title: 'CoderDojo Sessions',
-      description: 'Establish foundational coding skills in a supportive environment',
+      description:
+        'Establish foundational coding skills in a supportive environment',
       color: 'text-teal-400',
     },
   ]
@@ -80,14 +83,14 @@ export default function Kids() {
       <section className='relative h-[70vh] flex items-center justify-center'>
         <Image
           src='https://neilsonhayslibrary.org/wp-content/uploads/2023/07/Childrens-corner-2048x1365.jpg'
-          alt='Neilson Hays Library children&apos;s programs'
+          alt="Neilson Hays Library children's programs"
           fill
           className='object-cover opacity-30'
           priority
         />
         <div className='relative z-10 text-center px-4'>
           <PageTitle
-            title='Children&apos;s Programs'
+            title="Children's Programs"
             description='Nurturing young minds through stories, creativity, and learning'
             quote='A child who reads will be an adult who thinks.'
           />
@@ -107,7 +110,9 @@ export default function Kids() {
               Programs for Young Minds
             </h2>
             <p className='text-xl text-gray-300 max-w-3xl mx-auto'>
-              From cozy reading corners to creative workshops, we offer a variety of programs designed to inspire and educate children of all ages.
+              From cozy reading corners to creative workshops, we offer a
+              variety of programs designed to inspire and educate children of
+              all ages.
             </p>
           </motion.div>
 
@@ -161,7 +166,9 @@ export default function Kids() {
           >
             <div className='prose prose-lg prose-invert'>
               <p className='text-xl leading-relaxed text-gray-300 mb-8'>
-                Our Children&apos;s Corner is a cosy and inviting space for our young members to make themselves comfortable on a cushion or sit at a small table, where they can enjoy their favourite stories.
+                Our Children&apos;s Corner is a cosy and inviting space for our
+                young members to make themselves comfortable on a cushion or sit
+                at a small table, where they can enjoy their favourite stories.
               </p>
 
               <div className='bg-blue-900/20 p-8 rounded-lg border border-blue-700'>
@@ -169,7 +176,9 @@ export default function Kids() {
                   Extensive Collection
                 </h3>
                 <p className='text-lg leading-relaxed text-gray-300'>
-                  Children of all ages can explore our extensive collection of picture, fiction and non-fiction books. There is also a comprehensive section for Young Adults.
+                  Children of all ages can explore our extensive collection of
+                  picture, fiction and non-fiction books. There is also a
+                  comprehensive section for Young Adults.
                 </p>
               </div>
             </div>
@@ -177,7 +186,7 @@ export default function Kids() {
             <div className='relative'>
               <Image
                 src='https://neilsonhayslibrary.org/wp-content/uploads/2023/07/IMG_20140927_103732.jpg'
-                alt='Children&apos;s Corner at Neilson Hays Library'
+                alt="Children's Corner at Neilson Hays Library"
                 width={600}
                 height={400}
                 className='rounded-lg shadow-2xl'
@@ -211,7 +220,11 @@ export default function Kids() {
             className='prose prose-lg prose-invert mx-auto'
           >
             <p className='text-xl leading-relaxed text-gray-300 mb-8'>
-              Every Saturday morning is dedicated to children, with our popular Children&apos;s Story Time sessions at 10:30 AM. Enthusiastic readers engage young listeners with several books, usually chosen to follow a particular theme each week. Stories are followed by an imaginative craft activity related to the book theme.
+              Every Saturday morning is dedicated to children, with our popular
+              Children&apos;s Story Time sessions at 10:30 AM. Enthusiastic
+              readers engage young listeners with several books, usually chosen
+              to follow a particular theme each week. Stories are followed by an
+              imaginative craft activity related to the book theme.
             </p>
 
             <div className='bg-teal-900/20 p-8 rounded-lg border border-teal-700 mb-8'>
@@ -219,12 +232,16 @@ export default function Kids() {
                 Inclusive Learning Environment
               </h3>
               <p className='text-lg leading-relaxed text-gray-300'>
-                The Story Time audience is comprised of native English speakers and children who are learning English. Saturday mornings are a great opportunity to listen, practice and absorb English in a fun and non-threatening environment, where children can play with new friends every week.
+                The Story Time audience is comprised of native English speakers
+                and children who are learning English. Saturday mornings are a
+                great opportunity to listen, practice and absorb English in a
+                fun and non-threatening environment, where children can play
+                with new friends every week.
               </p>
             </div>
 
             <div className='grid md:grid-cols-2 gap-6'>
-              {storyTimeDetails.map((detail, index) => (
+              {storyTimeDetails.map(detail => (
                 <div
                   key={detail.title}
                   className='bg-gray-800 p-6 rounded-lg border border-gray-700'
@@ -253,7 +270,8 @@ export default function Kids() {
               School Visits
             </h2>
             <p className='text-xl text-gray-300'>
-              Explore the building&apos;s architectural features and learn about libraries
+              Explore the building&apos;s architectural features and learn about
+              libraries
             </p>
           </motion.div>
 
@@ -265,7 +283,12 @@ export default function Kids() {
           >
             <div className='prose prose-lg prose-invert'>
               <p className='text-xl leading-relaxed text-gray-300 mb-8'>
-                A visit to the Neilson Hays Library can be a wonderful opportunity to explore the building&apos;s architectural features, take a look back at Bangkok 100 years ago, and learn about libraries and their important role in society. We welcome school visits and will tailor a short programme appropriate to the age and needs of the school group.
+                A visit to the Neilson Hays Library can be a wonderful
+                opportunity to explore the building&apos;s architectural
+                features, take a look back at Bangkok 100 years ago, and learn
+                about libraries and their important role in society. We welcome
+                school visits and will tailor a short programme appropriate to
+                the age and needs of the school group.
               </p>
 
               <div className='bg-yellow-900/20 p-8 rounded-lg border border-yellow-700 mb-8'>
@@ -274,7 +297,9 @@ export default function Kids() {
                 </h3>
                 <ul className='text-lg leading-relaxed text-gray-300 space-y-2'>
                   <li>• Library history and building tour</li>
-                  <li>• Additional activities may include crafts and refreshments</li>
+                  <li>
+                    • Additional activities may include crafts and refreshments
+                  </li>
                   <li>• Tailored program for your school group</li>
                   <li>• Starts at THB 400 per student</li>
                 </ul>
@@ -282,7 +307,8 @@ export default function Kids() {
 
               <div className='text-center'>
                 <p className='text-lg text-gray-300 mb-4'>
-                  Please contact our School Visit Coordinator to discuss your requirements.
+                  Please contact our School Visit Coordinator to discuss your
+                  requirements.
                 </p>
                 <Link href='/contact'>
                   <Button className='bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
@@ -329,7 +355,9 @@ export default function Kids() {
             className='space-y-8'
           >
             <p className='text-xl leading-relaxed text-gray-300 mb-8 text-center max-w-3xl mx-auto'>
-              Monthly workshops allow children and young adults an opportunity to learn a new topic and develop their skills. Visit the events calendar for session schedules and sign-up instructions.
+              Monthly workshops allow children and young adults an opportunity
+              to learn a new topic and develop their skills. Visit the events
+              calendar for session schedules and sign-up instructions.
             </p>
 
             <div className='grid md:grid-cols-2 gap-8'>
@@ -352,7 +380,7 @@ export default function Kids() {
 
             <div className='text-center mt-8'>
               <Link href='/events'>
-                <Button className='bg-purple-500 hover:bg-purple-600 text-white px-8 py-3 text-lg'>
+                <Button className='bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 text-lg'>
                   View Events Calendar
                 </Button>
               </Link>

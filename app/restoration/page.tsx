@@ -36,7 +36,7 @@ export default function Restoration() {
       icon: Building2,
       title: '150 Years',
       description: 'Expected lifespan after restoration',
-      color: 'text-purple-400',
+      color: 'text-pink-400',
     },
   ]
 

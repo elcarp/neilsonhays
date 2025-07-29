@@ -36,7 +36,7 @@ export default function Operations() {
       icon: Calendar,
       title: 'Governance',
       description: 'Monthly board meetings and annual general meetings',
-      color: 'text-purple-400',
+      color: 'text-pink-400',
     },
   ]
 

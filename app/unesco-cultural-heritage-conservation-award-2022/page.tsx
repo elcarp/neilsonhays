@@ -31,7 +31,7 @@ export default function UnescoCulturalHeritageConservationAward2022() {
       icon: Star,
       title: '13 Projects',
       description: 'Acknowledged for awards from six countries',
-      color: 'text-purple-400',
+      color: 'text-pink-400',
     },
     {
       icon: Building2,

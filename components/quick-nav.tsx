@@ -3,8 +3,8 @@ import Link from "next/link"
 
 const nav = [
   { title: 'Catalog', href: 'https://16309.rmwebopac.com/', target: '_blank', icon: BookOpen },
-  { title: 'Events', href: '#', icon: Calendar },
-  { title: 'Kids Programs', href: '#', icon: BookHeart },
+  { title: 'Events', href: '/events', icon: Calendar },
+  { title: 'Kids Programs', href: '/kids', icon: BookHeart },
   { title: 'Cafe Info', href: '#', icon: Coffee },
   { title: 'Book Club', href: '#', icon: Users2 },
 ]
