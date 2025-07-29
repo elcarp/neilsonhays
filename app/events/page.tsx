@@ -127,8 +127,8 @@ const events: Event[] = [
     description: 'Experience the beautiful sounds of classical music in our historic library setting.',
     slug: 'concert-echoes-from-the-french-school',
     image: 'https://neilsonhayslibrary.org/wp-content/uploads/2025/06/Web.png',
-    date: '2025-05-10',
-    time: '8:00 PM',
+    date: '2025-08-03',
+    time: '6:00 PM',
     location: 'Main Hall'
   },
   {

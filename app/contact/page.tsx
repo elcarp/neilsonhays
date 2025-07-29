@@ -269,6 +269,16 @@ export default function Contact() {
         <div className="mt-16">
           <div className="bg-white rounded-lg shadow-lg p-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Find Us</h2>
+            <div className="text-center text-gray-600 mb-6 max-w-3xl mx-auto space-y-4">
+              <p className="text-lg">
+                ตั้งอยู่ที่ถนนสุรวงศ์ ใกล้กับสี่แยกสุรวงศ์ ตรงข้ามกับโรงแรมแมนดาริน โอเรียนเต็ล
+                สามารถเดินทางได้โดยรถไฟฟ้า BTS (สถานีศาลาแดง) หรือรถเมล์สาย 1, 15, 16, 35, 73
+              </p>
+              <p className="text-lg text-gray-700">
+                Located on Surawong Road, near Surawong Intersection, opposite the Mandarin Oriental Hotel.
+                Accessible by BTS Skytrain (Sala Daeng Station) or bus routes 1, 15, 16, 35, 73.
+              </p>
+            </div>
             <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.5!2d100.5!3d13.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQyJzAwLjAiTiAxMDDCsDMwJzAwLjAiRQ!5e0!3m2!1sen!2sth!4v1234567890"

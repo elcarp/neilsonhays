@@ -8,39 +8,16 @@ import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { useLenisInstance } from './hooks/useLenisInstance'
+import { useRouter } from 'next/navigation'
 
 const events = [
   {
-    title: "Book Club: 'The Glass Palace'",
-    date: '2025-04-22',
+    title: 'Concert: Echoes from the French School',
+    date: '2025-08-03',
     description:
-      "Monthly book club meeting discussing Amitav Ghosh's historical novel about Burma, Malaya, and India.",
-    image: '/images/bookclub.jpg',
-    href: '#',
-  },
-  {
-    title: 'Poetry Evening',
-    date: '2025-04-18',
-    description:
-      'A night of poetry readings featuring both English and Thai language works.Open mic session follows.',
-    image: '/images/poetryevening.jpg',
-    href: '#',
-  },
-  {
-    title: 'Author Talk: Bangkok Stories',
-    date: '2025-04-15',
-    description:
-      "Join acclaimed author Alex discussion of her new book exploring Bangkok's rich history.",
-    image: '/images/authortalk.jpg',
-    href: '#',
-  },
-  {
-    title: 'Digital Resources Workshop',
-    date: '2025-04-30',
-    description:
-      "Learn to use the library's expanding digital collections and e- resources. Perfect for all age groups.",
-    image: '/images/digitalresources.jpg',
-    href: '#',
+      '1) Guillaume Lekeu, Adagio Pour Quatuor à Cordes, (transcription by Nicolas Bacri)*** Lekeu and Bacri are the first Asian performance *** 2) Nicolas Bacri, String Quartet No. 8, Op. 112(Omaggio à Haydn) 3) Maurice Ravel, String Quartet in F Major',
+    image: 'https://neilsonhayslibrary.org/wp-content/uploads/2025/06/Web.png',
+    href: '/events/concert-echoes-from-the-french-school',
   },
 ]
 
@@ -75,6 +52,8 @@ export default function Home() {
   const kidsInView = useInView(kidsRef, { once: false })
   const membershipInView = useInView(membershipRef, { once: false })
   const supportInView = useInView(supportRef, { once: false })
+
+  const router = useRouter()
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -162,11 +141,12 @@ export default function Home() {
               Discover our diverse range of events, from author talks to
               workshops and community.
             </p>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 justify-center'>
               {events.map(event => (
                 <div
                   key={event.title}
-                  className='bg-white rounded-lg shadow-md overflow-hidden'
+                  onClick={() => router.push(event.href)}
+                  className='bg-white rounded-lg shadow-md overflow-hidden cursor-pointer'
                 >
                   <Image
                     src={event.image}
@@ -202,7 +182,7 @@ export default function Home() {
             </div>
           </div>
           <Link href='/events'>
-            <Button className='bg-teal-500 mx-auto block cursor-pointer hover:bg-teal-600'>
+            <Button className='mb-10 bg-teal-500 mx-auto block cursor-pointer hover:bg-teal-600'>
               View Full Events Calendar
             </Button>
           </Link>

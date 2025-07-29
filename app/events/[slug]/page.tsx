@@ -9,8 +9,8 @@ const events = [
   {
     slug: 'concert-echoes-from-the-french-school',
     title: 'Concert: Echoes from the French School',
-    date: '2025-05-10',
-    time: '8:00 PM',
+    date: '2025-08-03',
+    time: '6:00 PM',
     location: 'Main Hall',
     description:
       'Experience the beautiful sounds of classical music in our historic library setting.',
