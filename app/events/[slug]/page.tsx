@@ -94,13 +94,14 @@ const events = [
 ]
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export default function EventPage({ params }: PageProps) {
-  const event = events.find(e => e.slug === params.slug)
+export default async function EventPage({ params }: PageProps) {
+  const { slug } = await params
+  const event = events.find(e => e.slug === slug)
 
   if (!event) {
     notFound()
