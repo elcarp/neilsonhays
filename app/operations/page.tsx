@@ -86,7 +86,8 @@ export default function Operations() {
     },
     {
       title: 'Facilities Maintenance',
-      description: 'Structural integrity maintenance for Bangkok&apos;s tropical weather',
+      description:
+        'Structural integrity maintenance for Bangkok&apos;s tropical weather',
     },
   ]
 
@@ -105,7 +106,7 @@ export default function Operations() {
           <PageTitle
             title='Operations'
             description='Library Association Board'
-            quote='I&apos;ve learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.'
+            quote="I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel."
           />
           <p className='text-white text-lg mt-4'>— Maya Angelou</p>
         </div>
@@ -124,7 +125,10 @@ export default function Operations() {
               Library Association Board
             </h2>
             <p className='text-xl text-gray-300 max-w-3xl mx-auto'>
-              The Neilson Hays Library Association Board is responsible for the management of the Neilson Hays Library, including: maintenance, the selection of books for the collection, and the employment and supervision of all personnel.
+              The Neilson Hays Library Association Board is responsible for the
+              management of the Neilson Hays Library, including: maintenance,
+              the selection of books for the collection, and the employment and
+              supervision of all personnel.
             </p>
           </motion.div>
 
@@ -135,7 +139,8 @@ export default function Operations() {
             className='prose prose-lg prose-invert mx-auto'
           >
             <p className='text-xl leading-relaxed text-gray-300 mb-8'>
-              The Board meets on a monthly basis, with an Annual General Meeting held in the first quarter of every year.
+              The Board meets on a monthly basis, with an Annual General Meeting
+              held in the first quarter of every year.
             </p>
 
             <div className='bg-blue-900/20 p-8 rounded-lg border border-blue-700 mb-8'>
@@ -143,7 +148,11 @@ export default function Operations() {
                 Constitutional Structure
               </h3>
               <p className='text-lg leading-relaxed text-gray-300'>
-                Following Dr. Hays&apos; wishes, the Board is constitutionally comprised of twelve ladies. However, we very much welcome and value our male volunteers, members, and Friends of the Library. There are many opportunities for all of our members to get involved.
+                Following Dr. Hays&apos; wishes, the Board is constitutionally
+                comprised of twelve ladies. However, we very much welcome and
+                value our male volunteers, members, and Friends of the Library.
+                There are many opportunities for all of our members to get
+                involved.
               </p>
             </div>
           </motion.div>
@@ -215,7 +224,7 @@ export default function Operations() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'
           >
-            {boardOfficers.map((officer, index) => (
+            {boardOfficers.map(officer => (
               <div
                 key={officer}
                 className='bg-gray-800 p-4 rounded-lg border border-gray-700'
@@ -243,7 +252,8 @@ export default function Operations() {
               Day-to-Day Operations
             </h2>
             <p className='text-xl text-gray-300'>
-              Professional staff and contracted services ensure smooth operations
+              Professional staff and contracted services ensure smooth
+              operations
             </p>
           </motion.div>
 
@@ -258,7 +268,7 @@ export default function Operations() {
                 Library Staff
               </h3>
               <div className='grid md:grid-cols-2 gap-6'>
-                {staffPositions.map((position, index) => (
+                {staffPositions.map(position => (
                   <div
                     key={position.title}
                     className='bg-gray-800 p-6 rounded-lg border border-gray-700'
@@ -277,7 +287,7 @@ export default function Operations() {
                 Contracted Services
               </h3>
               <div className='grid md:grid-cols-3 gap-6'>
-                {contractedServices.map((service, index) => (
+                {contractedServices.map(service => (
                   <div
                     key={service.title}
                     className='bg-gray-800 p-6 rounded-lg border border-gray-700'
@@ -303,9 +313,7 @@ export default function Operations() {
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-white mb-4'>
-              Get Involved
-            </h2>
+            <h2 className='text-4xl font-bold text-white mb-4'>Get Involved</h2>
             <p className='text-xl text-gray-300'>
               Many opportunities for all members to contribute
             </p>
@@ -323,7 +331,10 @@ export default function Operations() {
                 Volunteer Opportunities
               </h3>
               <p className='text-lg leading-relaxed text-gray-300'>
-                We very much welcome and value our male volunteers, members, and Friends of the Library. There are many opportunities for all of our members to get involved in supporting the library&apos;s mission and operations.
+                We very much welcome and value our male volunteers, members, and
+                Friends of the Library. There are many opportunities for all of
+                our members to get involved in supporting the library&apos;s
+                mission and operations.
               </p>
             </div>
           </motion.div>
@@ -339,7 +350,9 @@ export default function Operations() {
                 Friends of the Library
               </h3>
               <p className='text-gray-300'>
-                Join our community of supporters who help maintain and enhance the library&apos;s services and programs through their time, expertise, and resources.
+                Join our community of supporters who help maintain and enhance
+                the library&apos;s services and programs through their time,
+                expertise, and resources.
               </p>
             </div>
 
@@ -348,7 +361,9 @@ export default function Operations() {
                 Member Involvement
               </h3>
               <p className='text-gray-300'>
-                From event planning to collection development, there are numerous ways for members to contribute their skills and passion to the library&apos;s success.
+                From event planning to collection development, there are
+                numerous ways for members to contribute their skills and passion
+                to the library&apos;s success.
               </p>
             </div>
           </motion.div>
