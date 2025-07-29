@@ -12,7 +12,15 @@ import {
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
-import { Award, BookHeart, Calendar, Hammer, History, Info } from 'lucide-react'
+import {
+  Award,
+  BookHeart,
+  Calendar,
+  Hammer,
+  History,
+  Info,
+  Users,
+} from 'lucide-react'
 import { Button } from './ui/button'
 import Link from 'next/link'
 
@@ -48,15 +56,22 @@ const about = [
   },
   {
     name: 'UNESCO Cultural Heritage Conservation Award 2022',
-    description: 'Learn about the library\'s UNESCO Cultural Heritage Conservation Award 2022.',
+    description:
+      "Learn about the library's UNESCO Cultural Heritage Conservation Award 2022.",
     href: '/unesco-cultural-heritage-conservation-award-2022',
     icon: Award,
   },
   {
     name: 'Restoration',
-    description: 'Learn about the library\'s restoration.',
+    description: "Learn about the library's restoration.",
     href: '/restoration',
     icon: Hammer,
+  },
+  {
+    name: 'Operations',
+    description: "Learn about the library's operations.",
+    href: '/operations',
+    icon: Users,
   },
 ]
 
@@ -184,6 +199,13 @@ export default function Header() {
           >
             Membership
           </a>
+          <a
+            href='/kids'
+            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
+              }`}
+          >
+            Kids
+          </a>
           <div
             className='relative'
             onMouseEnter={handleMouseEnter('about')}
@@ -232,14 +254,6 @@ export default function Header() {
               </div>
             )}
           </div>
-
-          {/* <a
-            href='/about'
-            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
-              }`}
-          >
-            About
-          </a> */}
           <a
             href='/contact'
             className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
@@ -318,6 +332,11 @@ export default function Header() {
                   className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
                 >
                   Membership
+                </a>
+                <a href='/kids'
+                  className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
+                >
+                  Kids
                 </a>
                 <Disclosure as='div' className='-mx-3'>
                   <DisclosureButton className='group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'>
