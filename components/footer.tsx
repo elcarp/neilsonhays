@@ -6,11 +6,11 @@ import Link from "next/link"
 const navigation = {
   ourLibrary: [
     { name: 'Events', href: '/events' },
-    { name: 'Kids', href: '#' },
+    // { name: 'Kids', href: '#' },
     { name: 'Membership', href: '/membership' },
-    { name: 'Visit', href: '#' },
+    // { name: 'Visit', href: '#' },
     { name: 'About', href: '/about' },
-    { name: 'Contact', href: '#' },
+    { name: 'Contact', href: '/contact' },
 
   ],
   social: [

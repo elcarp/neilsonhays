@@ -150,25 +150,11 @@ export default function Header() {
           </div>
 
           <a
-            href='#'
-            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
-              }`}
-          >
-            Kids
-          </a>
-          <a
             href='/membership'
             className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
               }`}
           >
             Membership
-          </a>
-          <a
-            href='#'
-            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
-              }`}
-          >
-            Visit
           </a>
           <a
             href='/about'
@@ -178,7 +164,7 @@ export default function Header() {
             About
           </a>
           <a
-            href='#'
+            href='/contact'
             className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
               }`}
           >
@@ -189,7 +175,9 @@ export default function Header() {
           <Link href='/membership'>
             <Button
               variant='outline'
-              className={`cursor-pointer text-sm/6 bg-transparent font-semibold transition-colors text-white ${mounted && isScrolled ? 'bg-teal-500 border-teal-500' : 'bg-transparent'
+              className={`cursor-pointer text-sm/6 bg-transparent font-semibold transition-colors text-white ${mounted && isScrolled
+                ? 'bg-teal-500 border-teal-500'
+                : 'bg-transparent'
                 }`}
             >
               Become a Member
@@ -249,22 +237,10 @@ export default function Header() {
                   </DisclosurePanel>
                 </Disclosure>
                 <a
-                  href='#'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
-                >
-                  Kids
-                </a>
-                <a
                   href='/membership'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
                 >
                   Membership
-                </a>
-                <a
-                  href='#'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
-                >
-                  Visit
                 </a>
                 <a
                   href='/about'
@@ -273,7 +249,7 @@ export default function Header() {
                   About
                 </a>
                 <a
-                  href='#'
+                  href='/contact'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
                 >
                   Contact
