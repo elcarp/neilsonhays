@@ -406,12 +406,6 @@ export default function Header() {
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                {/* <a
-                  href='/kids'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
-                >
-                  Kids
-                </a> */}
                 <Disclosure as='div' className='-mx-3'>
                   <DisclosureButton className='group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'>
                     About
