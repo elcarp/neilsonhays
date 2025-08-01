@@ -185,7 +185,7 @@ export default function Kids() {
 
             <div className='relative'>
               <Image
-                src='https://neilsonhayslibrary.org/wp-content/uploads/2023/07/IMG_20140927_103732.jpg'
+                src='/images/kidslibrary.webp'
                 alt="Children's Corner at Neilson Hays Library"
                 width={600}
                 height={400}
