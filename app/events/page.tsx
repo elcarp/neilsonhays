@@ -135,7 +135,7 @@ const events: Event[] = [
     title: 'Children\'s Story Time',
     description: 'Interactive storytelling session for young readers with crafts and activities.',
     slug: 'childrens-story-time',
-    image: '/images/kidslibrary.jpg',
+    image: '/images/kidslibrary.webp',
     date: '2025-04-25',
     time: '10:00 AM',
     location: 'Children\'s Corner'

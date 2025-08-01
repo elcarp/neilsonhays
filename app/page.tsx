@@ -198,7 +198,7 @@ export default function Home() {
           <div className='container mx-auto flex items-base'>
             <div className='w-1/2'>
               <img
-                src='/images/kidslibrary.jpg'
+                src='/images/kidslibrary.webp'
                 alt='Kids Library'
                 className='w-full h-full object-cover'
               />
