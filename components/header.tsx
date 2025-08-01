@@ -16,8 +16,10 @@ import {
   Award,
   BookHeart,
   BookOpen,
+  Building,
   Calendar,
   Hammer,
+  Heart,
   History,
   Info,
   Users,
@@ -39,8 +41,33 @@ const events = [
     href: '/events',
     icon: Calendar,
   },
+  {
+    name: 'Venue Hire',
+    description: 'Hire the library for your next event.',
+    href: '/venue-hire',
+    icon: Building,
+  },
 ]
-
+const support = [
+  {
+    name: 'Membership',
+    description: 'Become a member of the library.',
+    href: '/membership',
+    icon: Users,
+  },
+  {
+    name: 'Donate',
+    description: 'Donate to the library.',
+    href: '/donate',
+    icon: Heart,
+  },
+  {
+    name: 'Volunteer',
+    description: 'Volunteer at the library.',
+    href: '/volunteer',
+    icon: Users,
+  },
+]
 const programs = [
   {
     name: 'Programs',
@@ -207,16 +234,57 @@ export default function Header() {
               </div>
             )}
           </div>
-
-          <a
-            href='/membership'
-            className={`text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
-              }`}
+          <div
+            className='relative'
+            onMouseEnter={handleMouseEnter('support')}
+            onMouseLeave={handleMouseLeave}
           >
-            Membership
-          </a>
+            <button
+              className={`flex items-center gap-x-1 text-sm/6 font-semibold transition-colors ${mounted && isScrolled ? 'text-gray-900' : 'text-white'
+                }`}
+            >
+              Support
+              <ChevronDownIcon
+                aria-hidden='true'
+                className={`size-5 flex-none transition-colors ${mounted && isScrolled ? 'text-gray-400' : 'text-white/70'
+                  }`}
+              />
+            </button>
+            {openPopover === 'support' && (
+              <div className='absolute top-full -left-8 z-50 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5'>
+                <div className='p-4'>
+                  {support.map(item => (
+                    <div
+                      key={item.name}
+                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50'
+                    >
+                      <div className='flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white'>
+                        <item.icon
+                          aria-hidden='true'
+                          className='size-6 text-gray-600 group-hover:text-teal-600'
+                        />
+                      </div>
+                      <div className='flex-auto'>
+                        <a
+                          href={item.href}
+                          className='block font-semibold text-gray-900'
+                        >
+                          {item.name}
+                          <span className='absolute inset-0' />
+                          <p className='mt-1 text-gray-600'>
+                            {item.description}
+                          </p>
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
 
-          <div className='relative'
+          <div
+            className='relative'
             onMouseEnter={handleMouseEnter('programs')}
             onMouseLeave={handleMouseLeave}
           >
@@ -235,7 +303,10 @@ export default function Header() {
               <div className='absolute top-full -left-8 z-50 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5'>
                 <div className='p-4'>
                   {programs.map(item => (
-                    <div key={item.name} className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50'>
+                    <div
+                      key={item.name}
+                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50'
+                    >
                       <div className='flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white'>
                         <item.icon
                           aria-hidden='true'
@@ -249,7 +320,9 @@ export default function Header() {
                         >
                           {item.name}
                           <span className='absolute inset-0' />
-                          <p className='mt-1 text-gray-600'>{item.description}</p>
+                          <p className='mt-1 text-gray-600'>
+                            {item.description}
+                          </p>
                         </a>
                       </div>
                     </div>
@@ -379,12 +452,27 @@ export default function Header() {
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                <a
-                  href='/membership'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
-                >
-                  Membership
-                </a>
+                <Disclosure as='div' className='-mx-3'>
+                  <DisclosureButton className='group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'>
+                    Support
+                    <ChevronDownIcon
+                      aria-hidden='true'
+                      className='size-5 flex-none group-data-open:rotate-180'
+                    />
+                  </DisclosureButton>
+                  <DisclosurePanel className='mt-2 space-y-2'>
+                    {[...support].map(item => (
+                      <DisclosureButton
+                        key={item.name}
+                        as='a'
+                        href={item.href}
+                        className='block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50'
+                      >
+                        {item.name}
+                      </DisclosureButton>
+                    ))}
+                  </DisclosurePanel>
+                </Disclosure>
                 <Disclosure as='div' className='-mx-3'>
                   <DisclosureButton className='group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'>
                     Programs

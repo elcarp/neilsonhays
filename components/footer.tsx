@@ -9,6 +9,8 @@ const navigation = {
     { name: 'Kids', href: '/kids' },
     { name: 'Membership', href: '/membership' },
     { name: 'Visit', href: '/contact' },
+    { name: 'Venue Hire', href: '/venue-hire' },
+    { name: 'Volunteer', href: '/volunteer' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
 
