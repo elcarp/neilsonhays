@@ -1,11 +1,42 @@
-'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { BlurImage } from '@/components/ui/blur-image'
 import PageTitle from '@/components/ui/page-title'
 import { Calendar, MapPin, Clock } from 'lucide-react'
+import getUpcomingEvents, { type WpEvent } from '@/lib/wp-events'
 
-export default function Events() {
+// map WP → your EventCard shape
+function toEventCard(ev: WpEvent) {
+  const img = ev?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? ''
+  const m = ev.meta || {}
+
+  // Ensure meta values are strings, fallback to empty string if not
+  const getMetaString = (value: unknown): string => {
+    return typeof value === 'string' ? value : ''
+  }
+
+  return {
+    title: ev.title?.rendered?.replace(/<[^>]+>/g, '') ?? 'Untitled',
+    description: (ev.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
+    slug: ev.slug,
+    image: img,
+    date: getMetaString(m._event_start_date) || ev.date || '',
+    time: getMetaString(m._event_start_time),
+    location: getMetaString(m._event_venue) || getMetaString(m._event_address),
+  }
+}
+
+
+export default async function Events() {
+  const wpEvents = await getUpcomingEvents(12)
+  console.log(`Loaded ${wpEvents?.length || 0} events from WordPress`)
+
+  // Convert WordPress events to Event format, fallback to hardcoded events
+  const formattedEvents = wpEvents.length > 0
+    ? wpEvents.map(toEventCard)
+    : events
+
   return (
     <div className='min-h-screen bg-teal-700 py-24 sm:py-32'>
       <PageTitle
@@ -14,7 +45,7 @@ export default function Events() {
       />
       <div className='mt-20 flex flex-col items-center justify-between pb-20 max-w-7xl mx-auto px-4 md:px-8'>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-20'>
-          {events.map((event, index) => (
+          {formattedEvents.map((event, index) => (
             <EventCard event={event} key={event.title + index} />
           ))}
         </div>
@@ -47,7 +78,7 @@ const EventCard = ({ event }: { event: Event }) => {
       )}
       <div className='p-4 md:p-8 bg-white dark:bg-neutral-900'>
         <div className='flex space-x-2 items-center mb-2'>
-          <Calendar className="w-4 h-4 text-teal-600" />
+          <Calendar className='w-4 h-4 text-teal-600' />
           <span className='text-sm text-neutral-600 dark:text-neutral-400'>
             {event.date}
           </span>
@@ -60,11 +91,11 @@ const EventCard = ({ event }: { event: Event }) => {
         </p>
         <div className='flex items-center gap-4 mt-4 text-sm text-neutral-600 dark:text-neutral-400'>
           <div className='flex items-center gap-1'>
-            <Clock className="w-4 h-4" />
+            <Clock className='w-4 h-4' />
             <span>{event.time}</span>
           </div>
           <div className='flex items-center gap-1'>
-            <MapPin className="w-4 h-4" />
+            <MapPin className='w-4 h-4' />
             <span>{event.location}</span>
           </div>
         </div>
@@ -88,56 +119,62 @@ type Event = {
 const events: Event[] = [
   {
     title: "Book Club: 'The Glass Palace'",
-    description: "Monthly book club meeting discussing Amitav Ghosh's historical novel about Burma, Malaya, and India. Join us for a lively discussion about colonialism, family, and the interconnected histories of South and Southeast Asia.",
+    description:
+      "Monthly book club meeting discussing Amitav Ghosh's historical novel about Burma, Malaya, and India. Join us for a lively discussion about colonialism, family, and the interconnected histories of South and Southeast Asia.",
     slug: 'book-club-glass-palace',
     image: '/images/bookclub.jpg',
     date: '2025-04-22',
     time: '7:00 PM',
-    location: 'Main Reading Room'
+    location: 'Main Reading Room',
   },
   {
     title: 'Poetry Evening',
-    description: 'A night of poetry readings featuring both English and Thai language works. Open mic session follows.',
+    description:
+      'A night of poetry readings featuring both English and Thai language works. Open mic session follows.',
     slug: 'poetry-evening',
     image: '/images/poetryevening.jpg',
     date: '2025-04-18',
     time: '6:30 PM',
-    location: 'Garden Terrace'
+    location: 'Garden Terrace',
   },
   {
     title: 'Author Talk: Bangkok Stories',
-    description: "Join acclaimed author Alex for a discussion of her new book exploring Bangkok's rich history.",
+    description:
+      "Join acclaimed author Alex for a discussion of her new book exploring Bangkok's rich history.",
     slug: 'author-talk-bangkok-stories',
     image: '/images/authortalk.jpg',
     date: '2025-04-15',
     time: '7:00 PM',
-    location: 'Conference Room'
+    location: 'Conference Room',
   },
   {
     title: 'Digital Resources Workshop',
-    description: "Learn to use the library's expanding digital collections and e-resources. Perfect for all age groups.",
+    description:
+      "Learn to use the library's expanding digital collections and e-resources. Perfect for all age groups.",
     slug: 'digital-resources-workshop',
     image: '/images/digitalresources.jpg',
     date: '2025-04-30',
     time: '2:00 PM',
-    location: 'Computer Lab'
+    location: 'Computer Lab',
   },
   {
     title: 'Concert: Echoes from the French School',
-    description: 'Experience the beautiful sounds of classical music in our historic library setting.',
+    description:
+      'Experience the beautiful sounds of classical music in our historic library setting.',
     slug: 'concert-echoes-from-the-french-school',
     image: 'https://neilsonhayslibrary.org/wp-content/uploads/2025/06/Web.png',
     date: '2025-08-03',
     time: '6:00 PM',
-    location: 'Main Hall'
+    location: 'Main Hall',
   },
   {
-    title: 'Children\'s Story Time',
-    description: 'Interactive storytelling session for young readers with crafts and activities.',
+    title: "Children's Story Time",
+    description:
+      'Interactive storytelling session for young readers with crafts and activities.',
     slug: 'childrens-story-time',
     image: '/images/kidslibrary.webp',
     date: '2025-04-25',
     time: '10:00 AM',
-    location: 'Children\'s Corner'
-  }
+    location: "Children's Corner",
+  },
 ]
