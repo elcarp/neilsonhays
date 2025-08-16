@@ -7,7 +7,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { useLenisInstance } from './hooks/useLenisInstance'
 import { useRouter } from 'next/navigation'
 
 const events = [
@@ -46,7 +45,6 @@ export default function Home() {
   const kidsRef = useRef(null)
   const membershipRef = useRef(null)
   const supportRef = useRef(null)
-  const lenis = useLenisInstance()
 
   const eventsInView = useInView(eventsRef, { once: false })
   const kidsInView = useInView(kidsRef, { once: false })
@@ -59,25 +57,14 @@ export default function Home() {
     const element = document.getElementById(sectionId)
 
     if (element) {
-      if (lenis) {
-        console.log('Using Lenis scroll')
-        // Use Lenis smooth scroll if available
-        lenis.scrollTo(element, {
-          offset: -100,
-          duration: 2,
-          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        })
-      } else {
-        // Fallback to native smooth scroll
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        })
-        // Add offset for header
-        setTimeout(() => {
-          window.scrollBy(0, -100)
-        }, 100)
-      }
+      // Use native smooth scroll with offset
+      const elementPosition = element.offsetTop
+      const offsetPosition = elementPosition - 100
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
     } else {
       console.log('Element not found:', sectionId)
     }

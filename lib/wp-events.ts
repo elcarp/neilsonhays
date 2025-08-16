@@ -16,11 +16,18 @@ export type WpEvent = {
 
 export default async function getUpcomingEvents(limit = 20) {
   console.log(`Fetching ${limit} events from WordPress API...`)
-  // keep it simple; sort/filter in JS to avoid 400s from orderby=meta_value
-  const items = await wpGet<WpEvent[]>(
-    `/wp/v2/event_listing?status=publish&per_page=${limit}&_embed`
-  )
-  console.log(`Received ${items?.length || 0} raw events from WordPress API`)
+  
+  try {
+    // keep it simple; sort/filter in JS to avoid 400s from orderby=meta_value
+    const items = await wpGet<WpEvent[]>(
+      `/wp/v2/event_listing?status=publish&per_page=${limit}&_embed`
+    )
+    console.log(`Received ${items?.length || 0} raw events from WordPress API`)
+    
+    if (!items || !Array.isArray(items)) {
+      console.warn('WordPress API returned invalid data format')
+      return []
+    }
 
   const parseStart = (ev: WpEvent) => {
     const m = ev.meta || {}
@@ -47,8 +54,36 @@ export default async function getUpcomingEvents(limit = 20) {
     'WordPress admin needs to configure REST API to expose event meta fields'
   )
 
-  console.log(
-    `Filtered to ${futureEvents.length} future events from ${items.length} total events`
-  )
-  return futureEvents
+    console.log(
+      `Filtered to ${futureEvents.length} future events from ${items.length} total events`
+    )
+    return futureEvents
+  } catch (error) {
+    console.error('Error fetching events from WordPress API:', error)
+    console.log('Returning empty array - will fallback to mock data in UI')
+    return []
+  }
+}
+
+// Function to get a single event by slug
+export async function getEventBySlug(slug: string): Promise<WpEvent | null> {
+  console.log(`Fetching event with slug: ${slug}`)
+  
+  try {
+    const events = await wpGet<WpEvent[]>(
+      `/wp/v2/event_listing?slug=${slug}&_embed`
+    )
+    
+    if (!events || !Array.isArray(events) || events.length === 0) {
+      console.log(`No event found with slug: ${slug}`)
+      return null
+    }
+    
+    console.log(`Found event: ${events[0].title?.rendered}`)
+    return events[0]
+  } catch (error) {
+    console.error(`Error fetching event with slug ${slug}:`, error)
+    console.log('Returning null - will fallback to mock data in UI')
+    return null
+  }
 }
