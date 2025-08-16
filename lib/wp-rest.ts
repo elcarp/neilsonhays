@@ -14,7 +14,7 @@ export async function wpGet<T>(path: string, options: RequestInit = {}) {
 
   try {
     console.log(`Making WordPress API request to: ${WP_URL}/wp-json${path}`)
-    
+
     const res = await fetch(`${WP_URL}/wp-json${path}`, {
       // Cache strategies: 'force-cache' (SSG), 'no-store' (SSR),
       // or { next: { revalidate: N } } for ISR.
@@ -29,33 +29,39 @@ export async function wpGet<T>(path: string, options: RequestInit = {}) {
     })
 
     console.log(`WordPress API response status: ${res.status}`)
-    
+
     return await handleResponse<T>(res, path, authHeadersToUse, options)
   } catch (error) {
     console.error(`WordPress API request failed for ${path}:`, error)
-    
+
     // Provide more specific error messages
     if (error instanceof Error) {
       if (error.name === 'TimeoutError' || error.message.includes('timeout')) {
-        throw new Error('WordPress site is taking too long to respond. Please try again later.')
+        throw new Error(
+          'WordPress site is taking too long to respond. Please try again later.'
+        )
       }
-      if (error.message.includes('fetch failed') || error.message.includes('network')) {
-        throw new Error('Unable to connect to WordPress site. Please check your internet connection.')
+      if (
+        error.message.includes('fetch failed') ||
+        error.message.includes('network')
+      ) {
+        throw new Error(
+          'Unable to connect to WordPress site. Please check your internet connection.'
+        )
       }
       throw new Error(`WordPress API error: ${error.message}`)
     }
-    
+
     throw new Error('WordPress API request failed due to an unknown error')
   }
 }
 
 async function handleResponse<T>(
-  res: Response, 
-  path: string, 
-  authHeadersToUse: Record<string, string>, 
+  res: Response,
+  path: string,
+  authHeadersToUse: Record<string, string>,
   options: RequestInit
 ): Promise<T> {
-
   // If we get a 401 and we were trying to use auth, try again without auth
   if (res.status === 401 && Object.keys(authHeadersToUse).length > 0) {
     console.warn('WordPress authentication failed, trying without auth...')
@@ -68,26 +74,30 @@ async function handleResponse<T>(
         },
         signal: AbortSignal.timeout(5000), // 5 second timeout
       })
-      
-      console.log(`Retry without auth response status: ${resWithoutAuth.status}`)
-      
+
+      console.log(
+        `Retry without auth response status: ${resWithoutAuth.status}`
+      )
+
       if (!resWithoutAuth.ok) {
         throw new Error(`WP error ${resWithoutAuth.status}`)
       }
-      
+
       const data = (await resWithoutAuth.json()) as T
       console.log('Successfully retrieved data without auth')
       return data
     } catch (retryError) {
       console.error('Retry without auth also failed:', retryError)
-      throw new Error(`WordPress API failed even without auth: ${retryError instanceof Error ? retryError.message : 'Unknown error'}`)
+      throw new Error(
+        `WordPress API failed even without auth: ${retryError instanceof Error ? retryError.message : 'Unknown error'}`
+      )
     }
   }
 
   if (!res.ok) {
     throw new Error(`WordPress API returned ${res.status}: ${res.statusText}`)
   }
-  
+
   try {
     const data = (await res.json()) as T
     console.log('Successfully retrieved data with auth')
