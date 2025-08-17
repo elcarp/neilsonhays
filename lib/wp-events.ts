@@ -33,6 +33,9 @@ export const fallbackEventData = [
     maxAttendees: 25,
     category: 'Book Club',
     featured: true,
+    price: '0',
+    product_id: 0,
+    available: false,
   },
   {
     slug: 'poetry-evening',
@@ -50,6 +53,9 @@ export const fallbackEventData = [
     maxAttendees: 30,
     category: 'Cultural Event',
     featured: false,
+    price: '0',
+    product_id: 0,
+    available: false,
   },
   {
     slug: 'author-talk-bangkok-stories',
@@ -67,6 +73,9 @@ export const fallbackEventData = [
     maxAttendees: 40,
     category: 'Author Talk',
     featured: true,
+    price: '0',
+    product_id: 0,
+    available: false,
   },
   {
     slug: 'digital-resources-workshop',
@@ -84,6 +93,9 @@ export const fallbackEventData = [
     maxAttendees: 20,
     category: 'Workshop',
     featured: false,
+    price: '0',
+    product_id: 0,
+    available: false,
   },
   {
     slug: 'concert-echoes-from-the-french-school',
@@ -101,6 +113,9 @@ export const fallbackEventData = [
     maxAttendees: 50,
     category: 'Music',
     featured: true,
+    price: '0',
+    product_id: 0,
+    available: false,
   },
   {
     slug: 'childrens-story-time',
@@ -118,6 +133,9 @@ export const fallbackEventData = [
     maxAttendees: 15,
     category: "Children's Program",
     featured: false,
+    price: '0',
+    product_id: 0,
+    available: false,
   },
 ]
 
