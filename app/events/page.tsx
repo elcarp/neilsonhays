@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { BlurImage } from '@/components/ui/blur-image'
 import PageTitle from '@/components/ui/page-title'
 import { Calendar, MapPin, Clock } from 'lucide-react'
-import getUpcomingEvents, { type WpEvent } from '@/lib/wp-events'
+import getUpcomingEvents, { type WpEvent, fallbackEventData } from '@/lib/wp-events'
 
 // map WP → your EventCard shape
 function toEventCard(ev: WpEvent) {
@@ -32,10 +32,10 @@ export default async function Events() {
   const wpEvents = await getUpcomingEvents(12)
   console.log(`Loaded ${wpEvents?.length || 0} events from WordPress`)
 
-  // Convert WordPress events to Event format, fallback to hardcoded events
+  // Convert WordPress events to Event format, fallback to shared event data
   const formattedEvents = wpEvents.length > 0
     ? wpEvents.map(toEventCard)
-    : events
+    : fallbackEventData
 
   return (
     <div className='min-h-screen bg-teal-700 py-24 sm:py-32'>
@@ -116,65 +116,4 @@ type Event = {
   authorAvatar?: string
 }
 
-const events: Event[] = [
-  {
-    title: "Book Club: 'The Glass Palace'",
-    description:
-      "Monthly book club meeting discussing Amitav Ghosh's historical novel about Burma, Malaya, and India. Join us for a lively discussion about colonialism, family, and the interconnected histories of South and Southeast Asia.",
-    slug: 'book-club-glass-palace',
-    image: '/images/bookclub.jpg',
-    date: '2025-04-22',
-    time: '7:00 PM',
-    location: 'Main Reading Room',
-  },
-  {
-    title: 'Poetry Evening',
-    description:
-      'A night of poetry readings featuring both English and Thai language works. Open mic session follows.',
-    slug: 'poetry-evening',
-    image: '/images/poetryevening.jpg',
-    date: '2025-04-18',
-    time: '6:30 PM',
-    location: 'Garden Terrace',
-  },
-  {
-    title: 'Author Talk: Bangkok Stories',
-    description:
-      "Join acclaimed author Alex for a discussion of her new book exploring Bangkok's rich history.",
-    slug: 'author-talk-bangkok-stories',
-    image: '/images/authortalk.jpg',
-    date: '2025-04-15',
-    time: '7:00 PM',
-    location: 'Conference Room',
-  },
-  {
-    title: 'Digital Resources Workshop',
-    description:
-      "Learn to use the library's expanding digital collections and e-resources. Perfect for all age groups.",
-    slug: 'digital-resources-workshop',
-    image: '/images/digitalresources.jpg',
-    date: '2025-04-30',
-    time: '2:00 PM',
-    location: 'Computer Lab',
-  },
-  {
-    title: 'Concert: Echoes from the French School',
-    description:
-      'Experience the beautiful sounds of classical music in our historic library setting.',
-    slug: 'concert-echoes-from-the-french-school',
-    image: 'https://neilsonhayslibrary.org/wp-content/uploads/2025/06/Web.png',
-    date: '2025-08-03',
-    time: '6:00 PM',
-    location: 'Main Hall',
-  },
-  {
-    title: "Children's Story Time",
-    description:
-      'Interactive storytelling session for young readers with crafts and activities.',
-    slug: 'childrens-story-time',
-    image: '/images/kidslibrary.webp',
-    date: '2025-04-25',
-    time: '10:00 AM',
-    location: "Children's Corner",
-  },
-]
+

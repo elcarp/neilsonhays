@@ -14,6 +14,113 @@ export type WpEvent = {
   }
 }
 
+// Shared fallback event data used when WordPress events are not available
+// This ensures consistency between the events list page and event detail pages
+export const fallbackEventData = [
+  {
+    slug: 'book-club-glass-palace',
+    title: "Book Club: 'The Glass Palace'",
+    date: '2025-04-22',
+    time: '7:00 PM',
+    location: 'Main Reading Room',
+    description:
+      "Monthly book club meeting discussing Amitav Ghosh's historical novel about Burma, Malaya, and India. Join us for a lively discussion about colonialism, family, and the interconnected histories of South and Southeast Asia.",
+    longDescription:
+      "This month we're diving into Amitav Ghosh's masterpiece 'The Glass Palace', a sweeping historical novel that follows the fortunes of a family across three generations and multiple countries. The novel explores themes of colonialism, displacement, and the search for identity against the backdrop of major historical events in Burma, Malaya, and India. Our discussion will focus on the novel's rich historical detail, its exploration of cultural exchange, and its relevance to contemporary issues of migration and identity.",
+    image: '/images/bookclub.jpg',
+    author: 'Book Club Discussion',
+    attendees: 15,
+    maxAttendees: 25,
+    category: 'Book Club',
+    featured: true,
+  },
+  {
+    slug: 'poetry-evening',
+    title: 'Poetry Evening',
+    date: '2025-04-18',
+    time: '6:30 PM',
+    location: 'Garden Terrace',
+    description:
+      'A night of poetry readings featuring both English and Thai language works. Open mic session follows.',
+    longDescription:
+      'Join us for an enchanting evening of poetry in both English and Thai. Local poets will share their work, followed by an open mic session where anyone can read their favorite poems or original work. This bilingual event celebrates the rich literary traditions of both languages and provides a platform for cultural exchange through poetry.',
+    image: '/images/poetryevening.jpg',
+    author: 'Various Poets',
+    attendees: 8,
+    maxAttendees: 30,
+    category: 'Cultural Event',
+    featured: false,
+  },
+  {
+    slug: 'author-talk-bangkok-stories',
+    title: 'Author Talk: Bangkok Stories',
+    date: '2025-04-15',
+    time: '7:00 PM',
+    location: 'Conference Room',
+    description:
+      "Join acclaimed author Alex for a discussion of her new book exploring Bangkok's rich history.",
+    longDescription:
+      'Acclaimed author Alex will discuss her latest book "Bangkok Stories", a collection of interconnected tales that weave together the city\'s rich history, diverse cultures, and the lives of its inhabitants. The book explores themes of memory, identity, and the ways in which personal stories intersect with the broader narrative of the city. Alex will share insights into her research process and the inspiration behind the stories.',
+    image: '/images/authortalk.jpg',
+    author: 'Alex Chen',
+    attendees: 22,
+    maxAttendees: 40,
+    category: 'Author Talk',
+    featured: true,
+  },
+  {
+    slug: 'digital-resources-workshop',
+    title: 'Digital Resources Workshop',
+    date: '2025-04-30',
+    time: '2:00 PM',
+    location: 'Computer Lab',
+    description:
+      "Learn to use the library's expanding digital collections and e-resources. Perfect for all age groups.",
+    longDescription:
+      "Discover how to make the most of our extensive digital collections! This hands-on workshop will teach you how to access our e-books, online databases, digital archives, and research tools. Whether you're a student, researcher, or casual reader, you'll learn valuable skills for navigating our digital resources. Bring your own device or use our computers.",
+    image: '/images/digitalresources.jpg',
+    author: 'Library Staff',
+    attendees: 12,
+    maxAttendees: 20,
+    category: 'Workshop',
+    featured: false,
+  },
+  {
+    slug: 'concert-echoes-from-the-french-school',
+    title: 'Concert: Echoes from the French School',
+    date: '2025-08-03',
+    time: '6:00 PM',
+    location: 'Main Hall',
+    description:
+      'Experience the beautiful sounds of classical music in our historic library setting.',
+    longDescription:
+      '1) Guillaume Lekeu, Adagio Pour Quatuor à Cordes, (transcription by Nicolas Bacri)*** Lekeu and Bacri are the first Asian performance *** 2) Nicolas Bacri, String Quartet No. 8, Op. 112(Omaggio à Haydn) 3) Maurice Ravel, String Quartet in F Major. Experience the beautiful sounds of classical music in our historic library setting with this special concert featuring works from the French school of composition.',
+    image: 'https://neilsonhayslibrary.org/wp-content/uploads/2025/06/Web.png',
+    author: 'Various Artists',
+    attendees: 10,
+    maxAttendees: 50,
+    category: 'Music',
+    featured: true,
+  },
+  {
+    slug: 'childrens-story-time',
+    title: "Children's Story Time",
+    date: '2025-04-25',
+    time: '10:00 AM',
+    location: "Children's Corner",
+    description:
+      'Interactive storytelling session for young readers with crafts and activities.',
+    longDescription:
+      "Join us for an engaging storytelling session designed especially for young readers! Our interactive story time includes reading beloved children's books, followed by fun crafts and activities related to the stories. This program encourages a love of reading while developing listening skills and creativity. Perfect for children ages 3-8, with parents and caregivers welcome to participate.",
+    image: '/images/kidslibrary.webp',
+    author: 'Library Staff',
+    attendees: 8,
+    maxAttendees: 15,
+    category: "Children's Program",
+    featured: false,
+  },
+]
+
 export default async function getUpcomingEvents(limit = 20) {
   console.log(`Fetching ${limit} events from WordPress API...`)
 
