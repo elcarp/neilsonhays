@@ -312,24 +312,24 @@ export async function createEventProduct(eventData: {
 export function transformWcEventToEvent(wcEvent: EventProduct) {
   const eventDate = String(
     wcEvent.meta_data?.find(meta => meta.key === '_event_date')?.value ||
-    wcEvent.event_date ||
-    ''
+      wcEvent.event_date ||
+      ''
   )
   const eventTime = String(
     wcEvent.meta_data?.find(meta => meta.key === '_event_time')?.value ||
-    wcEvent.event_time ||
-    ''
+      wcEvent.event_time ||
+      ''
   )
   const eventLocation = String(
     wcEvent.meta_data?.find(meta => meta.key === '_event_location')?.value ||
-    wcEvent.event_location ||
-    ''
+      wcEvent.event_location ||
+      ''
   )
   const maxAttendees = Number(
     wcEvent.meta_data?.find(meta => meta.key === '_max_attendees')?.value ||
-    wcEvent.max_attendees ||
-    wcEvent.stock_quantity ||
-    50
+      wcEvent.max_attendees ||
+      wcEvent.stock_quantity ||
+      50
   )
 
   return {

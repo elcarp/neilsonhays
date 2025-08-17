@@ -48,10 +48,10 @@ interface PageProps {
 export default async function EventPage({ params }: PageProps) {
   const { slug } = await params
 
-    // Try to get the event from WooCommerce first (for bookable events)
+  // Try to get the event from WooCommerce first (for bookable events)
   let event: ReturnType<typeof transformWcEventToEvent> | ReturnType<typeof transformWpEvent> | typeof fallbackEventData[0] | null = null
   let isWooCommerceEvent = false
-  
+
   try {
     const wcEvent = await getEventProductBySlug(slug)
     if (wcEvent) {
@@ -62,7 +62,7 @@ export default async function EventPage({ params }: PageProps) {
   } catch {
     console.log('WooCommerce event not found, trying WordPress...')
   }
-  
+
   // If not found in WooCommerce, try WordPress
   if (!event) {
     try {
