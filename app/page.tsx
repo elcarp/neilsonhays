@@ -47,7 +47,7 @@ export default function Home() {
   // Convert WordPress events to Event format, fallback to shared event data
   // wpEvents is an async function, so we need to handle it properly
   // We'll use a placeholder for now; in a real app, use useEffect/useState or server components
-  let formattedEvents = fallbackEventData
+  const formattedEvents = fallbackEventData
   // Note: This is not correct for async, but matches the original code's intent.
   // For correct async handling, refactor to use useEffect/useState.
 
