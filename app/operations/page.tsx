@@ -18,7 +18,7 @@ export default function Operations() {
       icon: BookOpen,
       title: 'Collection Management',
       description: 'Selection of books for the library collection',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Users,
@@ -30,13 +30,13 @@ export default function Operations() {
       icon: Settings,
       title: 'Maintenance',
       description: 'Oversight of building and facility maintenance',
-      color: 'text-yellow-400',
+      color: 'text-teal-300',
     },
     {
       icon: Calendar,
       title: 'Governance',
       description: 'Monthly board meetings and annual general meetings',
-      color: 'text-pink-400',
+      color: 'text-teal-500',
     },
   ]
 
@@ -143,7 +143,7 @@ export default function Operations() {
               held in the first quarter of every year.
             </p>
 
-            <div className='bg-blue-900/20 p-8 rounded-lg border border-blue-700 mb-8'>
+            <div className='bg-teal-900/20 p-8 rounded-lg border border-teal-700 mb-8'>
               <h3 className='text-2xl font-bold text-white mb-4'>
                 Constitutional Structure
               </h3>
@@ -160,7 +160,7 @@ export default function Operations() {
       </section>
 
       {/* Board Responsibilities */}
-      <section className='py-20 px-4 bg-gray-900'>
+      <section className='py-20 px-4 bg-teal-900'>
         <div className='max-w-6xl mx-auto'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -187,7 +187,7 @@ export default function Operations() {
               return (
                 <div
                   key={detail.title}
-                  className='bg-gray-800 p-6 rounded-lg border border-gray-700 text-center'
+                  className='bg-teal-800 p-6 rounded-lg border border-teal-700 text-center'
                 >
                   <Icon className={`w-12 h-12 mx-auto mb-4 ${detail.color}`} />
                   <h3 className='text-white font-semibold text-lg mb-2'>
@@ -227,7 +227,7 @@ export default function Operations() {
             {boardOfficers.map(officer => (
               <div
                 key={officer}
-                className='bg-gray-800 p-4 rounded-lg border border-gray-700'
+                className='bg-teal-800 p-4 rounded-lg border border-teal-700'
               >
                 <div className='flex items-center'>
                   <div className='w-3 h-3 bg-teal-500 rounded-full mr-3'></div>
@@ -240,7 +240,7 @@ export default function Operations() {
       </section>
 
       {/* Staff Section */}
-      <section ref={staffRef} className='py-20 px-4 bg-gray-900'>
+      <section ref={staffRef} className='py-20 px-4 bg-teal-900'>
         <div className='max-w-4xl mx-auto'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -271,7 +271,7 @@ export default function Operations() {
                 {staffPositions.map(position => (
                   <div
                     key={position.title}
-                    className='bg-gray-800 p-6 rounded-lg border border-gray-700'
+                    className='bg-teal-800 p-6 rounded-lg border border-teal-700'
                   >
                     <h4 className='text-white font-semibold text-lg mb-2'>
                       {position.title}
@@ -290,7 +290,7 @@ export default function Operations() {
                 {contractedServices.map(service => (
                   <div
                     key={service.title}
-                    className='bg-gray-800 p-6 rounded-lg border border-gray-700'
+                    className='bg-teal-800 p-6 rounded-lg border border-teal-700'
                   >
                     <h4 className='text-white font-semibold text-lg mb-2'>
                       {service.title}
@@ -345,7 +345,7 @@ export default function Operations() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className='grid md:grid-cols-2 gap-8'
           >
-            <div className='bg-gray-800 p-6 rounded-lg border border-gray-700'>
+            <div className='bg-teal-800 p-6 rounded-lg border border-teal-700'>
               <h3 className='text-xl font-bold text-white mb-3'>
                 Friends of the Library
               </h3>
@@ -356,7 +356,7 @@ export default function Operations() {
               </p>
             </div>
 
-            <div className='bg-gray-800 p-6 rounded-lg border border-gray-700'>
+            <div className='bg-teal-800 p-6 rounded-lg border border-teal-700'>
               <h3 className='text-xl font-bold text-white mb-3'>
                 Member Involvement
               </h3>
@@ -371,7 +371,7 @@ export default function Operations() {
       </section>
 
       {/* Call to Action */}
-      <section className='py-20 px-4 bg-gray-900'>
+      <section className='py-20 px-4 bg-teal-900'>
         <div className='max-w-4xl mx-auto text-center'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -391,7 +391,7 @@ export default function Operations() {
                 </Button>
               </Link>
               <Link href='/contact'>
-                <Button className='bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 text-lg'>
+                <Button className='bg-teal-700 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
                   Contact Us
                 </Button>
               </Link>
