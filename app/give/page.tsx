@@ -136,6 +136,70 @@ export default function Give() {
           </div>
         </div>
 
+        {/* Programming Sponsorship */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-white mb-8 sm:mb-12">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
+              Programming Sponsorship
+            </h2>
+            <p className="text-base sm:text-lg opacity-90 max-w-3xl mx-auto leading-relaxed">
+              The Neilson Hays Library welcomes support from the corporate sector. We often collaborate
+              with corporate sponsors for on-going and major programs such as Saturday Story Time,
+              holiday events, Neilson Hays Bangkok Literary Festival, and fundraising activities.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
+            <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4">
+                Become a Sponsor
+              </h3>
+              <p className="text-base sm:text-lg mb-6 opacity-90">
+                We are happy to discuss ways in which we can work together to support
+                Bangkok&apos;s literary and cultural community.
+              </p>
+              <div className="space-y-3 text-sm sm:text-base">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <span>Saturday Story Time sponsorship</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <span>Holiday events and celebrations</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <span>Bangkok Literary Festival partnership</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <span>Fundraising activities collaboration</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4">
+                Current Sponsors
+              </h3>
+              <p className="text-base sm:text-lg mb-6 opacity-90">
+                We are grateful to receive on-going sponsorship from our valued corporate partners
+                who help make our programs possible.
+              </p>
+              <div className="text-center">
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    className="bg-white text-blue-600 hover:bg-gray-100 px-6 sm:px-8 py-3 text-sm sm:text-base"
+                  >
+                    Discuss Partnership Opportunities
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Call to Action */}
         <div className="text-center bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
