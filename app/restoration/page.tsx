@@ -18,7 +18,7 @@ export default function Restoration() {
       icon: Clock,
       title: '2 Years',
       description: 'Duration of the restoration project',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Users,
@@ -30,13 +30,13 @@ export default function Restoration() {
       icon: Hammer,
       title: 'Multi-Million Baht',
       description: 'Fully funded by donations',
-      color: 'text-yellow-400',
+      color: 'text-teal-300',
     },
     {
       icon: Building2,
       title: '150 Years',
       description: 'Expected lifespan after restoration',
-      color: 'text-pink-400',
+      color: 'text-teal-500',
     },
   ]
 
@@ -87,7 +87,7 @@ export default function Restoration() {
               The results indicated visible damages were due to much deeper systemic problems, and the first major restoration of the Library structure and ground was critically needed.
             </p>
 
-            <div className='bg-red-900/20 p-8 rounded-lg border border-red-700 mb-8'>
+            <div className='bg-teal-900/20 p-8 rounded-lg border border-teal-700 mb-8'>
               <h3 className='text-2xl font-bold text-white mb-4'>
                 Critical Need for Restoration
               </h3>
@@ -104,7 +104,7 @@ export default function Restoration() {
       </section>
 
       {/* Restoration Stats */}
-      <section className='py-20 px-4 bg-gray-900'>
+      <section className='py-20 px-4 bg-teal-900'>
         <div className='max-w-6xl mx-auto'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -131,7 +131,7 @@ export default function Restoration() {
               return (
                 <div
                   key={detail.title}
-                  className='bg-gray-800 p-6 rounded-lg border border-gray-700 text-center'
+                  className='bg-teal-800 p-6 rounded-lg border border-teal-700 text-center'
                 >
                   <Icon className={`w-12 h-12 mx-auto mb-4 ${detail.color}`} />
                   <h3 className='text-white font-semibold text-lg mb-2'>
@@ -181,7 +181,7 @@ export default function Restoration() {
       </section>
 
       {/* Process Section */}
-      <section ref={processRef} className='py-20 px-4 bg-gray-900'>
+      <section ref={processRef} className='py-20 px-4 bg-teal-900'>
         <div className='max-w-4xl mx-auto'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -203,7 +203,7 @@ export default function Restoration() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className='space-y-8'
           >
-            <div className='bg-gray-800 p-8 rounded-lg border border-gray-700'>
+            <div className='bg-teal-800 p-8 rounded-lg border border-teal-700'>
               <h3 className='text-2xl font-bold text-white mb-4'>
                 Phase 1: Assessment & Planning
               </h3>
@@ -212,7 +212,7 @@ export default function Restoration() {
               </p>
             </div>
 
-            <div className='bg-gray-800 p-8 rounded-lg border border-gray-700'>
+            <div className='bg-teal-800 p-8 rounded-lg border border-teal-700'>
               <h3 className='text-2xl font-bold text-white mb-4'>
                 Phase 2: Community Mobilization
               </h3>
@@ -221,7 +221,7 @@ export default function Restoration() {
               </p>
             </div>
 
-            <div className='bg-gray-800 p-8 rounded-lg border border-gray-700'>
+            <div className='bg-teal-800 p-8 rounded-lg border border-teal-700'>
               <h3 className='text-2xl font-bold text-white mb-4'>
                 Phase 3: Restoration & Renovation
               </h3>
@@ -275,7 +275,7 @@ export default function Restoration() {
             </p>
 
             <div className='grid md:grid-cols-2 gap-8'>
-              <div className='bg-gray-800 p-6 rounded-lg border border-gray-700'>
+              <div className='bg-teal-800 p-6 rounded-lg border border-teal-700'>
                 <h3 className='text-xl font-bold text-white mb-3'>
                   Community Support
                 </h3>
@@ -284,7 +284,7 @@ export default function Restoration() {
                 </p>
               </div>
 
-              <div className='bg-gray-800 p-6 rounded-lg border border-gray-700'>
+              <div className='bg-teal-800 p-6 rounded-lg border border-teal-700'>
                 <h3 className='text-xl font-bold text-white mb-3'>
                   Future Generations
                 </h3>
@@ -298,7 +298,7 @@ export default function Restoration() {
       </section>
 
       {/* Call to Action */}
-      <section className='py-20 px-4 bg-gray-900'>
+      <section className='py-20 px-4 bg-teal-900'>
         <div className='max-w-4xl mx-auto text-center'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -318,7 +318,7 @@ export default function Restoration() {
                 </Button>
               </Link>
               <Link href='/contact'>
-                <Button className='bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 text-lg'>
+                <Button className='bg-teal-700 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
                   Contact Us
                 </Button>
               </Link>
