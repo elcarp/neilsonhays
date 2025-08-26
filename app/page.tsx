@@ -10,7 +10,6 @@ import { useRef } from 'react'
 import { EventCard } from '@/components/event-card'
 import getUpcomingEvents, { fallbackEventData } from '@/lib/wp-events'
 
-
 const memberBenefits = [
   {
     title: 'Extensive Collection',
@@ -133,45 +132,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 justify-center'>
-              {events.map(event => (
-                <div
-                  key={event.title}
-                  onClick={() => router.push(event.href)}
-                  className='bg-white rounded-lg shadow-md overflow-hidden cursor-pointer'
-                >
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    width={500}
-                    height={500}
-                    className='w-full h-48 object-cover'
-                  />
-                  <div className='p-4'>
-                    <div className='flex items-center gap-2 text-sm text-teal-500'>
-                      <Calendar width={15} />
-                      <span className='text-sm text-teal-500 font-bold'>
-                        {event.date}
-                      </span>
-                    </div>
-                    <h3
-                      className={`text-left text-lg font-semibold my-3 font-bold`}
-                    >
-                      {event.title}
-                    </h3>
-                    <p className='text-left text-sm text-gray-600'>
-                      {event.description}
-                    </p>
-                    <Link
-                      href={event.href}
-                      className='block mt-8 text-left text-sm text-teal-500 font-bold'
-                    >
-                      Learn More
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div> */}
           </div>
           <Link href='/events'>
             <Button className='mb-10 bg-teal-500 mx-auto block cursor-pointer hover:bg-teal-600'>
@@ -302,19 +262,23 @@ export default function Home() {
                   community programs to continue providing accessible literary
                   and educational resources for everyone.
                 </p>
-                <Button className='bg-teal-500 mt-8 block cursor-pointer hover:bg-teal-600'>
-                  Donate now
-                </Button>
-                <Button
-                  variant='outline'
-                  className='mt-4 block cursor-pointer hover:bg-teal-500 hover:text-white transition-all duration-300'
-                >
-                  Volunteer Opportunities
-                </Button>
+                <Link href='/give'>
+                  <Button className='bg-teal-500 mt-8 block cursor-pointer hover:bg-teal-600'>
+                    Donate now
+                  </Button>
+                </Link>
+                <Link href='/volunteer'>
+                  <Button
+                    variant='outline'
+                    className='mt-4 block cursor-pointer hover:bg-teal-500 hover:text-white transition-all duration-300'
+                  >
+                    Volunteer Opportunities
+                  </Button>
+                </Link>
               </div>
               <div className='w-1/2 pl-2'>
                 <img
-                  src='images/libraryexterior.jpg'
+                  src='images/library-exterior.webp'
                   alt='Support 1'
                   className='w-full h-48 object-cover'
                 />
@@ -322,7 +286,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </motion.div>
+      </motion.div >
     </>
   )
 }

@@ -8,7 +8,7 @@ export default function PageTitle({
   quote?: string
 }) {
   return (
-    <div className='mx-auto max-w-4xl sm:text-center'>
+    <div className='mx-auto max-w-4xl sm:text-center px-4'>
       <h1 className='text-5xl font-semibold tracking-tight text-pretty text-white sm:text-6xl sm:text-balance'>
         {title}
       </h1>
