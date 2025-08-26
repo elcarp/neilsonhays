@@ -99,7 +99,7 @@ export async function wcGet<T>(
         Authorization: `Basic ${auth}`,
         ...(options.headers || {}),
       },
-      signal: AbortSignal.timeout(10000), // 10 second timeout for WooCommerce
+      signal: AbortSignal.timeout(20000), // 20 second timeout for WooCommerce
       ...options,
     })
 

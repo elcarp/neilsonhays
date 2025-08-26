@@ -150,7 +150,14 @@ export default async function getUpcomingEvents(limit = 20) {
     console.log(`Received ${items?.length || 0} raw events from WordPress API`)
 
     if (!items || !Array.isArray(items)) {
-      console.warn('WordPress API returned invalid data format')
+      console.warn(
+        'WordPress API returned invalid data format, using fallback data'
+      )
+      return []
+    }
+
+    if (items.length === 0) {
+      console.log('No events found in WordPress API, using fallback data')
       return []
     }
 
@@ -187,7 +194,18 @@ export default async function getUpcomingEvents(limit = 20) {
     return futureEvents
   } catch (error) {
     console.error('Error fetching events from WordPress API:', error)
-    console.log('Returning empty array - will fallback to mock data in UI')
+    console.log('WordPress API failed - UI will use fallback event data')
+
+    // Log the specific error type for debugging
+    if (error instanceof Error) {
+      console.error('Error details:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack?.split('\n').slice(0, 3).join('\n'),
+      })
+    }
+
+    // Return empty array so the UI can use fallback data
     return []
   }
 }

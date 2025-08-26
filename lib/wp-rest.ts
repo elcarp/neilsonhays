@@ -9,11 +9,18 @@ function authHeaders(): Record<string, string> {
   return { Authorization: `Basic ${token}` }
 }
 
-export async function wpGet<T>(path: string, options: RequestInit = {}) {
+export async function wpGet<T>(
+  path: string,
+  options: RequestInit = {},
+  retryCount = 0
+): Promise<T> {
   const authHeadersToUse = authHeaders()
+  const maxRetries = 2
 
   try {
-    console.log(`Making WordPress API request to: ${WP_URL}/wp-json${path}`)
+    console.log(
+      `Making WordPress API request to: ${WP_URL}/wp-json${path}${retryCount > 0 ? ` (retry ${retryCount})` : ''}`
+    )
 
     const res = await fetch(`${WP_URL}/wp-json${path}`, {
       // Cache strategies: 'force-cache' (SSG), 'no-store' (SSR),
@@ -24,8 +31,8 @@ export async function wpGet<T>(path: string, options: RequestInit = {}) {
         ...authHeadersToUse,
         ...(options.headers || {}),
       },
-      // Add timeout to prevent hanging - reduced to 5 seconds for better UX
-      signal: AbortSignal.timeout(5000), // 5 second timeout
+      // Add timeout to prevent hanging - increased to 15 seconds for slower WordPress responses
+      signal: AbortSignal.timeout(15000), // 15 second timeout
     })
 
     console.log(`WordPress API response status: ${res.status}`)
@@ -33,6 +40,24 @@ export async function wpGet<T>(path: string, options: RequestInit = {}) {
     return await handleResponse<T>(res, path, authHeadersToUse, options)
   } catch (error) {
     console.error(`WordPress API request failed for ${path}:`, error)
+
+    // Retry on timeout or network errors
+    if (retryCount < maxRetries && error instanceof Error) {
+      if (
+        error.name === 'TimeoutError' ||
+        error.message.includes('timeout') ||
+        error.message.includes('fetch failed') ||
+        error.message.includes('network')
+      ) {
+        console.log(
+          `Retrying WordPress API request (${retryCount + 1}/${maxRetries})...`
+        )
+        await new Promise(resolve =>
+          setTimeout(resolve, 1000 * (retryCount + 1))
+        ) // Exponential backoff
+        return wpGet<T>(path, options, retryCount + 1)
+      }
+    }
 
     // Provide more specific error messages
     if (error instanceof Error) {
@@ -72,7 +97,7 @@ async function handleResponse<T>(
           'Content-Type': 'application/json',
           ...(options.headers || {}),
         },
-        signal: AbortSignal.timeout(5000), // 5 second timeout
+        signal: AbortSignal.timeout(15000), // 15 second timeout
       })
 
       console.log(
