@@ -19,19 +19,19 @@ export default function UnescoCulturalHeritageConservationAward2022() {
       title: 'Award of Distinction',
       description:
         'The highest recognition for cultural heritage conservation in the Asia-Pacific region',
-      color: 'text-yellow-400',
+      color: 'text-teal-400',
     },
     {
       icon: Globe,
       title: '50 Entries',
       description: 'From 11 countries across the Asia-Pacific region',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Star,
       title: '13 Projects',
       description: 'Acknowledged for awards from six countries',
-      color: 'text-pink-400',
+      color: 'text-teal-400',
     },
     {
       icon: Building2,
