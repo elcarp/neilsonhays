@@ -1,7 +1,6 @@
 'use client'
 import PageTitle from '@/components/ui/page-title'
 import { motion } from 'framer-motion'
-import { useRef } from 'react'
 import Image from 'next/image'
 import {
   Calendar,
@@ -17,10 +16,6 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 export default function VenueHire() {
-  const spacesRef = useRef(null)
-  const eventsRef = useRef(null)
-  const contactRef = useRef(null)
-
   const venueSpaces = [
     {
       icon: Building,
@@ -28,7 +23,7 @@ export default function VenueHire() {
       description:
         'Our grand neo-classical hall with high ceilings and elegant architecture',
       capacity: 'Up to 150 guests',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Heart,
@@ -36,7 +31,7 @@ export default function VenueHire() {
       description:
         'Beautiful outdoor space surrounded by lush tropical gardens',
       capacity: 'Up to 80 guests',
-      color: 'text-green-400',
+      color: 'text-teal-300',
     },
     {
       icon: Users,
@@ -50,7 +45,7 @@ export default function VenueHire() {
       title: 'Rotunda Gallery',
       description: 'Unique circular space with stunning architectural details',
       capacity: 'Up to 60 guests',
-      color: 'text-purple-400',
+      color: 'text-teal-500',
     },
   ]
 
@@ -59,19 +54,19 @@ export default function VenueHire() {
       icon: Heart,
       title: 'Weddings',
       description: 'Wedding ceremonies and receptions',
-      color: 'text-pink-400',
+      color: 'text-teal-300',
     },
     {
       icon: Building,
       title: 'Corporate Events',
       description: 'Product launches, business dinners, press conferences',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Music,
       title: 'Concerts & Performances',
       description: 'Live music and cultural performances',
-      color: 'text-purple-400',
+      color: 'text-teal-500',
     },
     {
       icon: Camera,
@@ -83,7 +78,7 @@ export default function VenueHire() {
       icon: Users,
       title: 'Social Events',
       description: 'Cocktail functions and special celebrations',
-      color: 'text-green-400',
+      color: 'text-teal-300',
     },
   ]
 
@@ -92,7 +87,7 @@ export default function VenueHire() {
       icon: Phone,
       title: 'Phone',
       detail: '+66 2 233 1731',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Mail,
@@ -104,16 +99,16 @@ export default function VenueHire() {
       icon: Calendar,
       title: 'Office Hours',
       detail: 'Tuesday - Sunday, 9:30 AM - 5:00 PM',
-      color: 'text-green-400',
+      color: 'text-teal-300',
     },
   ]
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='min-h-screen bg-gradient-to-br from-teal-500 to-blue-500'>
       {/* Hero Section */}
       <section className='relative h-[70vh] flex items-center justify-center'>
         <Image
-          src='https://neilsonhayslibrary.org/wp-content/uploads/2019/07/nhl_Home5_img.jpg'
+          src='/images/venue-hire.webp'
           alt='Neilson Hays Library venue hire'
           fill
           className='object-cover opacity-40'
@@ -128,19 +123,19 @@ export default function VenueHire() {
         </div>
       </section>
 
-      {/* Overview Section */}
-      <section className='py-20 px-4 bg-white'>
-        <div className='max-w-6xl mx-auto'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16'>
+        {/* Overview Section */}
+        <div className='bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12 mb-8 sm:mb-12'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6'>
               Historic Venues for Every Occasion
             </h2>
-            <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
+            <p className='text-base sm:text-lg text-gray-600 max-w-3xl mx-auto'>
               We have several flexible spaces available to accommodate a variety
               of functions, from intimate gatherings to grand celebrations.
             </p>
@@ -152,28 +147,26 @@ export default function VenueHire() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className='prose prose-lg mx-auto text-center'
           >
-            <p className='text-xl leading-relaxed text-gray-700 mb-8'>
+            <p className='text-base sm:text-lg leading-relaxed text-gray-700 mb-8'>
               Our historic library building provides a unique and elegant
               setting for your special events. Each space offers its own
               character and charm, perfect for creating memorable experiences.
             </p>
           </motion.div>
         </div>
-      </section>
 
-      {/* Venue Spaces Section */}
-      <section ref={spacesRef} className='py-20 px-4 bg-gray-100'>
-        <div className='max-w-6xl mx-auto'>
+        {/* Venue Spaces Section */}
+        <div className='mb-12 sm:mb-16'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4'>
               Our Venue Spaces
             </h2>
-            <p className='text-xl text-gray-600'>
+            <p className='text-base sm:text-lg text-gray-600 text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-4'>
               Each space offers unique character and flexibility
             </p>
           </motion.div>
@@ -182,23 +175,27 @@ export default function VenueHire() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'
+            className='grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8'
           >
             {venueSpaces.map(detail => {
               const Icon = detail.icon
               return (
                 <div
                   key={detail.title}
-                  className='bg-white p-8 rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transition-shadow'
+                  className='bg-white rounded-lg sm:rounded-xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-shadow duration-300'
                 >
-                  <Icon className={`w-16 h-16 ${detail.color} mb-6`} />
-                  <h3 className='text-gray-900 font-semibold text-xl mb-4'>
+                  <div
+                    className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-teal-100 text-teal-600 mb-4 sm:mb-6`}
+                  >
+                    <Icon className='w-6 h-6 sm:w-8 sm:h-8' />
+                  </div>
+                  <h3 className='text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4'>
                     {detail.title}
                   </h3>
-                  <p className='text-gray-600 mb-4 leading-relaxed'>
+                  <p className='text-sm sm:text-base text-gray-700 mb-4 leading-relaxed'>
                     {detail.description}
                   </p>
-                  <div className='text-teal-600 font-semibold'>
+                  <div className='text-teal-600 font-semibold text-sm sm:text-base'>
                     {detail.capacity}
                   </div>
                 </div>
@@ -206,21 +203,19 @@ export default function VenueHire() {
             })}
           </motion.div>
         </div>
-      </section>
 
-      {/* Event Types Section */}
-      <section ref={eventsRef} className='py-20 px-4 bg-white'>
-        <div className='max-w-6xl mx-auto'>
+        {/* Event Types Section */}
+        <div className='bg-gradient-to-r from-teal-600 to-blue-600 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-white mb-8 sm:mb-12'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-2xl sm:text-3xl font-bold mb-4 sm:mb-6'>
               Types of Events
             </h2>
-            <p className='text-xl text-gray-600'>
+            <p className='text-base sm:text-lg opacity-90 max-w-3xl mx-auto'>
               Our spaces accommodate a wide range of functions
             </p>
           </motion.div>
@@ -229,20 +224,22 @@ export default function VenueHire() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'
+            className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8'
           >
             {eventTypes.map(detail => {
               const Icon = detail.icon
               return (
                 <div
                   key={detail.title}
-                  className='bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-teal-300 transition-colors'
+                  className='bg-white/10 rounded-lg p-4 sm:p-6 backdrop-blur-sm'
                 >
-                  <Icon className={`w-12 h-12 ${detail.color} mb-4`} />
-                  <h3 className='text-gray-900 font-semibold text-lg mb-2'>
+                  <Icon className='w-10 h-10 sm:w-12 sm:h-12 text-white mb-4' />
+                  <h3 className='text-white font-semibold text-base sm:text-lg mb-2'>
                     {detail.title}
                   </h3>
-                  <p className='text-gray-600'>{detail.description}</p>
+                  <p className='text-white/90 text-sm sm:text-base'>
+                    {detail.description}
+                  </p>
                 </div>
               )
             })}
@@ -252,33 +249,31 @@ export default function VenueHire() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className='mt-12 bg-teal-50 p-8 rounded-lg border border-teal-200'
+            className='mt-8 sm:mt-12 bg-white/10 p-6 sm:p-8 rounded-lg backdrop-blur-sm'
           >
-            <h3 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h3 className='text-xl sm:text-2xl font-bold text-white mb-4'>
               Special Requirements
             </h3>
-            <p className='text-lg text-gray-700'>
+            <p className='text-base sm:text-lg text-white/90'>
               We would be pleased to discuss your specific requirements. Our
               team can help you find the perfect space and arrange all the
               details for your event.
             </p>
           </motion.div>
         </div>
-      </section>
 
-      {/* Contact Section */}
-      <section ref={contactRef} className='py-20 px-4 bg-gray-100'>
-        <div className='max-w-6xl mx-auto'>
+        {/* Contact Section */}
+        <div className='bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12 mb-8 sm:mb-12'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6'>
               Get in Touch
             </h2>
-            <p className='text-xl text-gray-600'>
+            <p className='text-base sm:text-lg text-gray-600 max-w-2xl mx-auto'>
               Please contact our Office Manager to make an appointment to view
               our facilities
             </p>
@@ -288,11 +283,11 @@ export default function VenueHire() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className='grid md:grid-cols-2 gap-12'
+            className='grid md:grid-cols-2 gap-6 sm:gap-8'
           >
             <div className='space-y-8'>
-              <div className='bg-white p-8 rounded-lg shadow-lg'>
-                <h3 className='text-2xl font-bold text-gray-900 mb-6'>
+              <div className='bg-gray-50 p-6 sm:p-8 rounded-lg'>
+                <h3 className='text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6'>
                   Contact Information
                 </h3>
                 <div className='space-y-6'>
@@ -316,16 +311,16 @@ export default function VenueHire() {
                 </div>
               </div>
 
-              <div className='bg-teal-50 p-8 rounded-lg border border-teal-200'>
-                <h3 className='text-xl font-bold text-gray-900 mb-4'>
+              <div className='bg-teal-50 p-6 sm:p-8 rounded-lg border border-teal-200'>
+                <h3 className='text-lg sm:text-xl font-bold text-gray-900 mb-4'>
                   Visit Our Facilities
                 </h3>
-                <p className='text-gray-700 mb-6'>
+                <p className='text-sm sm:text-base text-gray-700 mb-6'>
                   We recommend scheduling a visit to see our spaces in person
                   and discuss your specific needs with our team.
                 </p>
                 <Link href='/contact'>
-                  <Button className='bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
+                  <Button className='bg-teal-500 hover:bg-teal-600 text-white px-6 sm:px-8 py-3 text-sm sm:text-base'>
                     Schedule a Visit
                   </Button>
                 </Link>
@@ -334,20 +329,18 @@ export default function VenueHire() {
 
             <div className='relative'>
               <Image
-                src='https://neilsonhayslibrary.org/wp-content/uploads/2019/07/nhl_Home5_img.jpg'
+                src='/images/library-exterior.webp'
                 alt='Neilson Hays Library venue spaces'
                 width={600}
                 height={400}
-                className='rounded-lg shadow-2xl'
+                className='rounded-lg sm:rounded-xl shadow-md object-cover w-full h-64 sm:h-80'
               />
             </div>
           </motion.div>
         </div>
-      </section>
 
-      {/* Call to Action */}
-      <section className='py-20 px-4 bg-teal-50'>
-        <div className='max-w-4xl mx-auto text-center'>
+        {/* Call to Action */}
+        <div className='text-center bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -374,7 +367,7 @@ export default function VenueHire() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </div>
     </div>
   )
 }
