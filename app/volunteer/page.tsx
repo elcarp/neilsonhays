@@ -1,28 +1,25 @@
 'use client'
 import PageTitle from '@/components/ui/page-title'
 import { motion } from 'framer-motion'
-import { useRef } from 'react'
 import Image from 'next/image'
 import { Users, BookOpen, Calendar, Camera, PenTool, Heart, Mail, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 export default function Volunteer() {
-  const rolesRef = useRef(null)
-  const contactRef = useRef(null)
 
   const volunteerRoles = [
     {
       icon: BookOpen,
       title: 'Book Sale Events',
       description: 'Assisting with second-hand book sale events (sorting, pricing, cashiering)',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Heart,
       title: 'Children&apos;s Programs',
       description: 'Assisting at children&apos;s program events',
-      color: 'text-pink-400',
+      color: 'text-teal-300',
     },
     {
       icon: Calendar,
@@ -34,25 +31,25 @@ export default function Volunteer() {
       icon: Users,
       title: 'School Visits',
       description: 'Leading and assisting with school visits',
-      color: 'text-green-400',
+      color: 'text-teal-500',
     },
     {
       icon: PenTool,
       title: 'Press & Newsletter',
       description: 'Preparing press releases and newsletter coordination',
-      color: 'text-purple-400',
+      color: 'text-teal-400',
     },
     {
       icon: Camera,
       title: 'Digital Media',
       description: 'Assisting with social media and website updates',
-      color: 'text-orange-400',
+      color: 'text-teal-300',
     },
     {
       icon: PenTool,
       title: 'Graphic Design',
       description: 'Providing graphic design expertise',
-      color: 'text-indigo-400',
+      color: 'text-teal-500',
     },
   ]
 
@@ -61,19 +58,19 @@ export default function Volunteer() {
       icon: Heart,
       title: 'Community Impact',
       description: 'Make a meaningful difference in the Bangkok community',
-      color: 'text-green-400',
+      color: 'text-teal-500',
     },
     {
       icon: Users,
       title: 'Social Experience',
       description: 'Meet like-minded people and build lasting friendships',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: BookOpen,
       title: 'Skill Development',
       description: 'Learn new skills and gain valuable experience',
-      color: 'text-purple-400',
+      color: 'text-teal-400',
     },
     {
       icon: Calendar,
@@ -94,25 +91,25 @@ export default function Volunteer() {
       icon: Phone,
       title: 'Phone',
       detail: '+66 2 233 1731',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Calendar,
       title: 'Office Hours',
       detail: 'Tuesday - Sunday, 9:30 AM - 5:00 PM',
-      color: 'text-green-400',
+      color: 'text-teal-500',
     },
   ]
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='min-h-screen bg-gradient-to-br from-teal-50 to-blue-50'>
       {/* Hero Section */}
       <section className='relative h-[70vh] flex items-center justify-center'>
         <Image
-          src='https://neilsonhayslibrary.org/wp-content/uploads/2019/07/nhl_Home5_img.jpg'
+          src='/images/volunteer.webp'
           alt='Neilson Hays Library volunteer opportunities'
           fill
-          className='object-cover opacity-40'
+          className='object-cover opacity-100'
           priority
         />
         <div className='relative z-10 text-center px-4'>
@@ -124,19 +121,19 @@ export default function Volunteer() {
         </div>
       </section>
 
-      {/* Overview Section */}
-      <section className='py-20 px-4 bg-white'>
-        <div className='max-w-6xl mx-auto'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16'>
+        {/* Overview Section */}
+        <div className='bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12 mb-8 sm:mb-12'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6'>
               Join Our Volunteer Team
             </h2>
-            <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
+            <p className='text-base sm:text-lg text-gray-600 max-w-3xl mx-auto'>
               The Neilson Hays Library is fortunate to have a dedicated team of volunteers who generously give their time to assist in the operations and programs of the library.
             </p>
           </motion.div>
@@ -147,26 +144,24 @@ export default function Volunteer() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className='prose prose-lg mx-auto text-center'
           >
-            <p className='text-xl leading-relaxed text-gray-700 mb-8'>
+            <p className='text-base sm:text-lg leading-relaxed text-gray-700 mb-8'>
               Members of the library and the wider community are warmly encouraged to volunteer with the library. Volunteers are needed throughout the year in various roles that help us maintain our services and programs.
             </p>
           </motion.div>
         </div>
-      </section>
 
-      {/* Volunteer Roles Section */}
-      <section ref={rolesRef} className='py-20 px-4 bg-gray-100'>
-        <div className='max-w-6xl mx-auto'>
+        {/* Volunteer Roles Section */}
+        <div className='mb-12 sm:mb-16'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4'>
               Volunteer Opportunities
             </h2>
-            <p className='text-xl text-gray-600'>
+            <p className='text-base sm:text-lg text-gray-600 text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-4'>
               Various roles available throughout the year
             </p>
           </motion.div>
@@ -175,20 +170,22 @@ export default function Volunteer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'
+            className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8'
           >
             {volunteerRoles.map(detail => {
               const Icon = detail.icon
               return (
                 <div
                   key={detail.title}
-                  className='bg-white p-8 rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transition-shadow'
+                  className='bg-white rounded-lg sm:rounded-xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-shadow duration-300'
                 >
-                  <Icon className={`w-16 h-16 ${detail.color} mb-6`} />
-                  <h3 className='text-gray-900 font-semibold text-xl mb-4'>
+                  <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-teal-100 text-teal-600 mb-4 sm:mb-6`}>
+                    <Icon className='w-6 h-6 sm:w-8 sm:h-8' />
+                  </div>
+                  <h3 className='text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4'>
                     {detail.title}
                   </h3>
-                  <p className='text-gray-600 leading-relaxed'>
+                  <p className='text-sm sm:text-base text-gray-700 leading-relaxed'>
                     {detail.description}
                   </p>
                 </div>
@@ -196,21 +193,19 @@ export default function Volunteer() {
             })}
           </motion.div>
         </div>
-      </section>
 
-      {/* Benefits Section */}
-      <section className='py-20 px-4 bg-white'>
-        <div className='max-w-6xl mx-auto'>
+        {/* Benefits Section */}
+        <div className='bg-gradient-to-r from-teal-600 to-blue-600 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-white mb-8 sm:mb-12'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-2xl sm:text-3xl font-bold mb-4 sm:mb-6'>
               Benefits of Volunteering
             </h2>
-            <p className='text-xl text-gray-600'>
+            <p className='text-base sm:text-lg opacity-90 max-w-3xl mx-auto'>
               Why volunteer with Neilson Hays Library?
             </p>
           </motion.div>
@@ -219,30 +214,29 @@ export default function Volunteer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'
+            className='grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8'
           >
             {benefits.map(detail => {
               const Icon = detail.icon
               return (
                 <div
                   key={detail.title}
-                  className='bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-teal-300 transition-colors'
+                  className='bg-white/10 rounded-lg p-4 sm:p-6 backdrop-blur-sm'
                 >
-                  <Icon className={`w-12 h-12 ${detail.color} mb-4`} />
-                  <h3 className='text-gray-900 font-semibold text-lg mb-2'>
+                  <Icon className='w-10 h-10 sm:w-12 sm:h-12 text-white mb-4' />
+                  <h3 className='text-white font-semibold text-base sm:text-lg mb-2'>
                     {detail.title}
                   </h3>
-                  <p className='text-gray-600'>{detail.description}</p>
+                  <p className='text-white/90 text-sm sm:text-base'>{detail.description}</p>
                 </div>
               )
             })}
           </motion.div>
         </div>
-      </section>
 
-      {/* Contact Section */}
-      <section ref={contactRef} className='py-20 px-4 bg-gray-100'>
-        <div className='max-w-6xl mx-auto'>
+        {/* Contact Section */}
+        <div className='bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12 mb-8 sm:mb-12'>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -315,37 +309,38 @@ export default function Volunteer() {
             </div>
           </motion.div>
         </div>
-      </section>
 
-      {/* Call to Action */}
-      <section className='py-20 px-4 bg-teal-50'>
-        <div className='max-w-4xl mx-auto text-center'>
+        {/* Call to Action */}
+        <div className='text-center bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-6'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6'>
               Make a Difference Today
             </h2>
-            <p className='text-xl text-gray-700 mb-8'>
+            <p className='text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto px-4'>
               Join our community of dedicated volunteers and help preserve this historic library for future generations
             </p>
-            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+            <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center'>
               <a href='mailto:volunteer@neilsonhayslibrary.org'>
-                <Button className='bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
+                <Button className='bg-teal-600 hover:bg-teal-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto'>
                   Start Volunteering
                 </Button>
               </a>
-              <Link href='/about'>
-                <Button className='bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 text-lg'>
-                  Learn More About Us
+              <Link href='/give'>
+                <Button
+                  variant='outline'
+                  className='border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto'
+                >
+                  Support the Library
                 </Button>
               </Link>
             </div>
           </motion.div>
         </div>
-      </section>
+      </div>
     </div>
   )
 }
