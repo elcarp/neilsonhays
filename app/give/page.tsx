@@ -69,7 +69,7 @@ export default function Give() {
           </div>
         </div>
 
-                {/* Areas of Support */}
+        {/* Areas of Support */}
         <div className="mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-3 sm:mb-4">
             Areas of Support
@@ -77,7 +77,7 @@ export default function Give() {
           <p className="text-base sm:text-lg text-gray-600 text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
             Choose how you&apos;d like to make an impact. Every contribution helps preserve our heritage and serve our community.
           </p>
-          
+
           <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
             {supportAreas.map((area, index) => (
               <div key={index} className="bg-white rounded-lg sm:rounded-xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-shadow duration-300">
@@ -95,7 +95,7 @@ export default function Give() {
           </div>
         </div>
 
-                {/* Book Donations Section */}
+        {/* Book Donations Section */}
         <div className="bg-gradient-to-r from-teal-600 to-blue-600 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-white mb-8 sm:mb-12">
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div>
@@ -103,11 +103,11 @@ export default function Give() {
                 Book Donations Welcome
               </h2>
               <p className="text-base sm:text-lg mb-4 sm:mb-6 opacity-90 leading-relaxed">
-                We welcome donations of used books throughout the year for our bi-annual book sales. 
-                Our volunteers sort all donations and determine if they are needed in our collection, 
+                We welcome donations of used books throughout the year for our bi-annual book sales.
+                Our volunteers sort all donations and determine if they are needed in our collection,
                 otherwise they are priced for our popular, twice yearly second-hand book sale fundraisers.
               </p>
-              
+
               <div className="bg-white/10 rounded-lg p-4 sm:p-6 backdrop-blur-sm">
                 <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center">
                   <Clock className="w-5 h-5 mr-2" />
@@ -123,7 +123,7 @@ export default function Give() {
                 </div>
               </div>
             </div>
-            
+
             <div className="relative order-first md:order-last mt-6 md:mt-0">
               <Image
                 src="/images/bookclub.jpg"
@@ -136,16 +136,16 @@ export default function Give() {
           </div>
         </div>
 
-                {/* Call to Action */}
+        {/* Call to Action */}
         <div className="text-center bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
             Ready to Make a Difference?
           </h2>
           <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-            Your generosity helps preserve Thailand&apos;s literary heritage and ensures the Neilson Hays Library 
+            Your generosity helps preserve Thailand&apos;s literary heritage and ensures the Neilson Hays Library
             continues to serve our community for another 100 years.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link href="/contact">
               <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto">
@@ -153,19 +153,19 @@ export default function Give() {
               </Button>
             </Link>
             <Link href="/volunteer">
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 className="border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto"
               >
                 Volunteer With Us
               </Button>
             </Link>
           </div>
-          
+
           <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
             <p className="text-xs sm:text-sm text-gray-600 px-4">
-              For more information about donation opportunities or to discuss corporate partnerships, 
+              For more information about donation opportunities or to discuss corporate partnerships,
               please <Link href="/contact" className="text-teal-600 hover:text-teal-700 font-medium">contact us</Link> directly.
             </p>
           </div>
