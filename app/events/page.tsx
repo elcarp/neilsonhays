@@ -7,7 +7,7 @@ import { Calendar, MapPin, Clock } from 'lucide-react'
 import getUpcomingEvents, { type WpEvent, fallbackEventData } from '@/lib/wp-events'
 
 // map WP → your EventCard shape
-export function toEventCard(ev: WpEvent) {
+function toEventCard(ev: WpEvent) {
   const img = ev?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? ''
   const m = ev.meta || {}
 
