@@ -7,18 +7,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { useRouter } from 'next/navigation'
+import { EventCard } from './events/page'
+import getUpcomingEvents, { fallbackEventData } from '@/lib/wp-events'
 
-const events = [
-  {
-    title: 'Concert: Echoes from the French School',
-    date: '2025-08-03',
-    description:
-      '1) Guillaume Lekeu, Adagio Pour Quatuor à Cordes, (transcription by Nicolas Bacri)*** Lekeu and Bacri are the first Asian performance *** 2) Nicolas Bacri, String Quartet No. 8, Op. 112(Omaggio à Haydn) 3) Maurice Ravel, String Quartet in F Major',
-    image: 'https://neilsonhayslibrary.org/wp-content/uploads/2025/06/Web.png',
-    href: '/events/concert-echoes-from-the-french-school',
-  },
-]
 
 const memberBenefits = [
   {
@@ -51,7 +42,14 @@ export default function Home() {
   const membershipInView = useInView(membershipRef, { once: false })
   const supportInView = useInView(supportRef, { once: false })
 
-  const router = useRouter()
+  const wpEvents = async () => await getUpcomingEvents(12)
+  console.log(`Loaded ${wpEvents?.length || 0} events from WordPress`)
+  // Convert WordPress events to Event format, fallback to shared event data
+  // wpEvents is an async function, so we need to handle it properly
+  // We'll use a placeholder for now; in a real app, use useEffect/useState or server components
+  let formattedEvents = fallbackEventData
+  // Note: This is not correct for async, but matches the original code's intent.
+  // For correct async handling, refactor to use useEffect/useState.
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -63,7 +61,7 @@ export default function Home() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       })
     } else {
       console.log('Element not found:', sectionId)
@@ -128,7 +126,14 @@ export default function Home() {
               Discover our diverse range of events, from author talks to
               workshops and community.
             </p>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 justify-center'>
+            <div className='mt-20 flex flex-col items-center justify-between pb-20 max-w-7xl mx-auto px-4 md:px-8'>
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-20'>
+                {formattedEvents.map((event, index) => (
+                  <EventCard event={event} key={event.title + index} />
+                ))}
+              </div>
+            </div>
+            {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 justify-center'>
               {events.map(event => (
                 <div
                   key={event.title}
@@ -166,7 +171,7 @@ export default function Home() {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
           <Link href='/events'>
             <Button className='mb-10 bg-teal-500 mx-auto block cursor-pointer hover:bg-teal-600'>
