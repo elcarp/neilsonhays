@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { EventCard } from './events/page'
+import { EventCard } from '@/components/event-card'
 import getUpcomingEvents, { fallbackEventData } from '@/lib/wp-events'
 
 
