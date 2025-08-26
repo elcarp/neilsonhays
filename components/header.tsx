@@ -32,7 +32,7 @@ const events = [
     name: 'LitFest',
     description:
       "A festival rooted in Bangkok's rich culture, where Thai and international storytellers come together to celebrate the power of words.",
-    href: '#',
+    href: '/litfest',
     icon: BookHeart,
   },
   {
@@ -58,7 +58,7 @@ const support = [
   {
     name: 'Donate',
     description: 'Donate to the library.',
-    href: '/donate',
+    href: '/give',
     icon: Heart,
   },
   {

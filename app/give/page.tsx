@@ -146,20 +146,29 @@ export default function Give() {
             continues to serve our community for another 100 years.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link href="/contact">
               <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto">
                 Contact Us to Donate
               </Button>
             </Link>
             <Link href="/volunteer">
-              <Button
-                variant="outline"
-                size="lg"
+              <Button 
+                variant="outline" 
+                size="lg" 
                 className="border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto"
               >
                 Volunteer With Us
               </Button>
+            </Link>
+          </div>
+          
+          <div className="mt-6">
+            <p className="text-sm text-gray-600 mb-4">
+              Learn more about our cultural events and community programs:
+            </p>
+            <Link href="/litfest" className="text-teal-600 hover:text-teal-700 font-medium text-sm">
+              Discover our Bangkok Literature Festival →
             </Link>
           </div>
 
