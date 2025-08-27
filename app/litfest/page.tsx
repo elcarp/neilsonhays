@@ -60,19 +60,19 @@ const festivalHighlights = [
     title: 'Panel Discussions',
     description: 'From Southeast Asian historical fiction to climate change conversations, inspiring audiences with lively Q&As.',
     icon: Mic,
-    color: 'bg-blue-100 text-blue-600'
+    color: 'bg-teal-100 text-teal-600'
   },
   {
     title: 'Creative Workshops',
     description: 'Self-portraits for kids, bookmaking, calligraphy, botanical watercolor, and creative writing for all ages.',
     icon: PenTool,
-    color: 'bg-green-100 text-green-600'
+    color: 'bg-teal-100 text-teal-700'
   },
   {
     title: 'Book Market',
     description: 'Independent publishers, secondhand book sellers, and literary organizations filled the garden.',
     icon: BookOpen,
-    color: 'bg-amber-100 text-amber-600'
+    color: 'bg-teal-100 text-teal-500'
   },
   {
     title: 'Community Vibe',
@@ -84,7 +84,7 @@ const festivalHighlights = [
 
 export default function LiteratureFestival() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-500 to-orange-500 pt-36">
+    <div className="min-h-screen bg-gradient-to-br from-teal-500 to-teal-600 pt-36">
       <PageTitle
         title="Bangkok Literature Festival 2023"
         description="A Weekend of Words, Ideas, and Inspiration in the Heart of Bangkok"
@@ -96,8 +96,8 @@ export default function LiteratureFestival() {
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Calendar className="w-5 h-5 text-amber-600" />
-                <span className="text-sm sm:text-base font-semibold text-amber-600">2023 Festival Recap</span>
+                <Calendar className="w-5 h-5 text-teal-600" />
+                <span className="text-sm sm:text-base font-semibold text-teal-600">2023 Festival Recap</span>
               </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
                 A Vibrant Return to Literary Celebration
@@ -127,7 +127,7 @@ export default function LiteratureFestival() {
 
         {/* Festival Theme */}
         <div className="text-center mb-12 sm:mb-16">
-          <div className="bg-gradient-to-r from-amber-600 to-orange-600 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-r from-teal-600 to-teal-700 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-white">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
               Bridging Cultures and Communities through Storytelling
             </h2>
@@ -161,7 +161,7 @@ export default function LiteratureFestival() {
                   </span>
                 </div>
                 <div className="mb-4">
-                  <span className="text-sm font-semibold text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+                  <span className="text-sm font-semibold text-teal-600 bg-teal-50 px-3 py-1 rounded-full">
                     {author.notable}
                   </span>
                 </div>
@@ -276,7 +276,7 @@ export default function LiteratureFestival() {
         </div>
 
         {/* Photo Gallery Link */}
-        <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 text-white mb-8 sm:mb-12">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-800 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 text-white mb-8 sm:mb-12">
           <div className="text-center">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
               Relive the Festival
@@ -292,7 +292,7 @@ export default function LiteratureFestival() {
             >
               <Button
                 size="lg"
-                className="bg-white text-purple-600 hover:bg-gray-100 px-6 sm:px-8 py-3 text-sm sm:text-base inline-flex items-center gap-2"
+                className="bg-white text-teal-600 hover:bg-gray-100 px-6 sm:px-8 py-3 text-sm sm:text-base inline-flex items-center gap-2"
               >
                 View Photo Gallery
                 <ExternalLink className="w-4 h-4" />
@@ -303,7 +303,7 @@ export default function LiteratureFestival() {
 
         {/* Call to Action */}
         <div className="text-center bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-100 text-amber-600 rounded-full mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-teal-100 text-teal-600 rounded-full mb-6">
             <Heart className="w-8 h-8" />
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
@@ -316,7 +316,7 @@ export default function LiteratureFestival() {
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8">
             <Link href="/events">
-              <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto">
+              <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto">
                 Upcoming Events
               </Button>
             </Link>
@@ -324,7 +324,7 @@ export default function LiteratureFestival() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto"
+                className="border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto"
               >
                 Volunteer With Us
               </Button>
