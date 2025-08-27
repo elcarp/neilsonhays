@@ -6,9 +6,44 @@ import { BookOpen, Calendar, Check, User2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { EventCard } from '@/components/event-card'
-import getUpcomingEvents, { fallbackEventData } from '@/lib/wp-events'
+import getUpcomingEvents, { fallbackEventData, type WpEvent } from '@/lib/wp-events'
+import { type Event } from '@/components/event-card'
+
+// map WP → your EventCard shape
+function toEventCard(ev: WpEvent) {
+  const img = ev?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? ''
+  const m = ev.meta || {}
+
+  // Ensure meta values are strings, fallback to empty string if not
+  const getMetaString = (value: unknown): string => {
+    return typeof value === 'string' ? value : ''
+  }
+
+  return {
+    title: ev.title?.rendered?.replace(/<[^>]+>/g, '') ?? 'Untitled',
+    description: (ev.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
+    slug: ev.slug,
+    image: img,
+    date: getMetaString(m._event_start_date) || ev.date || '',
+    time: getMetaString(m._event_start_time),
+    location: getMetaString(m._event_venue) || getMetaString(m._event_address),
+  }
+}
+
+// Convert fallback data to simple Event format
+function convertFallbackData(data: typeof fallbackEventData): Event[] {
+  return data.map(event => ({
+    title: event.title,
+    description: event.description,
+    slug: event.slug,
+    image: event.image,
+    date: event.date,
+    time: event.time,
+    location: event.location,
+  }))
+}
 
 const memberBenefits = [
   {
@@ -41,14 +76,33 @@ export default function Home() {
   const membershipInView = useInView(membershipRef, { once: false })
   const supportInView = useInView(supportRef, { once: false })
 
-  const wpEvents = async () => await getUpcomingEvents(12)
-  console.log(`Loaded ${wpEvents?.length || 0} events from WordPress`)
-  // Convert WordPress events to Event format, fallback to shared event data
-  // wpEvents is an async function, so we need to handle it properly
-  // We'll use a placeholder for now; in a real app, use useEffect/useState or server components
-  const formattedEvents = fallbackEventData
-  // Note: This is not correct for async, but matches the original code's intent.
-  // For correct async handling, refactor to use useEffect/useState.
+  // State for events
+  const [formattedEvents, setFormattedEvents] = useState<Event[]>(convertFallbackData(fallbackEventData))
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Load WordPress events on component mount
+  useEffect(() => {
+    const loadEvents = async () => {
+      try {
+        const wpEvents = await getUpcomingEvents(12)
+        console.log(`Loaded ${wpEvents?.length || 0} events from WordPress`)
+
+        // Convert WordPress events to Event format, fallback to shared event data
+        const events = wpEvents.length > 0
+          ? wpEvents.map(toEventCard)
+          : convertFallbackData(fallbackEventData)
+
+        setFormattedEvents(events)
+      } catch (error) {
+        console.error('Failed to load WordPress events:', error)
+        setFormattedEvents(convertFallbackData(fallbackEventData))
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadEvents()
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -126,11 +180,17 @@ export default function Home() {
               workshops and community.
             </p>
             <div className='mt-20 flex flex-col items-center justify-between pb-20 max-w-7xl mx-auto px-4 md:px-8'>
-              <div className='grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-20'>
-                {formattedEvents.map((event, index) => (
-                  <EventCard event={event} key={event.title + index} />
-                ))}
-              </div>
+              {isLoading ? (
+                <div className='flex justify-center items-center py-20'>
+                  <div className='text-gray-600'>Loading events...</div>
+                </div>
+              ) : (
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-20'>
+                  {formattedEvents.map((event, index) => (
+                    <EventCard event={event} key={event.title + index} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <Link href='/events'>
