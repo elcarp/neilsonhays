@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { getEventBySlug, type WpEvent, fallbackEventData } from "@/lib/wp-events"
 import { getEventProductBySlug, transformWcEventToEvent } from "@/lib/wc-events"
 import EventBooking from "@/components/event-booking"
+import { format } from "date-fns"
 
 // Transform WordPress event to expected format
 function transformWpEvent(wpEvent: WpEvent) {
@@ -20,9 +21,9 @@ function transformWpEvent(wpEvent: WpEvent) {
   return {
     slug: wpEvent.slug,
     title: wpEvent.title?.rendered?.replace(/<[^>]+>/g, '') ?? 'Untitled Event',
-    date: getMetaString(m._event_start_date) || wpEvent.date || '',
-    time: getMetaString(m._event_start_time) || '7:00 PM',
-    location: getMetaString(m._event_venue) || getMetaString(m._event_address) || 'Main Hall',
+    date: getMetaString(m._event_start_date) || format(new Date(wpEvent.date), 'dd MMM yyyy HH:mm') || '',
+    time: getMetaString(m._event_start_time) || 'N/A',
+    location: getMetaString(m._event_venue) || getMetaString(m._event_address) || 'N/A',
     description: (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
     longDescription: (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
     image: img,

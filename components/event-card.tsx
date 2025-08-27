@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, MapPin, Clock } from 'lucide-react'
 import { BlurImage } from '@/components/ui/blur-image'
+import { format } from "date-fns"
 
 export type Event = {
   title: string
@@ -42,10 +43,10 @@ export const EventCard = ({ event }: { event: Event }) => {
         <div className='flex space-x-2 items-center mb-2'>
           <Calendar className='w-4 h-4 text-teal-600' />
           <span className='text-sm text-neutral-600 dark:text-neutral-400'>
-            {event.date}
+            {format(new Date(event.date), 'dd MMM yyyy HH:mm')}
           </span>
         </div>
-        <p className='text-lg font-bold mb-4 text-neutral-800 dark:text-neutral-100'>
+        <p className='text-lg text-left font-bold mb-4 text-neutral-800 dark:text-neutral-100'>
           {event.title}
         </p>
         <p className='text-left text-sm mt-2 text-neutral-600 dark:text-neutral-400'>
