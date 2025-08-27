@@ -19,25 +19,25 @@ export default function Kids() {
       title: 'Children&apos;s Corner',
       description:
         'A cosy and inviting space for young members to enjoy stories',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Calendar,
       title: 'Saturday Story Time',
       description: 'Weekly sessions at 10:30 AM with themed stories and crafts',
-      color: 'text-teal-400',
+      color: 'text-teal-500',
     },
     {
       icon: Users,
       title: 'School Visits',
       description: 'Tailored programs with building tours and activities',
-      color: 'text-yellow-400',
+      color: 'text-teal-300',
     },
     {
       icon: PenTool,
       title: 'Monthly Workshops',
       description: 'Creative Writing and CoderDojo sessions for young adults',
-      color: 'text-pink-400',
+      color: 'text-teal-600',
     },
   ]
 
@@ -66,19 +66,19 @@ export default function Kids() {
       title: 'Creative Writing Workshop',
       description:
         'A place for young people to foster creativity and confidence in writing',
-      color: 'text-blue-400',
+      color: 'text-teal-400',
     },
     {
       icon: Code,
       title: 'CoderDojo Sessions',
       description:
         'Establish foundational coding skills in a supportive environment',
-      color: 'text-teal-400',
+      color: 'text-teal-500',
     },
   ]
 
   return (
-    <div className='min-h-screen bg-black'>
+    <div className='min-h-screen bg-teal-900'>
       {/* Hero Section */}
       <section className='relative h-[70vh] flex items-center justify-center'>
         <Image
@@ -98,7 +98,7 @@ export default function Kids() {
       </section>
 
       {/* Programs Overview */}
-      <section className='py-20 px-4 bg-white'>
+      <section className='py-20 px-4 bg-teal-50'>
         <div className='max-w-6xl mx-auto'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,10 +106,10 @@ export default function Kids() {
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-4xl font-bold text-teal-900 mb-4'>
               Programs for Young Minds
             </h2>
-            <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
+            <p className='text-xl text-teal-700 max-w-3xl mx-auto'>
               From cozy reading corners to creative workshops, we offer a
               variety of programs designed to inspire and educate children of
               all ages.
@@ -127,13 +127,13 @@ export default function Kids() {
               return (
                 <div
                   key={detail.title}
-                  className='bg-gray-100 p-6 rounded-lg border border-gray-200 text-center shadow-lg hover:shadow-xl transition-shadow'
+                  className='bg-white p-6 rounded-lg border border-teal-200 text-center shadow-lg hover:shadow-xl transition-shadow'
                 >
                   <Icon className={`w-12 h-12 mx-auto mb-4 ${detail.color}`} />
-                  <h3 className='text-gray-900 font-semibold text-lg mb-2'>
+                  <h3 className='text-teal-900 font-semibold text-lg mb-2'>
                     {detail.title}
                   </h3>
-                  <p className='text-gray-600'>{detail.description}</p>
+                  <p className='text-teal-700'>{detail.description}</p>
                 </div>
               )
             })}
@@ -142,7 +142,7 @@ export default function Kids() {
       </section>
 
       {/* Children's Corner Section */}
-      <section ref={cornerRef} className='py-20 px-4 bg-gray-100'>
+      <section ref={cornerRef} className='py-20 px-4 bg-teal-100'>
         <div className='max-w-6xl mx-auto'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -150,10 +150,10 @@ export default function Kids() {
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-4xl font-bold text-teal-900 mb-4'>
               Children&apos;s Corner
             </h2>
-            <p className='text-xl text-gray-600'>
+            <p className='text-xl text-teal-700'>
               A cosy and inviting space for our young members
             </p>
           </motion.div>
@@ -165,17 +165,17 @@ export default function Kids() {
             className='grid md:grid-cols-2 gap-12 items-center'
           >
             <div className='prose prose-lg'>
-              <p className='text-xl leading-relaxed text-gray-700 mb-8'>
+              <p className='text-xl leading-relaxed text-teal-800 mb-8'>
                 Our Children&apos;s Corner is a cosy and inviting space for our
                 young members to make themselves comfortable on a cushion or sit
                 at a small table, where they can enjoy their favourite stories.
               </p>
 
-              <div className='bg-blue-50 p-8 rounded-lg border border-blue-200'>
-                <h3 className='text-2xl font-bold text-gray-900 mb-4'>
+              <div className='bg-teal-50 p-8 rounded-lg border border-teal-200'>
+                <h3 className='text-2xl font-bold text-teal-900 mb-4'>
                   Extensive Collection
                 </h3>
-                <p className='text-lg leading-relaxed text-gray-700'>
+                <p className='text-lg leading-relaxed text-teal-800'>
                   Children of all ages can explore our extensive collection of
                   picture, fiction and non-fiction books. There is also a
                   comprehensive section for Young Adults.
@@ -205,10 +205,10 @@ export default function Kids() {
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-4xl font-bold text-teal-900 mb-4'>
               Saturday Story Time
             </h2>
-            <p className='text-xl text-gray-600'>
+            <p className='text-xl text-teal-700'>
               Every Saturday morning is dedicated to children
             </p>
           </motion.div>
@@ -219,7 +219,7 @@ export default function Kids() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className='prose prose-lg mx-auto'
           >
-            <p className='text-xl leading-relaxed text-gray-700 mb-8'>
+            <p className='text-xl leading-relaxed text-teal-800 mb-8'>
               Every Saturday morning is dedicated to children, with our popular
               Children&apos;s Story Time sessions at 10:30 AM. Enthusiastic
               readers engage young listeners with several books, usually chosen
@@ -228,10 +228,10 @@ export default function Kids() {
             </p>
 
             <div className='bg-teal-50 p-8 rounded-lg border border-teal-200 mb-8'>
-              <h3 className='text-2xl font-bold text-gray-900 mb-4'>
+              <h3 className='text-2xl font-bold text-teal-900 mb-4'>
                 Inclusive Learning Environment
               </h3>
-              <p className='text-lg leading-relaxed text-gray-700'>
+              <p className='text-lg leading-relaxed text-teal-800'>
                 The Story Time audience is comprised of native English speakers
                 and children who are learning English. Saturday mornings are a
                 great opportunity to listen, practice and absorb English in a
@@ -244,12 +244,12 @@ export default function Kids() {
               {storyTimeDetails.map(detail => (
                 <div
                   key={detail.title}
-                  className='bg-gray-100 p-6 rounded-lg border border-gray-200 shadow-lg'
+                  className='bg-teal-50 p-6 rounded-lg border border-teal-200 shadow-lg'
                 >
-                  <h4 className='text-gray-900 font-semibold text-lg mb-2'>
+                  <h4 className='text-teal-900 font-semibold text-lg mb-2'>
                     {detail.title}
                   </h4>
-                  <p className='text-gray-600'>{detail.detail}</p>
+                  <p className='text-teal-700'>{detail.detail}</p>
                 </div>
               ))}
             </div>
@@ -258,7 +258,7 @@ export default function Kids() {
       </section>
 
       {/* School Visits Section */}
-      <section ref={schoolVisitsRef} className='py-20 px-4 bg-gray-100'>
+      <section ref={schoolVisitsRef} className='py-20 px-4 bg-teal-100'>
         <div className='max-w-6xl mx-auto'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -266,10 +266,10 @@ export default function Kids() {
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-4xl font-bold text-teal-900 mb-4'>
               School Visits
             </h2>
-            <p className='text-xl text-gray-600'>
+            <p className='text-xl text-teal-700'>
               Explore the building&apos;s architectural features and learn about
               libraries
             </p>
@@ -282,7 +282,7 @@ export default function Kids() {
             className='grid md:grid-cols-2 gap-12 items-center'
           >
             <div className='prose prose-lg'>
-              <p className='text-xl leading-relaxed text-gray-700 mb-8'>
+              <p className='text-xl leading-relaxed text-teal-800 mb-8'>
                 A visit to the Neilson Hays Library can be a wonderful
                 opportunity to explore the building&apos;s architectural
                 features, take a look back at Bangkok 100 years ago, and learn
@@ -291,11 +291,11 @@ export default function Kids() {
                 the age and needs of the school group.
               </p>
 
-              <div className='bg-yellow-50 p-8 rounded-lg border border-yellow-200 mb-8'>
-                <h3 className='text-2xl font-bold text-gray-900 mb-4'>
+              <div className='bg-teal-50 p-8 rounded-lg border border-teal-200 mb-8'>
+                <h3 className='text-2xl font-bold text-teal-900 mb-4'>
                   Visit Includes
                 </h3>
-                <ul className='text-lg leading-relaxed text-gray-700 space-y-2'>
+                <ul className='text-lg leading-relaxed text-teal-800 space-y-2'>
                   <li>• Library history and building tour</li>
                   <li>
                     • Additional activities may include crafts and refreshments
@@ -306,7 +306,7 @@ export default function Kids() {
               </div>
 
               <div className='text-center'>
-                <p className='text-lg text-gray-700 mb-4'>
+                <p className='text-lg text-teal-800 mb-4'>
                   Please contact our School Visit Coordinator to discuss your
                   requirements.
                 </p>
@@ -340,10 +340,10 @@ export default function Kids() {
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            <h2 className='text-4xl font-bold text-teal-900 mb-4'>
               Monthly Workshops
             </h2>
-            <p className='text-xl text-gray-600'>
+            <p className='text-xl text-teal-700'>
               Opportunities to learn new topics and develop skills
             </p>
           </motion.div>
@@ -354,7 +354,7 @@ export default function Kids() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className='space-y-8'
           >
-            <p className='text-xl leading-relaxed text-gray-700 mb-8 text-center max-w-3xl mx-auto'>
+            <p className='text-xl leading-relaxed text-teal-800 mb-8 text-center max-w-3xl mx-auto'>
               Monthly workshops allow children and young adults an opportunity
               to learn a new topic and develop their skills. Visit the events
               calendar for session schedules and sign-up instructions.
@@ -366,13 +366,13 @@ export default function Kids() {
                 return (
                   <div
                     key={detail.title}
-                    className='bg-gray-100 p-8 rounded-lg border border-gray-200 hover:border-teal-500 transition-colors shadow-lg hover:shadow-xl'
+                    className='bg-white p-8 rounded-lg border border-teal-200 hover:border-teal-500 transition-colors shadow-lg hover:shadow-xl'
                   >
                     <Icon className={`w-16 h-16 ${detail.color} mb-4`} />
-                    <h3 className='text-gray-900 font-semibold text-xl mb-3'>
+                    <h3 className='text-teal-900 font-semibold text-xl mb-3'>
                       {detail.title}
                     </h3>
-                    <p className='text-gray-600'>{detail.description}</p>
+                    <p className='text-teal-700'>{detail.description}</p>
                   </div>
                 )
               })}
@@ -380,7 +380,7 @@ export default function Kids() {
 
             <div className='text-center mt-8'>
               <Link href='/events'>
-                <Button className='bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 text-lg'>
+                <Button className='bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
                   View Events Calendar
                 </Button>
               </Link>
@@ -397,21 +397,24 @@ export default function Kids() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-6'>
+            <h2 className='text-4xl font-bold text-teal-900 mb-6'>
               Join Our Children&apos;s Programs
             </h2>
-            <p className='text-xl text-gray-700 mb-8'>
+            <p className='text-xl text-teal-800 mb-8'>
               Give your child the gift of reading, creativity, and learning
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <Link href='/membership'>
-                <Button className='bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
+                <Button className='bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 text-lg'>
                   Become a Member
                 </Button>
               </Link>
-              <Link href='/contact'>
-                <Button className='bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 text-lg'>
-                  Contact Us
+              <Link href='/give'>
+                <Button
+                  variant='outline'
+                  className='border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white px-8 py-3 text-lg'
+                >
+                  Support the Library
                 </Button>
               </Link>
             </div>

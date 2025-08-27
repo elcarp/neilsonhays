@@ -104,7 +104,7 @@ export default function VenueHire() {
   ]
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-teal-500 to-blue-500'>
+    <div className='min-h-screen bg-gradient-to-br from-teal-500 to-teal-600'>
       {/* Hero Section */}
       <section className='relative h-[70vh] flex items-center justify-center'>
         <Image
@@ -132,10 +132,10 @@ export default function VenueHire() {
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-teal-900 mb-4 sm:mb-6'>
               Historic Venues for Every Occasion
             </h2>
-            <p className='text-base sm:text-lg text-gray-600 max-w-3xl mx-auto'>
+            <p className='text-base sm:text-lg text-teal-700 max-w-3xl mx-auto'>
               We have several flexible spaces available to accommodate a variety
               of functions, from intimate gatherings to grand celebrations.
             </p>
@@ -147,7 +147,7 @@ export default function VenueHire() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className='prose prose-lg mx-auto text-center'
           >
-            <p className='text-base sm:text-lg leading-relaxed text-gray-700 mb-8'>
+            <p className='text-base sm:text-lg leading-relaxed text-teal-700 mb-8'>
               Our historic library building provides a unique and elegant
               setting for your special events. Each space offers its own
               character and charm, perfect for creating memorable experiences.
@@ -163,10 +163,10 @@ export default function VenueHire() {
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-teal-900 mb-3 sm:mb-4'>
               Our Venue Spaces
             </h2>
-            <p className='text-base sm:text-lg text-gray-600 text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-4'>
+            <p className='text-base sm:text-lg text-teal-700 text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-4'>
               Each space offers unique character and flexibility
             </p>
           </motion.div>
@@ -189,10 +189,10 @@ export default function VenueHire() {
                   >
                     <Icon className='w-6 h-6 sm:w-8 sm:h-8' />
                   </div>
-                  <h3 className='text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4'>
+                  <h3 className='text-lg sm:text-xl font-bold text-teal-900 mb-3 sm:mb-4'>
                     {detail.title}
                   </h3>
-                  <p className='text-sm sm:text-base text-gray-700 mb-4 leading-relaxed'>
+                  <p className='text-sm sm:text-base text-teal-700 mb-4 leading-relaxed'>
                     {detail.description}
                   </p>
                   <div className='text-teal-600 font-semibold text-sm sm:text-base'>
@@ -205,7 +205,7 @@ export default function VenueHire() {
         </div>
 
         {/* Event Types Section */}
-        <div className='bg-gradient-to-r from-teal-600 to-blue-600 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-white mb-8 sm:mb-12'>
+        <div className='bg-gradient-to-r from-teal-600 to-teal-700 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-white mb-8 sm:mb-12'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -270,10 +270,10 @@ export default function VenueHire() {
             transition={{ duration: 0.8 }}
             className='text-center mb-16'
           >
-            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-teal-900 mb-4 sm:mb-6'>
               Get in Touch
             </h2>
-            <p className='text-base sm:text-lg text-gray-600 max-w-2xl mx-auto'>
+            <p className='text-base sm:text-lg text-teal-700 max-w-2xl mx-auto'>
               Please contact our Office Manager to make an appointment to view
               our facilities
             </p>
@@ -286,8 +286,8 @@ export default function VenueHire() {
             className='grid md:grid-cols-2 gap-6 sm:gap-8'
           >
             <div className='space-y-8'>
-              <div className='bg-gray-50 p-6 sm:p-8 rounded-lg'>
-                <h3 className='text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6'>
+              <div className='bg-teal-50 p-6 sm:p-8 rounded-lg'>
+                <h3 className='text-xl sm:text-2xl font-bold text-teal-900 mb-4 sm:mb-6'>
                   Contact Information
                 </h3>
                 <div className='space-y-6'>
@@ -300,10 +300,10 @@ export default function VenueHire() {
                       >
                         <Icon className={`w-6 h-6 ${detail.color}`} />
                         <div>
-                          <h4 className='font-semibold text-gray-900'>
+                          <h4 className='font-semibold text-teal-900'>
                             {detail.title}
                           </h4>
-                          <p className='text-gray-600'>{detail.detail}</p>
+                          <p className='text-teal-700'>{detail.detail}</p>
                         </div>
                       </div>
                     )
@@ -312,10 +312,10 @@ export default function VenueHire() {
               </div>
 
               <div className='bg-teal-50 p-6 sm:p-8 rounded-lg border border-teal-200'>
-                <h3 className='text-lg sm:text-xl font-bold text-gray-900 mb-4'>
+                <h3 className='text-lg sm:text-xl font-bold text-teal-900 mb-4'>
                   Visit Our Facilities
                 </h3>
-                <p className='text-sm sm:text-base text-gray-700 mb-6'>
+                <p className='text-sm sm:text-base text-teal-700 mb-6'>
                   We recommend scheduling a visit to see our spaces in person
                   and discuss your specific needs with our team.
                 </p>
@@ -346,22 +346,25 @@ export default function VenueHire() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className='text-4xl font-bold text-gray-900 mb-6'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-teal-900 mb-4 sm:mb-6'>
               Ready to Plan Your Event?
             </h2>
-            <p className='text-xl text-gray-700 mb-8'>
+            <p className='text-base sm:text-lg text-teal-700 mb-6 sm:mb-8 max-w-2xl mx-auto px-4'>
               Let us help you create an unforgettable experience in our historic
               setting
             </p>
-            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+            <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center'>
               <Link href='/contact'>
-                <Button className='bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
+                <Button className='bg-teal-600 hover:bg-teal-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto'>
                   Contact Office Manager
                 </Button>
               </Link>
-              <Link href='/about'>
-                <Button className='bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 text-lg'>
-                  Learn More About Us
+              <Link href='/give'>
+                <Button
+                  variant='outline'
+                  className='border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white px-6 sm:px-8 py-3 text-sm sm:text-base w-full sm:w-auto'
+                >
+                  Support the Library
                 </Button>
               </Link>
             </div>
