@@ -42,9 +42,9 @@ const events = [
     icon: Calendar,
   },
   {
-    name: 'Venue Hire',
+    name: 'Venue',
     description: 'Hire the library for your next event.',
-    href: '/venue-hire',
+    href: '/venue',
     icon: Building,
   },
 ]
