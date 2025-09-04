@@ -8,18 +8,13 @@ export default function Testimonial() {
           <img src="/quotation.svg" alt="quotation" className="w-10 h-10" />
         </div>
         <blockquote className="mt-10 text-2xl tracking-tight text-white bg-teal-500 p-10 rounded-lg sm:text-2xl/9">
-          <img
-            alt=""
-            src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=1024&h=1024&q=80"
-            className="size-12 rounded-full bg-gray-50 float-left mr-3"
-          />
           <p className="italic">
-            I&apos;ve rediscovered my love of reading thanks to this peaceful haven.
+            Neilson Hays Library is a beautiful oasis of calm in the heart of Bangkok - a quiet refuge where history, literature, and community thrive amidst the city&apos;s chaos.
           </p>
           <figcaption className="mt-10 flex items-center gap-x-6">
             <div className="text-sm/6">
-              <div className="font-semibold">Susan Richards</div>
-              <div className="mt-0.5">Member since 2009</div>
+              <div className="font-semibold">Michelle Seal</div>
+              <div className="mt-0.5">Member since 2021</div>
             </div>
           </figcaption>
         </blockquote>
