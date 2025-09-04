@@ -5,7 +5,7 @@ const nav = [
   { title: 'Catalog', href: 'https://16309.rmwebopac.com/', target: '_blank', icon: BookOpen },
   { title: 'Events', href: '/events', icon: Calendar },
   { title: 'Kids Programs', href: '/kids', icon: BookHeart },
-  { title: 'Cafe Info', href: '#', icon: Coffee },
+  { title: 'Cafe Info', href: 'https://share.google/4nQBu34wtnSRrNWY5', icon: Coffee },
   // { title: 'Book Club', href: '#', icon: Users2 },
 ]
 
