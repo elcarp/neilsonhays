@@ -126,8 +126,8 @@ export default function Give() {
 
             <div className="relative order-first md:order-last mt-6 md:mt-0">
               <Image
-                src="/images/bookclub.jpg"
-                alt="Book Collection"
+                src="/images/reading.jpg"
+                alt="Woman reading in the library"
                 width={500}
                 height={400}
                 className="rounded-lg sm:rounded-xl shadow-lg object-cover w-full h-48 sm:h-64 md:h-80"
