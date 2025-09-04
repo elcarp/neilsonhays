@@ -8,21 +8,25 @@ export default function About() {
     {
       title: 'UNESCO Cultural Heritage Conversation Award 2022',
       button: 'Learn More',
+      buttonLink: '/unesco-cultural-heritage-conservation-award-2022',
       src: 'https://neilsonhayslibrary.org/wp-content/uploads/2019/12/nhl_Home18_img-845x321.jpg',
     },
     {
       title: 'Restoration',
       button: 'Learn more',
+      buttonLink: '/restoration',
       src: 'https://neilsonhayslibrary.org/wp-content/uploads/2019/12/nhl_Home10_img-845x321.jpg',
     },
     {
       title: 'Volunteer',
       button: 'Learn more',
+      buttonLink: '/volunteer',
       src: 'https://neilsonhayslibrary.org/wp-content/uploads/2019/12/nhl_Home18_img-845x321.jpg',
     },
     {
       title: 'Operations',
       button: 'Learn more',
+      buttonLink: '/operations',
       src: 'https://neilsonhayslibrary.org/wp-content/uploads/2019/12/nhl_Home25_img-845x321.jpg',
     },
   ]
