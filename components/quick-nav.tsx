@@ -6,7 +6,7 @@ const nav = [
   { title: 'Events', href: '/events', icon: Calendar },
   { title: 'Kids Programs', href: '/kids', icon: BookHeart },
   { title: 'Cafe Info', href: '#', icon: Coffee },
-  { title: 'Book Club', href: '#', icon: Users2 },
+  // { title: 'Book Club', href: '#', icon: Users2 },
 ]
 
 export default function QuickNav() {
