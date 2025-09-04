@@ -125,14 +125,16 @@ export default function Home() {
     <>
       <section className='h-screen w-screen bg-black relative'>
         <Image
-          src='/images/hero-bg.jpg'
+          src='/images/hero-bg.webp'
           alt='Hero background'
           fill
           className='object-cover'
           priority
         />
+        <div className='absolute inset-0 bg-gray-900/60 z-[1]'></div>
         <div className='relative z-10 flex items-center justify-center flex-col h-screen'>
           <div className='max-w-3xl mx-auto text-center px-4'>
+            <img src='/images/logo-white.svg' alt='Neilson Hays Library' className='w-1/3 mx-auto mb-4' />
             <h1 className={`text-white text-4xl lg:text-6xl font-extrabold`}>
               Bangkok&apos;s Historic <br />
               English-Language Library
