@@ -2,29 +2,38 @@
 import PageTitle from '@/components/ui/page-title'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Users, BookOpen, Calendar, Camera, PenTool, Heart, Mail, Phone } from 'lucide-react'
+import {
+  Users,
+  BookOpen,
+  Calendar,
+  Camera,
+  PenTool,
+  Heart,
+  Mail,
+  Phone,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 export default function Volunteer() {
-
   const volunteerRoles = [
     {
       icon: BookOpen,
       title: 'Book Sale Events',
-      description: 'Assisting with second-hand book sale events (sorting, pricing, cashiering)',
+      description:
+        'Assisting with second-hand book sale events (sorting, pricing, cashiering)',
       color: 'text-teal-400',
     },
     {
       icon: Heart,
-      title: 'Children&apos;s Programs',
-      description: 'Assisting at children&apos;s program events',
+      title: "Children's Programs",
+      description: "Assisting at children's program events",
       color: 'text-teal-300',
     },
     {
       icon: Calendar,
       title: 'Adult Events & Fundraisers',
-      description: 'Planning and assisting at adult&apos;s events and fundraisers',
+      description: "Planning and assisting at adult's events and fundraisers",
       color: 'text-teal-400',
     },
     {
@@ -75,7 +84,8 @@ export default function Volunteer() {
     {
       icon: Calendar,
       title: 'Cultural Enrichment',
-      description: 'Immerse yourself in the library&apos;s rich cultural environment',
+      description:
+        'Immerse yourself in the library\'s rich cultural environment',
       color: 'text-teal-400',
     },
   ]
@@ -116,7 +126,7 @@ export default function Volunteer() {
           <PageTitle
             title='Friends of the Library'
             description='Offering your time as a volunteer with the Library is a rewarding and social experience'
-            quote='Never doubt that a small group of thoughtful, committed citizens can change the world; indeed, it&apos;s the only thing that ever has.'
+            quote="Never doubt that a small group of thoughtful, committed citizens can change the world; indeed, it's the only thing that ever has."
           />
         </div>
       </section>
@@ -134,7 +144,9 @@ export default function Volunteer() {
               Join Our Volunteer Team
             </h2>
             <p className='text-base sm:text-lg text-gray-600 max-w-3xl mx-auto'>
-              The Neilson Hays Library is fortunate to have a dedicated team of volunteers who generously give their time to assist in the operations and programs of the library.
+              The Neilson Hays Library is fortunate to have a dedicated team of
+              volunteers who generously give their time to assist in the
+              operations and programs of the library.
             </p>
           </motion.div>
 
@@ -145,7 +157,10 @@ export default function Volunteer() {
             className='prose prose-lg mx-auto text-center'
           >
             <p className='text-base sm:text-lg leading-relaxed text-gray-700 mb-8'>
-              Members of the library and the wider community are warmly encouraged to volunteer with the library. Volunteers are needed throughout the year in various roles that help us maintain our services and programs.
+              Members of the library and the wider community are warmly
+              encouraged to volunteer with the library. Volunteers are needed
+              throughout the year in various roles that help us maintain our
+              services and programs.
             </p>
           </motion.div>
         </div>
@@ -179,7 +194,9 @@ export default function Volunteer() {
                   key={detail.title}
                   className='bg-white rounded-lg sm:rounded-xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-shadow duration-300'
                 >
-                  <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-teal-100 text-teal-600 mb-4 sm:mb-6`}>
+                  <div
+                    className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-teal-100 text-teal-600 mb-4 sm:mb-6`}
+                  >
                     <Icon className='w-6 h-6 sm:w-8 sm:h-8' />
                   </div>
                   <h3 className='text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4'>
@@ -227,7 +244,9 @@ export default function Volunteer() {
                   <h3 className='text-white font-semibold text-base sm:text-lg mb-2'>
                     {detail.title}
                   </h3>
-                  <p className='text-white/90 text-sm sm:text-base'>{detail.description}</p>
+                  <p className='text-white/90 text-sm sm:text-base'>
+                    {detail.description}
+                  </p>
                 </div>
               )
             })}
@@ -236,7 +255,6 @@ export default function Volunteer() {
 
         {/* Contact Section */}
         <div className='bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12 mb-8 sm:mb-12'>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -247,7 +265,8 @@ export default function Volunteer() {
               Get Involved
             </h2>
             <p className='text-xl text-gray-600'>
-              Please submit your interest and we will be in touch with you shortly
+              Please submit your interest and we will be in touch with you
+              shortly
             </p>
           </motion.div>
 
@@ -288,7 +307,9 @@ export default function Volunteer() {
                   Ready to Volunteer?
                 </h3>
                 <p className='text-gray-700 mb-6'>
-                  We welcome volunteers from all backgrounds and experience levels. Whether you can commit to a few hours a week or just occasional events, your contribution makes a difference.
+                  We welcome volunteers from all backgrounds and experience
+                  levels. Whether you can commit to a few hours a week or just
+                  occasional events, your contribution makes a difference.
                 </p>
                 <a href='mailto:volunteer@neilsonhayslibrary.org'>
                   <Button className='bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
@@ -321,7 +342,8 @@ export default function Volunteer() {
               Make a Difference Today
             </h2>
             <p className='text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto px-4'>
-              Join our community of dedicated volunteers and help preserve this historic library for future generations
+              Join our community of dedicated volunteers and help preserve this
+              historic library for future generations
             </p>
             <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center'>
               <a href='mailto:volunteer@neilsonhayslibrary.org'>
