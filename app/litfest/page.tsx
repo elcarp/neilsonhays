@@ -11,7 +11,6 @@ import {
   Mic,
   PenTool,
   Heart,
-  ExternalLink,
 } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -203,6 +202,67 @@ export default function LiteratureFestival() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Photo Gallery */}
+        <div className='mb-12 sm:mb-16'>
+          <h2 className='text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-3 sm:mb-4'>
+            Festival Photo Gallery
+          </h2>
+          <p className='text-base sm:text-lg text-gray-600 text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-4'>
+            Capturing the moments, conversations, and community spirit of the
+            2023 Literature Festival
+          </p>
+
+          <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4'>
+            {[
+              'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
+              'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop',
+              'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&h=300&fit=crop',
+              'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
+              'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop',
+              'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=300&fit=crop',
+              'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&crop=entropy',
+              'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop&crop=entropy',
+              'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&h=300&fit=crop&crop=entropy',
+              'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop&crop=entropy',
+              'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop&crop=entropy',
+              'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=300&fit=crop&crop=entropy',
+              'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&crop=center',
+              'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop&crop=center',
+              'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&h=300&fit=crop&crop=center',
+              'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop&crop=center',
+              'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop&crop=center',
+            ].map((src, index) => (
+              <div
+                key={index}
+                className='relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105'
+              >
+                <Image
+                  src={src}
+                  alt={`Festival moment ${index + 1}`}
+                  width={400}
+                  height={300}
+                  className='w-full h-32 sm:h-40 lg:h-48 object-cover'
+                />
+                <div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300'></div>
+              </div>
+            ))}
+          </div>
+
+          <div className='text-center mt-8 sm:mt-12'>
+            <p className='text-sm sm:text-base text-gray-600 mb-4'>
+              Want to see more photos from the festival?
+            </p>
+            <Link href='#' target='_blank' rel='noopener noreferrer'>
+              <Button
+                variant='outline'
+                className='border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white px-6 sm:px-8 py-3 text-sm sm:text-base inline-flex items-center gap-2'
+              >
+                View Full Gallery
+              </Button>
+            </Link>
           </div>
         </div>
 
