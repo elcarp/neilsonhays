@@ -13,7 +13,7 @@ const supportAreas = [
   },
   {
     title: 'Building Maintenance',
-    description: 'Help preserve our historic 100-year-old structure. Bangkok&apos;s tropical climate requires specialized maintenance to sustain this landmark while respecting the original design.',
+    description: 'Help preserve our historic 100-year-old structure. Bangkok\'s tropical climate requires specialized maintenance to sustain this landmark while respecting the original design.',
     icon: Building,
     color: 'bg-blue-100 text-blue-600'
   },
