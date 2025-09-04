@@ -128,10 +128,10 @@ export default function Home() {
           src='/images/hero-bg.webp'
           alt='Hero background'
           fill
-          className='object-cover'
+          className='object-cover blur-xs'
           priority
         />
-        <div className='absolute inset-0 bg-gray-900/60 z-[1]'></div>
+        <div className='absolute inset-0 bg-stone-900/60 z-[1]'></div>
         <div className='relative z-10 flex items-center justify-center flex-col h-screen'>
           <div className='max-w-3xl mx-auto text-center px-4'>
             <img src='/images/logo-white.svg' alt='Neilson Hays Library' className='w-1/3 mx-auto mb-4' />
