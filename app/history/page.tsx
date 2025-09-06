@@ -26,7 +26,7 @@ export default function History() {
     {
       year: '1869',
       title: 'Foundation',
-      description: 'Bangkok Ladies\' Library Association founded by thirteen British and American women',
+      description: 'Bangkok Ladies&apos; Library Association founded by thirteen British and American women',
       icon: Users,
     },
     {
@@ -43,7 +43,7 @@ export default function History() {
     },
     {
       year: '1920',
-      title: 'Jennie\'s Passing',
+      title: 'Jennie&apos;s Passing',
       description: 'Jennie Neilson Hays passes away, Dr. Hays decides to build library in her memory',
       icon: Users,
     },
@@ -153,7 +153,7 @@ export default function History() {
           >
             <h2 className="text-4xl font-bold text-white mb-4">Historical Gallery</h2>
             <p className="text-xl text-teal-100 max-w-3xl mx-auto">
-              A visual journey through the library's rich history, from its early days to the present
+              A visual journey through the library&apos;s rich history, from its early days to the present
             </p>
           </motion.div>
 
