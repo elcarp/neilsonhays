@@ -48,12 +48,12 @@ export default function Operations() {
     'Galleries Curator',
     'Library Systems Coordinator',
     'Book Buying Coordinator',
-    'Children&apos;s Programs Coordinator',
+    'Children\'s Programs Coordinator',
     'Adult Programs Coordinator',
     'Volunteer Coordinator',
     'Communications Coordinator',
     'Membership Coordinator',
-    'Marketing Coordinator',
+    'Marketing & PR Coordinator',
   ]
 
   const staffPositions = [
@@ -87,7 +87,7 @@ export default function Operations() {
     {
       title: 'Facilities Maintenance',
       description:
-        'Structural integrity maintenance for Bangkok&apos;s tropical weather',
+        'Structural integrity maintenance for Bangkok\'s tropical weather',
     },
   ]
 
