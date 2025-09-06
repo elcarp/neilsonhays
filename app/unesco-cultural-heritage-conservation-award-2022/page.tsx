@@ -66,8 +66,9 @@ export default function UnescoCulturalHeritageConservationAward2022() {
         <div className='relative z-10 text-center px-4'>
           <PageTitle
             title='UNESCO Cultural Heritage Conservation Award 2022'
-            description='Award of Distinction: Neilson Hays Library'
-            quote='A labor of love by all who were involved'
+            description='An Award Winning Cultural Landmark'
+            quote='Read below to learn about the multiple awards of distinction given to the Neilson Hays Library. A labour of love by all those who were involved. 
+'
           />
         </div>
       </section>
@@ -90,6 +91,24 @@ export default function UnescoCulturalHeritageConservationAward2022() {
               architect, Mario Tamagno, and is an enduring testament to the wave
               of modernization that began with King Rama V (r.1868-1910).
             </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className='flex justify-center mb-16'
+          >
+            <div className='relative max-w-2xl'>
+              <Image
+                src='/images/unesco.webp'
+                alt='UNESCO Cultural Heritage Conservation Award 2022'
+                width={800}
+                height={600}
+                className='rounded-lg shadow-2xl object-cover'
+              />
+              <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg'></div>
+            </div>
           </motion.div>
 
           {/* Award Stats Grid */}
@@ -159,7 +178,7 @@ export default function UnescoCulturalHeritageConservationAward2022() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className='bg-blue-900/20 p-8 rounded-lg border border-blue-700 mb-8'
+            className='bg-teal-900/20 p-8 rounded-lg border border-teal-700 mb-8'
           >
             <blockquote className='text-2xl italic text-white text-center'>
               &ldquo;The restoration demonstrates a nuanced understanding of the

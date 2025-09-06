@@ -98,7 +98,7 @@ const about = [
     icon: History,
   },
   {
-    name: 'UNESCO Cultural Heritage Conservation Award 2022',
+    name: 'Awards',
     description:
       "Learn about the library's UNESCO Cultural Heritage Conservation Award 2022.",
     href: '/unesco-cultural-heritage-conservation-award-2022',
