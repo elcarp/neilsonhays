@@ -11,7 +11,6 @@ export default function Kids() {
   const cornerRef = useRef(null)
   const storyTimeRef = useRef(null)
   const schoolVisitsRef = useRef(null)
-  const workshopsRef = useRef(null)
 
   const childrenPrograms = [
     {
@@ -57,23 +56,6 @@ export default function Kids() {
     {
       title: 'Cost',
       detail: 'Free for members, THB 200 for non-members',
-    },
-  ]
-
-  const workshopTypes = [
-    {
-      icon: PenTool,
-      title: 'Creative Writing Workshop',
-      description:
-        'A place for young people to foster creativity and confidence in writing',
-      color: 'text-teal-400',
-    },
-    {
-      icon: Code,
-      title: 'CoderDojo Sessions',
-      description:
-        'Establish foundational coding skills in a supportive environment',
-      color: 'text-teal-500',
     },
   ]
 
