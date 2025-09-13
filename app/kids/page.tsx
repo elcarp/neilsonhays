@@ -16,7 +16,7 @@ export default function Kids() {
   const childrenPrograms = [
     {
       icon: BookOpen,
-      title: 'Children&apos;s Corner',
+      title: "Children's Corner",
       description:
         'A cosy and inviting space for young members to enjoy stories',
       color: 'text-teal-400',
@@ -185,7 +185,7 @@ export default function Kids() {
 
             <div className='relative'>
               <Image
-                src='/images/kidslibrary.webp'
+                src='/images/children-corner.jpg'
                 alt="Children's Corner at Neilson Hays Library"
                 width={600}
                 height={400}
@@ -326,64 +326,6 @@ export default function Kids() {
                 height={400}
                 className='rounded-lg shadow-2xl'
               />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Workshops Section */}
-      <section ref={workshopsRef} className='py-20 px-4 bg-white'>
-        <div className='max-w-6xl mx-auto'>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className='text-center mb-16'
-          >
-            <h2 className='text-4xl font-bold text-teal-900 mb-4'>
-              Monthly Workshops
-            </h2>
-            <p className='text-xl text-teal-700'>
-              Opportunities to learn new topics and develop skills
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className='space-y-8'
-          >
-            <p className='text-xl leading-relaxed text-teal-800 mb-8 text-center max-w-3xl mx-auto'>
-              Monthly workshops allow children and young adults an opportunity
-              to learn a new topic and develop their skills. Visit the events
-              calendar for session schedules and sign-up instructions.
-            </p>
-
-            <div className='grid md:grid-cols-2 gap-8'>
-              {workshopTypes.map(detail => {
-                const Icon = detail.icon
-                return (
-                  <div
-                    key={detail.title}
-                    className='bg-white p-8 rounded-lg border border-teal-200 hover:border-teal-500 transition-colors shadow-lg hover:shadow-xl'
-                  >
-                    <Icon className={`w-16 h-16 ${detail.color} mb-4`} />
-                    <h3 className='text-teal-900 font-semibold text-xl mb-3'>
-                      {detail.title}
-                    </h3>
-                    <p className='text-teal-700'>{detail.description}</p>
-                  </div>
-                )
-              })}
-            </div>
-
-            <div className='text-center mt-8'>
-              <Link href='/events'>
-                <Button className='bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
-                  View Events Calendar
-                </Button>
-              </Link>
             </div>
           </motion.div>
         </div>
