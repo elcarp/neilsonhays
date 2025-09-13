@@ -16,19 +16,22 @@ export default function Programs() {
     {
       icon: BookOpen,
       title: 'Author Talks',
-      description: 'Experience intimate conversations with local and international writers of fiction, non-fiction, and journalism.',
+      description:
+        'Experience intimate conversations with local and international writers of fiction, non-fiction, and journalism.',
       color: 'text-blue-400',
     },
     {
       icon: Users,
       title: 'Book Club',
-      description: 'Join monthly group discussions at the library to analyze a chosen book or featured author.',
+      description:
+        'Join monthly group discussions at the library to analyze a chosen book or featured author.',
       color: 'text-teal-400',
     },
     {
       icon: Music,
       title: 'Concerts',
-      description: 'Enjoy live performances of a variety of musical genres performed by artists of all ages.',
+      description:
+        'Enjoy live performances of a variety of musical genres performed by artists of all ages.',
       color: 'text-pink-400',
     },
   ]
@@ -98,7 +101,9 @@ export default function Programs() {
               Community Programs
             </h2>
             <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
-              A variety of events are held throughout the year, most free or discounted to Library members, and others open to the public for a small fee.
+              A variety of events are held throughout the year, most free or
+              discounted to Library members, and others open to the public for a
+              small fee.
             </p>
           </motion.div>
 
@@ -110,7 +115,9 @@ export default function Programs() {
           >
             <div className='prose prose-lg'>
               <p className='text-xl leading-relaxed text-gray-700 mb-8'>
-                Program activities are planned and led by generous volunteers. We welcome ideas and suggestions for events which may be of interest to our members and the wider community.
+                Program activities are planned and led by generous volunteers.
+                We welcome ideas and suggestions for events which may be of
+                interest to our members and the wider community.
               </p>
 
               <div className='bg-teal-50 p-8 rounded-lg border border-teal-200 mb-8'>
@@ -118,7 +125,9 @@ export default function Programs() {
                   Get Involved
                 </h3>
                 <p className='text-lg leading-relaxed text-gray-700'>
-                  Contact us if you would like to get involved as a volunteer! View the events calendar for information on how and when to join us for upcoming activities.
+                  Contact us if you would like to get involved as a volunteer!
+                  View the events calendar for information on how and when to
+                  join us for upcoming activities.
                 </p>
               </div>
 
@@ -183,24 +192,12 @@ export default function Programs() {
                   <h3 className='text-gray-900 font-semibold text-xl mb-4'>
                     {detail.title}
                   </h3>
-                  <p className='text-gray-600 leading-relaxed'>{detail.description}</p>
+                  <p className='text-gray-600 leading-relaxed'>
+                    {detail.description}
+                  </p>
                 </div>
               )
             })}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className='mt-12 bg-teal-50 p-8 rounded-lg border border-teal-200'
-          >
-            <h3 className='text-2xl font-bold text-gray-900 mb-4'>
-              Concert Partnership
-            </h3>
-            <p className='text-lg text-gray-700'>
-              We have the pleasure of partnering with The College of Music, Mahidol University for monthly concerts.
-            </p>
           </motion.div>
         </div>
       </section>
@@ -230,7 +227,16 @@ export default function Programs() {
           >
             <div className='prose prose-lg'>
               <p className='text-xl leading-relaxed text-gray-700 mb-8'>
-                The Neilson Hays Library offers two distinct spaces for artists wishing to display their work: the Garden Cafe Gallery and the Rotunda Gallery. Stunning and accessible work by diverse artists of many nationalities are featured.
+                The Neilson Hays Library offers a distinctive space for artists
+                wishing to display their work. Stunning and accessible work by
+                diverse artists of many nationalities is featured. Artistic
+                media include paintings, photography, textiles and ceramics.
+                Many artworks are offered for sale during the exhibitions.
+              </p>
+              <p className='text-xl leading-relaxed text-gray-700 mb-8'>
+                Our Gallery Coordinator can advise on using this unique
+                space.Contact the Library Office to inquire about exhibiting
+                artwork.
               </p>
 
               <div className='bg-blue-50 p-8 rounded-lg border border-blue-200 mb-8'>
@@ -238,13 +244,17 @@ export default function Programs() {
                   Artistic Media
                 </h3>
                 <p className='text-lg leading-relaxed text-gray-700'>
-                  Artistic media include paintings, photography, textiles and ceramics. Many artworks are offered for sale during the exhibitions.
+                  Artistic media include paintings, photography, textiles and
+                  ceramics. Many artworks are offered for sale during the
+                  exhibitions.
                 </p>
               </div>
 
               <div className='text-center'>
                 <p className='text-lg text-gray-700 mb-4'>
-                  Our Gallery Coordinator can advise on using these unique spaces. Contact the Library Office to inquire about exhibiting artwork.
+                  Our Gallery Coordinator can advise on using these unique
+                  spaces. Contact the Library Office to inquire about exhibiting
+                  artwork.
                 </p>
                 <Link href='/contact'>
                   <Button className='bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg'>
@@ -255,7 +265,7 @@ export default function Programs() {
             </div>
 
             <div className='space-y-8'>
-              {gallerySpaces.map((space) => (
+              {gallerySpaces.map(space => (
                 <div
                   key={space.title}
                   className='bg-gray-50 p-6 rounded-lg border border-gray-200'
@@ -272,7 +282,11 @@ export default function Programs() {
                   Rotunda Gallery
                 </h3>
                 <p className='text-gray-700'>
-                  This is an elegant domed room, originally the imposing entrance to the Library. The circular floor is tiled in original teak and the walls feature neo-classical decorative stucco. Modern art creates a particularly stunning contrast within this classical setting.
+                  This is an elegant domed room, originally the imposing
+                  entrance to the Library. The circular floor is tiled in
+                  original teak and the walls feature neo-classical decorative
+                  stucco. Modern art creates a particularly stunning contrast
+                  within this classical setting.
                 </p>
               </div>
             </div>
@@ -305,7 +319,10 @@ export default function Programs() {
           >
             <div className='prose prose-lg'>
               <p className='text-xl leading-relaxed text-gray-700 mb-8'>
-                Twice a year locals, ex-pats and tourists alike are invited to select from thousands of fiction and non-fiction books in English, plus a selection of other languages, donated by Neilson Hays Library supporters or withdrawn from the library shelves.
+                Twice a year locals, ex-pats and tourists alike are invited to
+                select from thousands of fiction and non-fiction books in
+                English, plus a selection of other languages, donated by Neilson
+                Hays Library supporters or withdrawn from the library shelves.
               </p>
 
               <div className='bg-orange-50 p-8 rounded-lg border border-orange-200 mb-8'>
@@ -313,7 +330,10 @@ export default function Programs() {
                   Rare Books
                 </h3>
                 <p className='text-lg leading-relaxed text-gray-700'>
-                  A few rare books are also offered at market value. These sales serve as a major, recurring fundraiser for the Library, and all proceeds go towards the upkeep of our landmark building and our educational and arts programs.
+                  A few rare books are also offered at market value. These sales
+                  serve as a major, recurring fundraiser for the Library, and
+                  all proceeds go towards the upkeep of our landmark building
+                  and our educational and arts programs.
                 </p>
               </div>
 
@@ -322,18 +342,19 @@ export default function Programs() {
                   Donate Books
                 </h3>
                 <p className='text-gray-700'>
-                  If you have any unwanted books to contribute to the sale, please drop them off at the library between 9:30 am and 5:00 pm Tuesday to Sunday.
+                  If you have any unwanted books to contribute to the sale,
+                  please drop them off at the library between 9:30 am and 5:00
+                  pm Tuesday to Sunday.
                 </p>
               </div>
             </div>
 
-            <div className='relative'>
+            <div className='relative h-full w-full'>
               <Image
                 src='https://neilsonhayslibrary.org/wp-content/uploads/2023/07/original2-1300x630.jpg'
                 alt='Neilson Hays Library book sale'
-                width={600}
-                height={400}
-                className='rounded-lg shadow-2xl'
+                fill
+                className='rounded-lg shadow-2xl object-cover'
               />
             </div>
           </motion.div>
@@ -344,7 +365,7 @@ export default function Programs() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className='mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6'
           >
-            {bookSaleDetails.map((detail) => (
+            {bookSaleDetails.map(detail => (
               <div
                 key={detail.title}
                 className='bg-white p-6 rounded-lg border border-gray-200 shadow-lg'
@@ -371,7 +392,8 @@ export default function Programs() {
               Join Our Community
             </h2>
             <p className='text-xl text-gray-700 mb-8'>
-              Discover the diverse programs and events that make Neilson Hays Library a vibrant community center
+              Discover the diverse programs and events that make Neilson Hays
+              Library a vibrant community center
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <Link href='/membership'>
