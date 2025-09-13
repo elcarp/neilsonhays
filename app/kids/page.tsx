@@ -3,7 +3,7 @@ import PageTitle from '@/components/ui/page-title'
 import { motion } from 'framer-motion'
 import { useRef } from 'react'
 import Image from 'next/image'
-import { BookOpen, Users, Calendar, PenTool, Code } from 'lucide-react'
+import { BookOpen, Users, Calendar, PenTool } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
