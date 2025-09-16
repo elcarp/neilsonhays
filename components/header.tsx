@@ -18,6 +18,7 @@ import {
   BookOpen,
   Building,
   Calendar,
+  FileText,
   Hammer,
   Heart,
   History,
@@ -87,6 +88,12 @@ const programs = [
     description: 'Browse books, merchandise, and more.',
     href: '/products',
     icon: ShoppingBag,
+  },
+  {
+    name: 'Blog',
+    description: 'Read stories and updates from the library.',
+    href: '/blog',
+    icon: FileText,
   },
 ]
 
