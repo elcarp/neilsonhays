@@ -74,18 +74,19 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
         // Update order based on charge status
         let newOrderStatus: string
+        const metaData = [
+          ...order.meta_data,
+          {
+            key: '_omise_webhook_processed',
+            value: new Date().toISOString(),
+          },
+          {
+            key: '_omise_charge_status',
+            value: chargeStatus,
+          },
+        ]
         const updateData: Record<string, unknown> = {
-          meta_data: [
-            ...order.meta_data,
-            {
-              key: '_omise_webhook_processed',
-              value: new Date().toISOString(),
-            },
-            {
-              key: '_omise_charge_status',
-              value: chargeStatus,
-            },
-          ],
+          meta_data: metaData,
         }
 
         switch (chargeStatus) {
@@ -98,10 +99,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
           case 'failed':
             newOrderStatus = 'failed'
-            updateData.meta_data.push({
+            metaData.push({
               key: '_payment_failure_reason',
               value: event.data.failure_message || 'Payment failed',
             })
+            updateData.meta_data = metaData
             console.log(
               `Payment failed for order ${wcOrderId}: ${event.data.failure_message}`
             )

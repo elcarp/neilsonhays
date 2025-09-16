@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Calendar, MapPin, Clock, CreditCard, Users, ShoppingCart } from 'lucide-react'
-import { useCart } from '@/lib/cart'
+import { useCart } from '@/hooks/use-cart'
 import { wcGet, WcProduct } from '@/lib/woocommerce'
 
 interface EventBookingProps {

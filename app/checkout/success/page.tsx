@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -15,7 +15,7 @@ interface OrderDetails {
   transaction_id: string
 }
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessPageContent() {
   const searchParams = useSearchParams()
   const orderId = searchParams.get('order_id')
 
@@ -144,5 +144,20 @@ export default function CheckoutSuccessPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function CheckoutSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <CheckoutSuccessPageContent />
+    </Suspense>
   )
 }

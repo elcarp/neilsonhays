@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import PageTitle from '@/components/ui/page-title'
 import { ShoppingCart, Eye, Star, Filter, Search } from 'lucide-react'
-import { useCart } from '@/lib/cart'
+import { useCart } from '@/hooks/use-cart'
 import { WcProduct } from '@/lib/woocommerce'
 
 

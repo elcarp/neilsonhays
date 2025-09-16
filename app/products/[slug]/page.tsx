@@ -16,7 +16,7 @@ import {
   Minus,
   Heart
 } from 'lucide-react'
-import { useCart } from '@/lib/cart'
+import { useCart } from '@/hooks/use-cart'
 import { WcProduct } from '@/lib/woocommerce'
 
 export default function ProductDetailPage() {

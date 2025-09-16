@@ -79,7 +79,10 @@ export async function createCharge(
       amount: charge.amount,
       currency: charge.currency,
       status: charge.status as 'successful' | 'failed' | 'pending',
-      customer: charge.customer,
+      customer:
+        typeof charge.customer === 'string'
+          ? charge.customer
+          : charge.customer?.id,
       card: charge.card
         ? {
             id: charge.card.id,
@@ -108,7 +111,10 @@ export async function retrieveCharge(chargeId: string): Promise<OmiseCharge> {
       amount: charge.amount,
       currency: charge.currency,
       status: charge.status as 'successful' | 'failed' | 'pending',
-      customer: charge.customer,
+      customer:
+        typeof charge.customer === 'string'
+          ? charge.customer
+          : charge.customer?.id,
       card: charge.card
         ? {
             id: charge.card.id,
@@ -135,9 +141,20 @@ export async function createToken(card: {
   expiration_month: number
   expiration_year: number
   security_code: string
+  city?: string
+  postal_code?: string
 }) {
   try {
-    const token = await omise.tokens.create({ card })
+    const cardData = {
+      name: card.name,
+      number: card.number,
+      expiration_month: card.expiration_month,
+      expiration_year: card.expiration_year,
+      security_code: card.security_code,
+      city: card.city || '',
+      postal_code: card.postal_code || '',
+    }
+    const token = await omise.tokens.create({ card: cardData })
     return token
   } catch (error) {
     console.error('Failed to create Omise token:', error)

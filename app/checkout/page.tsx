@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { useCart, CartManager, CustomerInfo } from '@/lib/cart'
+import { useCart } from '@/hooks/use-cart'
+import { CartManager, CustomerInfo } from '@/lib/cart'
 import { CheckoutRequest, CheckoutResponse } from '@/app/api/checkout/route'
 
 declare global {
