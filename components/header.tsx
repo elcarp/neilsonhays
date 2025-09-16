@@ -22,6 +22,7 @@ import {
   Heart,
   History,
   Info,
+  ShoppingBag,
   Users,
 } from 'lucide-react'
 import { Button } from './ui/button'
@@ -80,6 +81,12 @@ const programs = [
     description: 'View all kids programs and events.',
     href: '/kids',
     icon: BookHeart,
+  },
+  {
+    name: 'Products',
+    description: 'Browse books, merchandise, and more.',
+    href: '/products',
+    icon: ShoppingBag,
   },
 ]
 

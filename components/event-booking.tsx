@@ -1,8 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Calendar, MapPin, Clock, CreditCard, Users } from 'lucide-react'
+import { Calendar, MapPin, Clock, CreditCard, Users, ShoppingCart } from 'lucide-react'
+import { useCart } from '@/lib/cart'
+import { wcGet, WcProduct } from '@/lib/woocommerce'
 
 interface EventBookingProps {
   event: {
@@ -19,91 +22,85 @@ interface EventBookingProps {
   }
 }
 
-interface BookingFormData {
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  quantity: number
-  specialRequests: string
-}
 
 export default function EventBooking({ event }: EventBookingProps) {
+  const router = useRouter()
+  const { addItem } = useCart()
   const [showForm, setShowForm] = useState(false)
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
-  const [formData, setFormData] = useState<BookingFormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    quantity: 1,
-    specialRequests: ''
-  })
+  const [quantity, setQuantity] = useState(1)
+  const [specialRequests, setSpecialRequests] = useState('')
 
   const availableSpots = event.maxAttendees - event.attendees
   const isFree = !event.price || event.price === '0' || event.price === '0.00'
   const pricePerPerson = parseFloat(event.price || '0')
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: name === 'quantity' ? parseInt(value) || 1 : value
-    }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleAddToCart = async () => {
     setBookingStatus('loading')
     setErrorMessage('')
 
     try {
-      const response = await fetch('/api/book-event', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          product_id: event.product_id,
-          quantity: formData.quantity,
-          customer: {
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            email: formData.email,
-            phone: formData.phone,
-          },
-          meta_data: [
-            { key: '_special_requests', value: formData.specialRequests },
-            { key: '_event_slug', value: event.slug },
-            { key: '_event_title', value: event.title },
-          ],
-        }),
-      })
+      // Get product details from WooCommerce
+      const product = await wcGet<WcProduct>(`products/${event.product_id}`)
 
-      if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.message || 'Failed to create booking')
+      if (!product) {
+        throw new Error('Event not found')
       }
 
-      const booking = await response.json()
+      // Add to cart with metadata
+      const metadata = {
+        event_slug: event.slug,
+        event_date: event.date,
+        event_time: event.time,
+        event_location: event.location,
+        special_requests: specialRequests,
+      }
+
+      addItem(product, quantity, metadata)
       setBookingStatus('success')
-      console.log('Booking created:', booking)
 
       // Reset form
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        quantity: 1,
-        specialRequests: ''
-      })
+      setQuantity(1)
+      setSpecialRequests('')
 
     } catch (error) {
-      console.error('Booking error:', error)
+      console.error('Add to cart error:', error)
       setBookingStatus('error')
-      setErrorMessage(error instanceof Error ? error.message : 'An error occurred while booking')
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to add event to cart')
+    }
+  }
+
+  const handleDirectBooking = async () => {
+    setBookingStatus('loading')
+    setErrorMessage('')
+
+    try {
+      // Get product details from WooCommerce
+      const product = await wcGet<WcProduct>(`products/${event.product_id}`)
+
+      if (!product) {
+        throw new Error('Event not found')
+      }
+
+      // Add to cart with metadata
+      const metadata = {
+        event_slug: event.slug,
+        event_date: event.date,
+        event_time: event.time,
+        event_location: event.location,
+        special_requests: specialRequests,
+      }
+
+      addItem(product, quantity, metadata)
+
+      // Navigate to checkout immediately after adding to cart
+      router.push('/checkout')
+
+    } catch (error) {
+      console.error('Buy now error:', error)
+      setBookingStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to process purchase')
     }
   }
 
@@ -136,9 +133,9 @@ export default function EventBooking({ event }: EventBookingProps) {
   if (bookingStatus === 'success') {
     return (
       <div className='bg-white rounded-lg shadow-md p-6'>
-        <h3 className='text-xl font-semibold mb-4 text-green-600'>Booking Confirmed!</h3>
+        <h3 className='text-xl font-semibold mb-4 text-green-600'>Added to Cart!</h3>
         <p className='text-gray-700 mb-4'>
-          Thank you for your booking! You will receive a confirmation email shortly with all the details.
+          Event has been added to your cart. You can continue browsing or proceed to checkout.
         </p>
         <div className='space-y-2 text-sm text-gray-600 mb-4'>
           <div className='flex items-center gap-2'>
@@ -154,15 +151,25 @@ export default function EventBooking({ event }: EventBookingProps) {
             <span>{event.location}</span>
           </div>
         </div>
-        <Button
-          onClick={() => {
-            setBookingStatus('idle')
-            setShowForm(false)
-          }}
-          className='w-full bg-teal-600 hover:bg-teal-700'
-        >
-          Book Another Event
-        </Button>
+        <div className='flex gap-3'>
+          <Button
+            onClick={() => {
+              setBookingStatus('idle')
+              setShowForm(false)
+            }}
+            variant='outline'
+            className='flex-1'
+          >
+            Continue Browsing
+          </Button>
+          <Button
+            onClick={() => router.push('/checkout')}
+            className='flex-1 bg-teal-600 hover:bg-teal-700'
+          >
+            <CreditCard className='w-4 h-4 mr-2' />
+            Checkout
+          </Button>
+        </div>
       </div>
     )
   }
@@ -170,79 +177,17 @@ export default function EventBooking({ event }: EventBookingProps) {
   if (showForm) {
     return (
       <div className='bg-white rounded-lg shadow-md p-6'>
-        <h3 className='text-xl font-semibold mb-4'>Book Your Spot</h3>
+        <h3 className='text-xl font-semibold mb-4'>Add to Cart</h3>
 
-        <form onSubmit={handleSubmit} className='space-y-4'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            <div>
-              <label htmlFor='firstName' className='block text-sm font-medium text-gray-700 mb-1'>
-                First Name *
-              </label>
-              <input
-                type='text'
-                id='firstName'
-                name='firstName'
-                value={formData.firstName}
-                onChange={handleInputChange}
-                required
-                className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500'
-              />
-            </div>
-
-            <div>
-              <label htmlFor='lastName' className='block text-sm font-medium text-gray-700 mb-1'>
-                Last Name *
-              </label>
-              <input
-                type='text'
-                id='lastName'
-                name='lastName'
-                value={formData.lastName}
-                onChange={handleInputChange}
-                required
-                className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500'
-              />
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor='email' className='block text-sm font-medium text-gray-700 mb-1'>
-              Email Address *
-            </label>
-            <input
-              type='email'
-              id='email'
-              name='email'
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500'
-            />
-          </div>
-
-          <div>
-            <label htmlFor='phone' className='block text-sm font-medium text-gray-700 mb-1'>
-              Phone Number
-            </label>
-            <input
-              type='tel'
-              id='phone'
-              name='phone'
-              value={formData.phone}
-              onChange={handleInputChange}
-              className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500'
-            />
-          </div>
-
+        <div className='space-y-4'>
           <div>
             <label htmlFor='quantity' className='block text-sm font-medium text-gray-700 mb-1'>
               Number of Attendees
             </label>
             <select
               id='quantity'
-              name='quantity'
-              value={formData.quantity}
-              onChange={handleInputChange}
+              value={quantity}
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
               className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500'
             >
               {Array.from({ length: Math.min(availableSpots, 10) }, (_, i) => i + 1).map(num => (
@@ -259,9 +204,8 @@ export default function EventBooking({ event }: EventBookingProps) {
             </label>
             <textarea
               id='specialRequests'
-              name='specialRequests'
-              value={formData.specialRequests}
-              onChange={handleInputChange}
+              value={specialRequests}
+              onChange={(e) => setSpecialRequests(e.target.value)}
               rows={3}
               className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500'
               placeholder='Any special requirements or requests...'
@@ -273,11 +217,11 @@ export default function EventBooking({ event }: EventBookingProps) {
               <div className='flex justify-between items-center'>
                 <span className='font-medium'>Total Cost:</span>
                 <span className='text-lg font-bold text-teal-600'>
-                  ฿{(pricePerPerson * formData.quantity).toFixed(2)}
+                  ฿{(pricePerPerson * quantity).toFixed(2)}
                 </span>
               </div>
               <p className='text-sm text-gray-600 mt-1'>
-                ฿{pricePerPerson.toFixed(2)} × {formData.quantity} {formData.quantity === 1 ? 'person' : 'people'}
+                ฿{pricePerPerson.toFixed(2)} × {quantity} {quantity === 1 ? 'person' : 'people'}
               </p>
             </div>
           )}
@@ -299,7 +243,24 @@ export default function EventBooking({ event }: EventBookingProps) {
               Cancel
             </Button>
             <Button
-              type='submit'
+              onClick={handleAddToCart}
+              className='flex-1 bg-gray-600 hover:bg-gray-700'
+              disabled={bookingStatus === 'loading'}
+            >
+              {bookingStatus === 'loading' ? (
+                <>
+                  <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2'></div>
+                  Adding...
+                </>
+              ) : (
+                <>
+                  <ShoppingCart className='w-4 h-4 mr-2' />
+                  Add to Cart
+                </>
+              )}
+            </Button>
+            <Button
+              onClick={handleDirectBooking}
               className='flex-1 bg-teal-600 hover:bg-teal-700'
               disabled={bookingStatus === 'loading'}
             >
@@ -311,12 +272,12 @@ export default function EventBooking({ event }: EventBookingProps) {
               ) : (
                 <>
                   <CreditCard className='w-4 h-4 mr-2' />
-                  {isFree ? 'Confirm Booking' : 'Book & Pay'}
+                  {isFree ? 'Book Now' : 'Buy Now'}
                 </>
               )}
             </Button>
           </div>
-        </form>
+        </div>
       </div>
     )
   }
@@ -358,7 +319,7 @@ export default function EventBooking({ event }: EventBookingProps) {
         disabled={availableSpots === 0}
       >
         <Users className='w-4 h-4 mr-2' />
-        {isFree ? 'Register for Event' : 'Book Now'}
+        {isFree ? 'Register for Event' : 'Add to Cart'}
       </Button>
     </div>
   )
