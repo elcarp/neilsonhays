@@ -7,6 +7,13 @@ const omise = Omise({
   secretKey: process.env.OMISE_SECRET_KEY!,
 })
 
+// Verify Omise credentials are available
+if (!process.env.OMISE_PUBLIC_KEY || !process.env.OMISE_SECRET_KEY) {
+  console.error(
+    'Missing Omise credentials! Please check your environment variables.'
+  )
+}
+
 export interface OmiseCustomer {
   id: string
   email: string
@@ -37,7 +44,7 @@ export interface CreateChargeParams {
   currency: string
   customer?: string
   card?: string
-  token?: string
+  source?: string
   description?: string
   metadata?: Record<string, string>
   return_uri?: string
@@ -73,7 +80,23 @@ export async function createCharge(
   params: CreateChargeParams
 ): Promise<OmiseCharge> {
   try {
+    console.log('Creating Omise charge with params:', {
+      ...params,
+      card: params.card ? `${params.card.substring(0, 10)}...` : 'none',
+      source: params.source ? `${params.source.substring(0, 10)}...` : 'none',
+    })
+
     const charge = await omise.charges.create(params)
+
+    console.log('Omise charge created:', {
+      id: charge.id,
+      status: charge.status,
+      amount: charge.amount,
+      currency: charge.currency,
+      failure_code: charge.failure_code,
+      failure_message: charge.failure_message,
+    })
+
     return {
       id: charge.id,
       amount: charge.amount,
@@ -98,7 +121,18 @@ export async function createCharge(
     }
   } catch (error) {
     console.error('Failed to create Omise charge:', error)
-    throw new Error('Failed to process payment')
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      params: {
+        ...params,
+        card: params.card ? `${params.card.substring(0, 10)}...` : 'none',
+        source: params.source ? `${params.source.substring(0, 10)}...` : 'none',
+      },
+    })
+    throw new Error(
+      `Failed to process payment: ${error instanceof Error ? error.message : 'Unknown error'}`
+    )
   }
 }
 

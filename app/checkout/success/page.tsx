@@ -71,7 +71,7 @@ function CheckoutSuccessPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-teal-500 py-12">
       <div className="max-w-2xl mx-auto px-4">
         <div className="bg-white rounded-lg shadow-md p-8 text-center">
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />

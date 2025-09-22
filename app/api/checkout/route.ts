@@ -80,10 +80,29 @@ export async function POST(
 
       // Step 3: Process payment with Omise
       console.log('Processing payment with Omise...')
-      const charge = await createCharge({
-        amount: Math.round(cart.total * 100), // Convert to satang (THB smallest unit)
+      console.log('Payment details:', {
+        amount: Math.round(cart.total * 100),
         currency: 'thb',
-        token: payment.token,
+        card: payment.token,
+        customer: omiseCustomerId,
+        total: cart.total,
+      })
+
+      // Ensure minimum amount of 20 THB (2000 satangs) for Omise Thailand
+      const amountInSatangs = Math.round(cart.total * 100)
+      const minimumAmount = 2000 // 20 THB minimum
+      const chargeAmount = Math.max(amountInSatangs, minimumAmount)
+
+      if (amountInSatangs < minimumAmount) {
+        console.warn(
+          `Cart total (${cart.total} THB) is below minimum. Charging minimum amount of 20 THB.`
+        )
+      }
+
+      const charge = await createCharge({
+        amount: chargeAmount, // Use minimum amount if cart total is too low
+        currency: 'thb',
+        card: payment.token, // Use 'card' parameter instead of 'token'
         customer: omiseCustomerId,
         description: `Neilson Hays Library - Order #${order.id}`,
         metadata: {
@@ -163,15 +182,29 @@ export async function POST(
               key: '_payment_failure_reason',
               value: charge.failure_message || 'Payment failed',
             },
+            {
+              key: '_payment_failure_code',
+              value: charge.failure_code || 'unknown',
+            },
           ],
         })
+
+        // Provide more specific error messages based on failure code
+        let errorMessage = 'Payment failed'
+        if (charge.failure_code === 'payment_rejected') {
+          errorMessage =
+            'Payment was rejected. Please check your card details or try a different payment method.'
+        } else if (charge.failure_message) {
+          errorMessage = charge.failure_message
+        }
 
         return NextResponse.json(
           {
             success: false,
-            error: charge.failure_message || 'Payment failed',
+            error: errorMessage,
             order_id: order.id,
             charge_id: charge.id,
+            failure_code: charge.failure_code,
           },
           { status: 400 }
         )
