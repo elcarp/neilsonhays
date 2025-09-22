@@ -315,14 +315,14 @@ export default function Contact() {
                 รถเมล์สาย: 1, 16, 36, 45, 75, 93, 187 (ป้ายรถเมล์หน้าห้องสมุด
                 หรือ ถนนปาน ออกจากถนนสีลม)
                 <br />
-                ใช้คำค้นหา "Neilson Hays Library" สำหรับ Grab, Bolt, Muvmi ฯลฯ
+                ใช้คำค้นหา &quot;Neilson Hays Library&quot; สำหรับ Grab, Bolt, Muvmi ฯลฯ
               </p>
               <p className='text-lg text-gray-700'>
                 Located on Surawong Road, near the Bangkok Marriott Hotel
                 Surawongse. Accessible by BTS (Saladaeng or Chong Nonsi), MRT
                 (Silom or Sam Yan) Buses: 1, 16, 36, 45, 75, 93, 187 (Bus stop
                 in front of the library or Thanon Pan off Silom Road.) Pin
-                "Neilson Hays Library" for Grab, Bolt, Muvmi, etc.
+                &quot;Neilson Hays Library&quot; for Grab, Bolt, Muvmi, etc.
               </p>
             </div>
             <div className='aspect-video bg-gray-200 rounded-lg overflow-hidden'>
