@@ -20,6 +20,8 @@ export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [sortBy, setSortBy] = useState<string>('name')
+  const [addingToCart, setAddingToCart] = useState<number | null>(null)
+  const [addedToCart, setAddedToCart] = useState<number | null>(null)
 
   // Fetch products on component mount
   useEffect(() => {
@@ -85,10 +87,28 @@ export default function ProductsPage() {
 
   const handleAddToCart = async (product: WcProduct) => {
     try {
+      setAddingToCart(product.id)
       addItem(product, 1)
-      // You could add a toast notification here
+
+      // Show success feedback
+      console.log(`Added ${product.name} to cart`)
+
+      // Show success state
+      setTimeout(() => {
+        setAddingToCart(null)
+        setAddedToCart(product.id)
+      }, 500)
+
+      // Reset success state
+      setTimeout(() => {
+        setAddedToCart(null)
+      }, 2000)
+
     } catch (error) {
       console.error('Failed to add to cart:', error)
+      setAddingToCart(null)
+      // You could show an error toast here
+      alert('Failed to add item to cart. Please try again.')
     }
   }
 
@@ -334,11 +354,32 @@ export default function ProductsPage() {
 
                       <Button
                         onClick={() => handleAddToCart(product)}
-                        disabled={product.stock_status === 'outofstock'}
-                        className="flex-1 bg-teal-600 hover:bg-teal-700 text-sm"
+                        disabled={product.stock_status === 'outofstock' || addingToCart === product.id || addedToCart === product.id}
+                        className={`flex-1 text-sm transition-colors ${addedToCart === product.id
+                          ? 'bg-green-600 hover:bg-green-700'
+                          : addingToCart === product.id
+                            ? 'bg-yellow-600 hover:bg-yellow-700'
+                            : 'bg-teal-600 hover:bg-teal-700'
+                          }`}
                       >
-                        <ShoppingCart className="w-4 h-4 mr-1" />
-                        Add to Cart
+                        {addingToCart === product.id ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-1"></div>
+                            Adding...
+                          </>
+                        ) : addedToCart === product.id ? (
+                          <>
+                            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                            Added!
+                          </>
+                        ) : (
+                          <>
+                            <ShoppingCart className="w-4 h-4 mr-1" />
+                            Add to Cart
+                          </>
+                        )}
                       </Button>
                     </div>
                   </div>

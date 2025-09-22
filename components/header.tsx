@@ -24,10 +24,13 @@ import {
   History,
   Info,
   ShoppingBag,
+  ShoppingCart,
   Users,
 } from 'lucide-react'
 import { Button } from './ui/button'
 import Link from 'next/link'
+import { useCart } from '@/hooks/use-cart'
+import CartDropdown from './cart-dropdown'
 
 const events = [
   {
@@ -138,6 +141,8 @@ export default function Header() {
   const [openPopover, setOpenPopover] = useState<string | null>(null)
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
   const [mounted, setMounted] = useState(false)
+  const [cartOpen, setCartOpen] = useState(false)
+  const { cart } = useCart()
 
   useEffect(() => {
     setMounted(true)
@@ -401,7 +406,24 @@ export default function Header() {
             Contact
           </a>
         </PopoverGroup>
-        <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
+        <div className='hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4'>
+          {/* Cart Button */}
+          <button
+            onClick={() => setCartOpen(true)}
+            className={`relative p-2 rounded-full transition-colors ${mounted && isScrolled
+              ? 'text-gray-700 hover:bg-gray-100'
+              : 'text-white hover:bg-white/10'
+              }`}
+            title="Shopping Cart"
+          >
+            <ShoppingCart className="w-6 h-6" />
+            {cart.items.length > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+                {cart.items.reduce((count, item) => count + item.quantity, 0)}
+              </span>
+            )}
+          </button>
+
           <Link href='/membership'>
             <Button
               variant='outline'
@@ -536,7 +558,23 @@ export default function Header() {
                   Contact
                 </a>
               </div>
-              <div className='py-6'>
+              <div className='py-6 space-y-2'>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false)
+                    setCartOpen(true)
+                  }}
+                  className='flex items-center gap-x-3 -mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 w-full'
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                  Cart
+                  {cart.items.length > 0 && (
+                    <span className="bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+                      {cart.items.reduce((count, item) => count + item.quantity, 0)}
+                    </span>
+                  )}
+                </button>
+
                 <a
                   href='/membership'
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50'
@@ -548,6 +586,12 @@ export default function Header() {
           </div>
         </DialogPanel>
       </Dialog>
+
+      {/* Cart Dropdown */}
+      <CartDropdown
+        isOpen={cartOpen}
+        onClose={() => setCartOpen(false)}
+      />
     </header>
   )
 }
