@@ -96,7 +96,7 @@ export default function Operations() {
       {/* Hero Section */}
       <section className='relative h-[70vh] flex items-center justify-center'>
         <Image
-          src='https://neilsonhayslibrary.org/wp-content/uploads/2019/08/nhl_Home14_img-845x321.jpg'
+          src='/images/nhl-home.jpg'
           alt='Neilson Hays Library operations'
           fill
           className='object-cover opacity-30'

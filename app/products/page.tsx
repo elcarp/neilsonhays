@@ -154,7 +154,7 @@ export default function ProductsPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] flex items-center justify-center">
         <Image
-          src="https://neilsonhayslibrary.org/wp-content/uploads/2023/07/NHL_2687-2048x1366.jpg"
+          src="https://store.neilsonhayslibrary.org/wp-content/uploads/2023/07/NHL_2687-2048x1366.jpg"
           alt="Neilson Hays Library products"
           fill
           className="object-cover opacity-50"
