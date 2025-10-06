@@ -64,7 +64,7 @@ export default function Kids() {
       {/* Hero Section */}
       <section className='relative h-[70vh] flex items-center justify-center'>
         <Image
-          src='https://neilsonhayslibrary.org/wp-content/uploads/2023/07/Childrens-corner-2048x1365.jpg'
+          src='/images/childrens-corner-bg.jpg'
           alt="Neilson Hays Library children's programs"
           fill
           className='object-cover opacity-30'
@@ -302,7 +302,7 @@ export default function Kids() {
 
             <div className='relative'>
               <Image
-                src='https://neilsonhayslibrary.org/wp-content/uploads/2023/07/Norwich-School-Visit-2.jpg'
+                src='https://store.neilsonhayslibrary.org/wp-content/uploads/2023/07/Norwich-School-Visit-2.jpg'
                 alt='School visit to Neilson Hays Library'
                 width={600}
                 height={400}
