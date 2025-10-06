@@ -81,7 +81,7 @@ export default function Contact() {
               <form
                 action='https://public.herotofu.com/v1/2c9617f0-a29b-11f0-af3b-2b9f9788a627'
                 method='post'
-                accept-charset='UTF-8'
+                acceptCharset='UTF-8'
                 className='space-y-6'
               >
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
