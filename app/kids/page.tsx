@@ -302,7 +302,7 @@ export default function Kids() {
 
             <div className='relative'>
               <Image
-                src='https://store.neilsonhayslibrary.org/wp-content/uploads/2023/07/Norwich-School-Visit-2.jpg'
+                src='/images/norwich-school.jpg'
                 alt='School visit to Neilson Hays Library'
                 width={600}
                 height={400}
