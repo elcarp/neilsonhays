@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, MapPin, Clock, User } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import {
   getEventBySlug,
   type WpEvent,

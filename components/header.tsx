@@ -23,7 +23,6 @@ import {
   Heart,
   History,
   Info,
-  ShoppingBag,
   ShoppingCart,
   Users,
 } from 'lucide-react'
