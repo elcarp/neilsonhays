@@ -192,7 +192,8 @@ export default function Contact() {
                       href='tel:0831736675'
                       className='text-gray-600 hover:text-teal-600'
                     >
-                      08 3173 6675
+                      {/* 08 3173 6675 */}
+                      02-233 4999
                     </a>
                   </div>
                 </div>
@@ -292,7 +293,7 @@ export default function Contact() {
             </div>
             <div className='aspect-video bg-gray-200 rounded-lg overflow-hidden'>
               <iframe
-                src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.5!2d100.5!3d13.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQyJzAwLjAiTiAxMDDCsDMwJzAwLjAiRQ!5e0!3m2!1sen!2sth!4v1234567890'
+                src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.8583465123957!2d100.5231542!3d13.7270247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e298d163d8561f%3A0xe981640e7da555fc!2sNeilson%20Hays%20Library!5e0!3m2!1sen!2sth!4v1759753155728!5m2!1sen!2sth'
                 width='100%'
                 height='100%'
                 style={{ border: 0 }}
