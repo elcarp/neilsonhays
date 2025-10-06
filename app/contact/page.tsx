@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Contact() {
@@ -12,25 +12,6 @@ export default function Contact() {
     subject: '',
     message: '',
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault()
-  //   setIsSubmitting(true)
-
-  //   // Simulate form submission
-  //   await new Promise(resolve => setTimeout(resolve, 1000))
-
-  //   setIsSubmitting(false)
-  //   setIsSubmitted(true)
-
-  //   // Reset form after showing success message
-  //   setTimeout(() => {
-  //     setIsSubmitted(false)
-  //     setFormData({ name: '', email: '', subject: '', message: '' })
-  //   }, 3000)
-  // }
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -67,125 +48,103 @@ export default function Contact() {
               Send us a Message
             </h2>
 
-            {isSubmitted ? (
-              <div className='text-center py-8'>
-                <CheckCircle className='w-16 h-16 text-green-500 mx-auto mb-4' />
-                <h3 className='text-xl font-semibold text-gray-900 mb-2'>
-                  Message Sent!
-                </h3>
-                <p className='text-gray-600'>
-                  Thank you for contacting us. We&apos;ll get back to you soon.
-                </p>
-              </div>
-            ) : (
-              <form
-                action='https://public.herotofu.com/v1/2c9617f0-a29b-11f0-af3b-2b9f9788a627'
-                method='post'
-                acceptCharset='UTF-8'
-                className='space-y-6'
-              >
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                  <div>
-                    <label
-                      htmlFor='name'
-                      className='block text-sm font-medium text-gray-700 mb-2'
-                    >
-                      Name *
-                    </label>
-                    <input
-                      type='text'
-                      id='name'
-                      name='name'
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className='w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500'
-                      placeholder='Your full name'
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor='email'
-                      className='block text-sm font-medium text-gray-700 mb-2'
-                    >
-                      Email *
-                    </label>
-                    <input
-                      type='email'
-                      id='email'
-                      name='email'
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className='w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500'
-                      placeholder='your.email@example.com'
-                    />
-                  </div>
-                </div>
-
+            <form
+              action='https://public.herotofu.com/v1/2c9617f0-a29b-11f0-af3b-2b9f9788a627'
+              method='post'
+              acceptCharset='UTF-8'
+              className='space-y-6'
+            >
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 <div>
                   <label
-                    htmlFor='subject'
+                    htmlFor='name'
                     className='block text-sm font-medium text-gray-700 mb-2'
                   >
-                    Subject *
+                    Name *
                   </label>
-                  <select
-                    id='subject'
-                    name='subject'
+                  <input
+                    type='text'
+                    id='name'
+                    name='name'
                     required
-                    value={formData.subject}
+                    value={formData.name}
                     onChange={handleChange}
                     className='w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500'
-                  >
-                    <option value=''>Select a subject</option>
-                    <option value='membership'>Membership Inquiry</option>
-                    <option value='events'>Events & Programs</option>
-                    <option value='donation'>Donation</option>
-                    <option value='volunteer'>Volunteer Opportunities</option>
-                    <option value='general'>General Inquiry</option>
-                    <option value='other'>Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor='message'
-                    className='block text-sm font-medium text-gray-700 mb-2'
-                  >
-                    Message *
-                  </label>
-                  <textarea
-                    id='message'
-                    name='message'
-                    required
-                    rows={6}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500'
-                    placeholder='Tell us how we can help you...'
+                    placeholder='Your full name'
                   />
                 </div>
+                <div>
+                  <label
+                    htmlFor='email'
+                    className='block text-sm font-medium text-gray-700 mb-2'
+                  >
+                    Email *
+                  </label>
+                  <input
+                    type='email'
+                    id='email'
+                    name='email'
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className='w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500'
+                    placeholder='your.email@example.com'
+                  />
+                </div>
+              </div>
 
-                <Button
-                  type='submit'
-                  disabled={isSubmitting}
-                  className='w-full bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-md font-semibold flex items-center justify-center gap-2'
+              <div>
+                <label
+                  htmlFor='subject'
+                  className='block text-sm font-medium text-gray-700 mb-2'
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-white'></div>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className='w-4 h-4' />
-                      Send Message
-                    </>
-                  )}
-                </Button>
-              </form>
-            )}
+                  Subject *
+                </label>
+                <select
+                  id='subject'
+                  name='subject'
+                  required
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className='w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500'
+                >
+                  <option value=''>Select a subject</option>
+                  <option value='membership'>Membership Inquiry</option>
+                  <option value='events'>Events & Programs</option>
+                  <option value='donation'>Donation</option>
+                  <option value='volunteer'>Volunteer Opportunities</option>
+                  <option value='general'>General Inquiry</option>
+                  <option value='other'>Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  htmlFor='message'
+                  className='block text-sm font-medium text-gray-700 mb-2'
+                >
+                  Message *
+                </label>
+                <textarea
+                  id='message'
+                  name='message'
+                  required
+                  rows={6}
+                  value={formData.message}
+                  onChange={handleChange}
+                  className='w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500'
+                  placeholder='Tell us how we can help you...'
+                />
+              </div>
+
+              <Button
+                type='submit'
+                className='w-full bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-md font-semibold flex items-center justify-center gap-2'
+              >
+                <Send className='w-4 h-4' />
+                Send Message
+              </Button>
+            </form>
           </div>
 
           {/* Contact Information */}
