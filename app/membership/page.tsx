@@ -76,7 +76,7 @@ export default function Membership() {
                     </span>
                   </p>
                   <a
-                    href='#'
+                    href='mailto:info@neilsonhayslibrary.org'
                     className='mt-10 block w-full rounded-md bg-teal-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-teal-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600'
                   >
                     Get access
@@ -95,7 +95,7 @@ export default function Membership() {
                     </span>
                   </p>
                   <a
-                    href='#'
+                    href='mailto:info@neilsonhayslibrary.org'
                     className='mt-10 block w-full rounded-md bg-teal-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-teal-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600'
                   >
                     Get access
@@ -114,7 +114,7 @@ export default function Membership() {
                     </span>
                   </p>
                   <a
-                    href='#'
+                    href='mailto:info@neilsonhayslibrary.org'
                     className='mt-10 block w-full rounded-md bg-teal-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-teal-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600'
                   >
                     Get access

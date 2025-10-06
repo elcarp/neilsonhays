@@ -3,14 +3,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, MapPin, Clock, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { getEventBySlug, type WpEvent, fallbackEventData } from "@/lib/wp-events"
-import { getEventProductBySlug, transformWcEventToEvent } from "@/lib/wc-events"
-import EventBooking from "@/components/event-booking"
-import { format } from "date-fns"
+import {
+  getEventBySlug,
+  type WpEvent,
+  fallbackEventData,
+} from '@/lib/wp-events'
+import { getEventProductBySlug, transformWcEventToEvent } from '@/lib/wc-events'
+import EventBooking from '@/components/event-booking'
+import { format } from 'date-fns'
 
 // Transform WordPress event to expected format
 function transformWpEvent(wpEvent: WpEvent) {
-  const img = wpEvent?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? '/images/libraryexterior.jpg'
+  const img =
+    wpEvent?._embedded?.['wp:featuredmedia']?.[0]?.source_url ??
+    '/images/libraryexterior.jpg'
   const m = wpEvent.meta || {}
 
   // Ensure meta values are strings, fallback to empty string if not
@@ -21,13 +27,20 @@ function transformWpEvent(wpEvent: WpEvent) {
   return {
     slug: wpEvent.slug,
     title: wpEvent.title?.rendered?.replace(/<[^>]+>/g, '') ?? 'Untitled Event',
-    date: getMetaString(m._event_start_date) || format(new Date(wpEvent.date), 'dd MMM yyyy HH:mm') || '',
+    date:
+      getMetaString(m._event_start_date) ||
+      format(new Date(wpEvent.date), 'dd MMM yyyy HH:mm') ||
+      '',
     time: getMetaString(m._event_start_time) || 'N/A',
-    location: getMetaString(m._event_venue) || getMetaString(m._event_address) || 'N/A',
+    location:
+      getMetaString(m._event_venue) || getMetaString(m._event_address) || 'N/A',
     description: (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
     longDescription: (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
     image: img,
-    author: getMetaString(m._event_presenter) || getMetaString(m._event_author) || 'Library Staff',
+    author:
+      getMetaString(m._event_presenter) ||
+      getMetaString(m._event_author) ||
+      'Library Staff',
     attendees: 0, // WordPress events don't have this data
     maxAttendees: 50, // Default value
     category: getMetaString(m._event_category) || 'Event',
@@ -37,8 +50,6 @@ function transformWpEvent(wpEvent: WpEvent) {
     available: false, // WordPress events don't support booking
   }
 }
-
-
 
 interface PageProps {
   params: Promise<{
@@ -50,7 +61,11 @@ export default async function EventPage({ params }: PageProps) {
   const { slug } = await params
 
   // Try to get the event from WooCommerce first (for bookable events)
-  let event: ReturnType<typeof transformWcEventToEvent> | ReturnType<typeof transformWpEvent> | typeof fallbackEventData[0] | null = null
+  let event:
+    | ReturnType<typeof transformWcEventToEvent>
+    | ReturnType<typeof transformWpEvent>
+    | (typeof fallbackEventData)[0]
+    | null = null
   let isWooCommerceEvent = false
 
   try {
@@ -167,7 +182,10 @@ export default async function EventPage({ params }: PageProps) {
           {/* Sidebar */}
           <div className='space-y-6'>
             {/* Registration/Booking Card */}
-            {isWooCommerceEvent && event && 'product_id' in event && event.product_id > 0 ? (
+            {isWooCommerceEvent &&
+              event &&
+              'product_id' in event &&
+              event.product_id > 0 ? (
               <EventBooking event={event} />
             ) : (
               <div className='bg-white rounded-lg shadow-md p-6'>
@@ -187,11 +205,17 @@ export default async function EventPage({ params }: PageProps) {
                       }}
                     ></div>
                   </div>
-                  <Button className='w-full bg-teal-600 hover:bg-teal-700'>
+                  {/* <Button className='w-full bg-teal-600 hover:bg-teal-700'>
                     Register for Event
-                  </Button>
+                  </Button> */}
                   <p className='text-sm text-gray-500 text-center'>
-                    Contact us to register for this event
+                    Contact us to register for this event at{' '}
+                    <a
+                      className='font-bold'
+                      href='mailto:info@neilsonhayslibrary.org'
+                    >
+                      info@neilsonhayslibrary.org
+                    </a>
                   </p>
                 </div>
               </div>

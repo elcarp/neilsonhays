@@ -15,22 +15,22 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
+  //   // Simulate form submission
+  //   await new Promise(resolve => setTimeout(resolve, 1000))
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+  //   setIsSubmitting(false)
+  //   setIsSubmitted(true)
 
-    // Reset form after showing success message
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 3000)
-  }
+  //   // Reset form after showing success message
+  //   setTimeout(() => {
+  //     setIsSubmitted(false)
+  //     setFormData({ name: '', email: '', subject: '', message: '' })
+  //   }, 3000)
+  // }
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -78,7 +78,12 @@ export default function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className='space-y-6'>
+              <form
+                action='https://public.herotofu.com/v1/2c9617f0-a29b-11f0-af3b-2b9f9788a627'
+                method='post'
+                accept-charset='UTF-8'
+                className='space-y-6'
+              >
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                   <div>
                     <label
@@ -315,7 +320,8 @@ export default function Contact() {
                 รถเมล์สาย: 1, 16, 36, 45, 75, 93, 187 (ป้ายรถเมล์หน้าห้องสมุด
                 หรือ ถนนปาน ออกจากถนนสีลม)
                 <br />
-                ใช้คำค้นหา &quot;Neilson Hays Library&quot; สำหรับ Grab, Bolt, Muvmi ฯลฯ
+                ใช้คำค้นหา &quot;Neilson Hays Library&quot; สำหรับ Grab, Bolt,
+                Muvmi ฯลฯ
               </p>
               <p className='text-lg text-gray-700'>
                 Located on Surawong Road, near the Bangkok Marriott Hotel

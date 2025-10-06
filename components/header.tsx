@@ -86,12 +86,12 @@ const programs = [
     href: '/kids',
     icon: BookHeart,
   },
-  {
-    name: 'Products',
-    description: 'Browse books, merchandise, and more.',
-    href: '/products',
-    icon: ShoppingBag,
-  },
+  // {
+  //   name: 'Products',
+  //   description: 'Browse books, merchandise, and more.',
+  //   href: '/products',
+  //   icon: ShoppingBag,
+  // },
   {
     name: 'Blog',
     description: 'Read stories and updates from the library.',
@@ -408,7 +408,7 @@ export default function Header() {
         </PopoverGroup>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4'>
           {/* Cart Button */}
-          <button
+          {/* <button
             onClick={() => setCartOpen(true)}
             className={`relative p-2 rounded-full transition-colors ${mounted && isScrolled
               ? 'text-gray-700 hover:bg-gray-100'
@@ -422,7 +422,7 @@ export default function Header() {
                 {cart.items.reduce((count, item) => count + item.quantity, 0)}
               </span>
             )}
-          </button>
+          </button> */}
 
           <Link href='/membership'>
             <Button
