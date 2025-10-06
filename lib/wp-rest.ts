@@ -1,5 +1,5 @@
 // lib/wp-rest.ts
-const WP_URL = 'https://neilsonhayslibrary.org'
+const WP_URL = 'https://store.neilsonhayslibrary.org'
 
 function authHeaders(): Record<string, string> {
   if (!process.env.WP_APP_USER || !process.env.WP_APP_PASS) return {}

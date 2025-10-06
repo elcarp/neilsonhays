@@ -73,7 +73,7 @@ export default function Programs() {
       {/* Hero Section */}
       <section className='relative h-[70vh] flex items-center justify-center'>
         <Image
-          src='https://neilsonhayslibrary.org/wp-content/uploads/2023/07/NHL_2687-2048x1366.jpg'
+          src='https://store.neilsonhayslibrary.org/wp-content/uploads/2023/07/NHL_2687-2048x1366.jpg'
           alt='Neilson Hays Library programs and events'
           fill
           className='object-cover opacity-50'
@@ -147,7 +147,7 @@ export default function Programs() {
 
             <div className='relative'>
               <Image
-                src='https://neilsonhayslibrary.org/wp-content/uploads/2023/07/DSCN2564-2048x1412.jpg'
+                src='https://store.neilsonhayslibrary.org/wp-content/uploads/2023/07/DSCN2564-2048x1412.jpg'
                 alt='Neilson Hays Library community programs'
                 width={600}
                 height={400}
@@ -351,7 +351,7 @@ export default function Programs() {
 
             <div className='relative h-full w-full'>
               <Image
-                src='https://neilsonhayslibrary.org/wp-content/uploads/2023/07/original2-1300x630.jpg'
+                src='https://store.neilsonhayslibrary.org/wp-content/uploads/2023/07/original2-1300x630.jpg'
                 alt='Neilson Hays Library book sale'
                 fill
                 className='rounded-lg shadow-2xl object-cover'

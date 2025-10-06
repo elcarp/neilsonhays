@@ -5,13 +5,13 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'neilsonhayslibrary.org',
+        hostname: 'store.neilsonhayslibrary.org',
       },
     ],
     domains: [
       'images.unsplash.com',
       'assets.aceternity.com',
-      'neilsonhayslibrary.org',
+      'store.neilsonhayslibrary.org',
     ],
   },
 }

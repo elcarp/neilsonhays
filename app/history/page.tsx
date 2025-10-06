@@ -108,7 +108,7 @@ export default function History() {
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center">
         <Image
-          src="https://neilsonhayslibrary.org/wp-content/uploads/2019/07/nhl_Home5_img.jpg"
+          src="https://store.neilsonhayslibrary.org/wp-content/uploads/2019/07/nhl_Home5_img.jpg"
           alt="Neilson Hays Library exterior"
           fill
           className="object-cover opacity-40"

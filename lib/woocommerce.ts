@@ -1,7 +1,7 @@
 // lib/woocommerce.ts
 // import crypto from 'crypto' // Currently unused - for OAuth signature generation
 
-const WC_URL = 'https://neilsonhayslibrary.org'
+const WC_URL = 'https://store.neilsonhayslibrary.org'
 const WC_API_VERSION = 'v3'
 
 // WooCommerce API credentials - add these to your .env.local
