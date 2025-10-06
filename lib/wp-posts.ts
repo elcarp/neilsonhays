@@ -187,7 +187,7 @@ export async function getPosts(params: PostsQueryParams = {}): Promise<{
     console.log(`Fetching posts with params: ${queryParams.toString()}`)
 
     const response = await fetch(
-      `${process.env.WP_URL || 'https://neilsonhayslibrary.org'}/wp-json/wp/v2/posts?${queryParams.toString()}`,
+      `${process.env.WP_URL || 'https://store.neilsonhayslibrary.org'}/wp-json/wp/v2/posts?${queryParams.toString()}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -241,7 +241,7 @@ export async function getPostBySlug(slug: string): Promise<WpPost | null> {
 export async function getCategories(): Promise<WpCategory[]> {
   try {
     const response = await fetch(
-      `${process.env.WP_URL || 'https://neilsonhayslibrary.org'}/wp-json/wp/v2/categories?per_page=100`,
+      `${process.env.WP_URL || 'https://store.neilsonhayslibrary.org'}/wp-json/wp/v2/categories?per_page=100`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -267,7 +267,7 @@ export async function getCategories(): Promise<WpCategory[]> {
 export async function getTags(): Promise<WpTag[]> {
   try {
     const response = await fetch(
-      `${process.env.WP_URL || 'https://neilsonhayslibrary.org'}/wp-json/wp/v2/tags?per_page=100`,
+      `${process.env.WP_URL || 'https://store.neilsonhayslibrary.org'}/wp-json/wp/v2/tags?per_page=100`,
       {
         headers: {
           'Content-Type': 'application/json',

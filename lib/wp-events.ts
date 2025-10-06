@@ -107,7 +107,8 @@ export const fallbackEventData = [
       'Experience the beautiful sounds of classical music in our historic library setting.',
     longDescription:
       '1) Guillaume Lekeu, Adagio Pour Quatuor à Cordes, (transcription by Nicolas Bacri)*** Lekeu and Bacri are the first Asian performance *** 2) Nicolas Bacri, String Quartet No. 8, Op. 112(Omaggio à Haydn) 3) Maurice Ravel, String Quartet in F Major. Experience the beautiful sounds of classical music in our historic library setting with this special concert featuring works from the French school of composition.',
-    image: 'https://neilsonhayslibrary.org/wp-content/uploads/2025/06/Web.png',
+    image:
+      'https://store.neilsonhayslibrary.org/wp-content/uploads/2025/06/Web.png',
     author: 'Various Artists',
     attendees: 10,
     maxAttendees: 50,
