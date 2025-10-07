@@ -1,12 +1,9 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import PageTitle from '@/components/ui/page-title'
 
 export default function SearchCollectionRedirect() {
-  const router = useRouter()
-
   useEffect(() => {
     // Redirect to the library catalog after a short delay
     const timer = setTimeout(() => {
@@ -35,7 +32,8 @@ export default function SearchCollectionRedirect() {
               Redirecting to Library Catalog
             </h2>
             <p className='text-gray-600 mb-6'>
-              You will be automatically redirected to our online library collection search in a few seconds...
+              You will be automatically redirected to our online library
+              collection search in a few seconds...
             </p>
           </div>
 
@@ -49,8 +47,9 @@ export default function SearchCollectionRedirect() {
 
             <div className='text-sm text-gray-500'>
               <p>
-                Our library catalog is powered by ResourceMate® and contains our complete collection of books,
-                periodicals, and digital resources.
+                Our library catalog is powered by ResourceMate® and contains
+                our complete collection of books, periodicals, and digital
+                resources.
               </p>
             </div>
           </div>
