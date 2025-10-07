@@ -8,7 +8,7 @@ import {
   fallbackEventData,
 } from '@/lib/wp-events'
 import { getEventProductBySlug, transformWcEventToEvent } from '@/lib/wc-events'
-import EventBooking from '@/components/event-booking'
+// import EventBooking from '@/components/event-booking'
 import { format } from 'date-fns'
 
 // Transform WordPress event to expected format
