@@ -192,12 +192,12 @@ export default async function EventPage({ params }: PageProps) {
               <div className='bg-white rounded-lg shadow-md p-6'>
                 <h3 className='text-xl font-semibold mb-4'>Registration</h3>
                 <div className='space-y-4'>
-                  <div className='flex justify-between items-center'>
+                  {/* <div className='flex justify-between items-center'>
                     <span className='text-gray-600'>Attendees</span>
                     <span className='font-semibold'>
                       {event.attendees}/{event.maxAttendees}
                     </span>
-                  </div>
+                  </div> */}
                   <div className='w-full bg-gray-200 rounded-full h-2'>
                     <div
                       className='bg-teal-600 h-2 rounded-full'
