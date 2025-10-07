@@ -32,9 +32,9 @@ function transformWpEvent(wpEvent: WpEvent) {
       '',
     time: getMetaString(m._event_start_time) || 'N/A',
     location:
-      getMetaString(m._event_venue) || getMetaString(m._event_address) || 'N/A',
-    description: (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
-    longDescription: (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
+      getMetaString(m._event_location) || getMetaString(m._event_venue) || getMetaString(m._event_address) || 'N/A',
+    description: getMetaString(m._event_description) || (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
+    longDescription: getMetaString(m._event_description) || (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
     image: img,
     author:
       getMetaString(m._event_presenter) ||

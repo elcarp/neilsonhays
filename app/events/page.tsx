@@ -15,12 +15,12 @@ function toEventCard(ev: WpEvent) {
 
   return {
     title: ev.title?.rendered?.replace(/<[^>]+>/g, '') ?? 'Untitled',
-    description: (ev.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
+    description: getMetaString(m._event_description) || (ev.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
     slug: ev.slug,
     image: img,
     date: getMetaString(m._event_start_date) || ev.date || '',
     time: getMetaString(m._event_start_time),
-    location: getMetaString(m._event_venue) || getMetaString(m._event_address),
+    location: getMetaString(m._event_location) || getMetaString(m._event_venue) || getMetaString(m._event_address),
   }
 }
 
@@ -33,6 +33,8 @@ export default async function Events() {
   const formattedEvents = wpEvents.length > 0
     ? wpEvents.map(toEventCard)
     : fallbackEventData
+
+  console.log(wpEvents)
 
   return (
     <div className='min-h-screen bg-teal-700 py-24 sm:py-32'>
