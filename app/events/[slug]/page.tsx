@@ -148,7 +148,7 @@ export default async function EventPage({ params }: PageProps) {
             <div className='bg-white rounded-lg shadow-md p-8'>
               <h2 className='text-2xl font-bold mb-6'>About This Event</h2>
               <div
-                className='text-gray-700 leading-relaxed mb-6 prose prose-gray max-w-none'
+                className='text-gray-700 leading-relaxed mb-6 prose prose-gray max-w-none space-y-4'
                 dangerouslySetInnerHTML={{ __html: event.longDescription }}
               />
 
