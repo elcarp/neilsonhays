@@ -186,41 +186,39 @@ export default async function EventPage({ params }: PageProps) {
             {isWooCommerceEvent &&
               event &&
               'product_id' in event &&
-              event.product_id > 0 ? (
-              <EventBooking event={event} />
-            ) : (
-              <div className='bg-white rounded-lg shadow-md p-6'>
-                <h3 className='text-xl font-semibold mb-4'>Registration</h3>
-                <div className='space-y-4'>
-                  {/* <div className='flex justify-between items-center'>
+              (
+                <div className='bg-white rounded-lg shadow-md p-6'>
+                  <h3 className='text-xl font-semibold mb-4'>Registration</h3>
+                  <div className='space-y-4'>
+                    {/* <div className='flex justify-between items-center'>
                     <span className='text-gray-600'>Attendees</span>
                     <span className='font-semibold'>
                       {event.attendees}/{event.maxAttendees}
                     </span>
                   </div> */}
-                  <div className='w-full bg-gray-200 rounded-full h-2'>
+                    {/* <div className='w-full bg-gray-200 rounded-full h-2'>
                     <div
                       className='bg-teal-600 h-2 rounded-full'
                       style={{
                         width: `${(event.attendees / event.maxAttendees) * 100}%`,
                       }}
                     ></div>
-                  </div>
-                  {/* <Button className='w-full bg-teal-600 hover:bg-teal-700'>
+                  </div> */}
+                    {/* <Button className='w-full bg-teal-600 hover:bg-teal-700'>
                     Register for Event
                   </Button> */}
-                  <p className='text-sm text-gray-500 text-center'>
-                    Contact us to register for this event at{' '}
-                    <a
-                      className='font-bold'
-                      href='mailto:info@neilsonhayslibrary.org'
-                    >
-                      info@neilsonhayslibrary.org
-                    </a>
-                  </p>
+                    <p className='text-sm text-gray-500 text-center'>
+                      Contact us to register for this event at{' '}
+                      <a
+                        className='font-bold'
+                        href='mailto:info@neilsonhayslibrary.org'
+                      >
+                        info@neilsonhayslibrary.org
+                      </a>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
             {/* Quick Links */}
             <div className='bg-white rounded-lg shadow-md p-6'>
