@@ -57,7 +57,7 @@ export default function UnescoCulturalHeritageConservationAward2022() {
       {/* Hero Section */}
       <section className='relative h-[70vh] flex items-center justify-center'>
         <Image
-          src='https://store.neilsonhayslibrary.org/wp-content/uploads/2022/12/unnamed-4.jpg'
+          src='/images/unesco-bg.jpg'
           alt='Neilson Hays Library exterior'
           fill
           className='object-cover opacity-30'
