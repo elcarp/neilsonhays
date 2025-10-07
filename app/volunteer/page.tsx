@@ -321,7 +321,7 @@ export default function Volunteer() {
 
             <div className='relative'>
               <Image
-                src='https://neilsonhayslibrary.org/wp-content/uploads/2019/07/nhl_Home5_img.jpg'
+                src='/images/nhl-history.jpg'
                 alt='Neilson Hays Library volunteer opportunities'
                 width={600}
                 height={400}
