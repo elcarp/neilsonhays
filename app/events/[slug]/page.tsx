@@ -22,6 +22,7 @@ function transformWpEvent(wpEvent: WpEvent) {
   const getMetaString = (value: unknown): string => {
     return typeof value === 'string' ? value : ''
   }
+  console.log(wpEvent)
 
   return {
     slug: wpEvent.slug,
@@ -33,8 +34,8 @@ function transformWpEvent(wpEvent: WpEvent) {
     time: getMetaString(m._event_start_time) || 'N/A',
     location:
       getMetaString(m._event_location) || getMetaString(m._event_venue) || getMetaString(m._event_address) || 'N/A',
-    description: getMetaString(m._event_description) || (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
-    longDescription: getMetaString(m._event_description) || (wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
+    description: (wpEvent.content?.rendered ?? wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, '').substring(0, 200) + '...',
+    longDescription: wpEvent.content?.rendered ?? wpEvent.excerpt?.rendered ?? '',
     image: img,
     author:
       getMetaString(m._event_presenter) ||
@@ -146,9 +147,10 @@ export default async function EventPage({ params }: PageProps) {
           <div className='lg:col-span-2'>
             <div className='bg-white rounded-lg shadow-md p-8'>
               <h2 className='text-2xl font-bold mb-6'>About This Event</h2>
-              <p className='text-gray-700 leading-relaxed mb-6'>
-                {event.longDescription}
-              </p>
+              <div
+                className='text-gray-700 leading-relaxed mb-6 prose prose-gray max-w-none'
+                dangerouslySetInnerHTML={{ __html: event.longDescription }}
+              />
 
               <div className='border-t pt-6'>
                 <h3 className='text-xl font-semibold mb-4'>Event Details</h3>

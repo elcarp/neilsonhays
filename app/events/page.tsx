@@ -13,9 +13,14 @@ function toEventCard(ev: WpEvent) {
     return typeof value === 'string' ? value : ''
   }
 
+  // Helper function to create truncated plain text for card descriptions
+  const getPlainTextDescription = (html: string) => {
+    return html.replace(/<[^>]+>/g, '').substring(0, 200) + '...'
+  }
+
   return {
     title: ev.title?.rendered?.replace(/<[^>]+>/g, '') ?? 'Untitled',
-    description: getMetaString(m._event_description) || (ev.excerpt?.rendered ?? '').replace(/<[^>]+>/g, ''),
+    description: getPlainTextDescription(ev.content?.rendered ?? ev.excerpt?.rendered ?? ''),
     slug: ev.slug,
     image: img,
     date: getMetaString(m._event_start_date) || ev.date || '',
