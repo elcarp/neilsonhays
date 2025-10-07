@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
       'store.neilsonhayslibrary.org',
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/about/history',
+        destination: '/history',
+      },
+    ]
+  },
 }
 
 export default nextConfig
