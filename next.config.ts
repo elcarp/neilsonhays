@@ -20,6 +20,22 @@ const nextConfig: NextConfig = {
         source: '/about/history',
         destination: '/history',
       },
+      {
+        source: '/venue-hire/spaces',
+        destination: '/venue',
+      },
+      {
+        source: '/support/volunteer',
+        destination: '/volunteer',
+      },
+      {
+        source: '/about/operations',
+        destination: '/operations',
+      },
+      {
+        source: '/event/book-sale',
+        destination: '/events/book-sale',
+      },
     ]
   },
 }
