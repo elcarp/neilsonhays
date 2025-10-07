@@ -21,7 +21,15 @@ const nextConfig: NextConfig = {
         destination: '/history',
       },
       {
+        source: '/about/restauration',
+        destination: '/restoration',
+      },
+      {
         source: '/venue-hire/spaces',
+        destination: '/venue',
+      },
+      {
+        source: '/venue-hire',
         destination: '/venue',
       },
       {
@@ -33,8 +41,20 @@ const nextConfig: NextConfig = {
         destination: '/operations',
       },
       {
-        source: '/event/book-sale',
-        destination: '/events/book-sale',
+        source: '/event/:slug*',
+        destination: '/events/:slug*',
+      },
+      {
+        source: '/support/give',
+        destination: '/give',
+      },
+      {
+        source: '/membership-application',
+        destination: '/membership',
+      },
+      {
+        source: '/membership-shop',
+        destination: '/membership',
       },
     ]
   },
