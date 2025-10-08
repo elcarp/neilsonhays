@@ -462,7 +462,7 @@ export default function Membership() {
           const data = await response.json()
           familyProduct = data.product
         }
-      } catch (error) {
+      } catch {
         console.log('Could not fetch family product from API, using fallback')
       }
 

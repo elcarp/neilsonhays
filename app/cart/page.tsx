@@ -122,7 +122,7 @@ export default function CartPage() {
         </div>
         <div className='pb-6'>
           *Please note, if you are renewing a membership, you can delete the
-          "Refundable Security Deposit" item from your cart.
+          &ldquo;Refundable Security Deposit&rdquo; item from your cart.
         </div>
 
         <div className='grid lg:grid-cols-3 gap-8'>
