@@ -69,7 +69,13 @@ export default function ProductsPage() {
   const fetchProducts = async () => {
     try {
       setLoading(true)
-      const response = await fetch('/api/products')
+      // Try alternative API first, then fallback to main API
+      let response = await fetch('/api/products/alternative')
+
+      if (!response.ok) {
+        console.log('Alternative API failed, trying main API...')
+        response = await fetch('/api/products')
+      }
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
