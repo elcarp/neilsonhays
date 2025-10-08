@@ -72,14 +72,31 @@ export default function ProductsPage() {
       const response = await fetch('/api/products')
 
       if (!response.ok) {
-        throw new Error('Failed to fetch products')
+        const errorData = await response.json().catch(() => ({}))
+        const errorMessage = errorData.error || `HTTP ${response.status}: ${response.statusText}`
+        throw new Error(errorMessage)
       }
 
       const data = await response.json()
       setProducts(data.products || [])
     } catch (err) {
       console.error('Error fetching products:', err)
-      setError(err instanceof Error ? err.message : 'Failed to load products')
+      const errorMessage = err instanceof Error ? err.message : 'Failed to load products'
+
+      // Provide more helpful error messages
+      if (errorMessage.includes('403')) {
+        if (errorMessage.includes('security layer') || errorMessage.includes('CDN')) {
+          setError('Product catalog is temporarily unavailable due to security restrictions. Please try again later or contact support.')
+        } else {
+          setError('Access denied to product catalog. This may be due to API configuration issues.')
+        }
+      } else if (errorMessage.includes('401')) {
+        setError('Authentication failed. Please contact support if this issue persists.')
+      } else if (errorMessage.includes('404')) {
+        setError('Product catalog not found. Please check back later.')
+      } else {
+        setError(errorMessage)
+      }
     } finally {
       setLoading(false)
     }

@@ -13,6 +13,23 @@ export async function GET(
   request: NextRequest
 ): Promise<NextResponse<ProductsResponse | { error: string }>> {
   try {
+    // Check if credentials are available
+    const consumerKey = process.env.WC_CONSUMER_KEY
+    const consumerSecret = process.env.WC_CONSUMER_SECRET
+    const wcUrl = process.env.WC_URL || 'https://store.neilsonhayslibrary.org'
+
+    if (!consumerKey || !consumerSecret) {
+      console.error('WooCommerce credentials missing:', {
+        hasKey: !!consumerKey,
+        hasSecret: !!consumerSecret,
+        environment: process.env.NODE_ENV,
+      })
+      return NextResponse.json(
+        { error: 'WooCommerce API credentials not configured' },
+        { status: 500 }
+      )
+    }
+
     const { searchParams } = new URL(request.url)
 
     // Get query parameters
@@ -42,26 +59,111 @@ export async function GET(
       queryParams.append('search', search)
     }
 
-    // Fetch products from WooCommerce
-    console.log(`Fetching products with params: ${queryParams.toString()}`)
+    // First, let's try a simple test to see if the WooCommerce API is accessible
+    const testUrl = `${wcUrl}/wp-json/wc/v3/system_status`
+    console.log(`Testing WooCommerce API accessibility: ${testUrl}`)
 
-    const response = await fetch(
-      `${process.env.WC_URL || 'https://neilsonhayslibrary.org'}/wp-json/wc/v3/products?${queryParams.toString()}`,
-      {
+    try {
+      const testResponse = await fetch(testUrl, {
         headers: {
-          Authorization: `Basic ${Buffer.from(
-            `${process.env.WC_CONSUMER_KEY}:${process.env.WC_CONSUMER_SECRET}`
-          ).toString('base64')}`,
+          Authorization: `Basic ${Buffer.from(`${consumerKey}:${consumerSecret}`).toString('base64')}`,
           'Content-Type': 'application/json',
+          'User-Agent': 'NeilsonHaysLibrary/1.0',
         },
-        next: { revalidate: 300 }, // Cache for 5 minutes
-      }
+      })
+      console.log(`Test API response status: ${testResponse.status}`)
+    } catch (testError) {
+      console.log(`Test API failed:`, testError)
+    }
+
+    // Fetch products from WooCommerce
+    const apiUrl = `${wcUrl}/wp-json/wc/v3/products?${queryParams.toString()}`
+    console.log(`Fetching products from: ${apiUrl}`)
+    console.log(
+      `Using credentials: Key=${consumerKey.substring(0, 8)}..., Secret=${consumerSecret.substring(0, 8)}...`
+    )
+    console.log(
+      `Authorization header: Basic ${Buffer.from(`${consumerKey}:${consumerSecret}`).toString('base64').substring(0, 20)}...`
+    )
+
+    const response = await fetch(apiUrl, {
+      headers: {
+        Authorization: `Basic ${Buffer.from(`${consumerKey}:${consumerSecret}`).toString('base64')}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'NeilsonHaysLibrary/1.0',
+        Accept: 'application/json',
+      },
+      next: { revalidate: 300 }, // Cache for 5 minutes
+    })
+
+    console.log(`WooCommerce API response status: ${response.status}`)
+    console.log(
+      `Response headers:`,
+      Object.fromEntries(response.headers.entries())
     )
 
     if (!response.ok) {
       const errorText = await response.text()
       console.error(`WooCommerce API error: ${response.status} - ${errorText}`)
-      throw new Error(`Failed to fetch products: ${response.status}`)
+
+      // Try to parse the error response
+      let errorData: any = {}
+      try {
+        errorData = JSON.parse(errorText)
+      } catch (e) {
+        console.log('Could not parse error response as JSON')
+      }
+
+      console.error('Parsed error data:', errorData)
+
+      // Provide more specific error messages
+      if (response.status === 403) {
+        // Check if this is a CDN/security layer blocking the request
+        if (errorData.error?.id && errorData.error.id.includes(':')) {
+          return NextResponse.json(
+            {
+              error:
+                'Request blocked by security layer. This may be due to CDN/firewall restrictions on the WooCommerce store.',
+              details: errorData.error?.message || 'Forbidden',
+              errorId: errorData.error?.id,
+            },
+            { status: 403 }
+          )
+        }
+
+        return NextResponse.json(
+          {
+            error:
+              'Access denied to WooCommerce API. Please check your API credentials and permissions.',
+            details:
+              errorData.message || errorData.error?.message || 'Forbidden',
+          },
+          { status: 403 }
+        )
+      } else if (response.status === 401) {
+        return NextResponse.json(
+          {
+            error: 'Invalid WooCommerce API credentials.',
+            details:
+              errorData.message || errorData.error?.message || 'Unauthorized',
+          },
+          { status: 401 }
+        )
+      } else if (response.status === 404) {
+        return NextResponse.json(
+          {
+            error:
+              'WooCommerce API endpoint not found. Please check your store URL.',
+            details:
+              errorData.message || errorData.error?.message || 'Not Found',
+          },
+          { status: 404 }
+        )
+      }
+
+      throw new Error(
+        `Failed to fetch products: ${response.status} - ${errorData.error?.message || errorData.message || 'Unknown error'}`
+      )
     }
 
     const products: WcProduct[] = await response.json()
