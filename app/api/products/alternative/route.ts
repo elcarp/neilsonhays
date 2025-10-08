@@ -92,7 +92,7 @@ export async function GET(
 
         if (response.ok) {
           const data = await response.json()
-          
+
           // Ensure we have an array of products
           const products: WcProduct[] = Array.isArray(data) ? data : []
           const totalProducts = parseInt(
@@ -116,7 +116,10 @@ export async function GET(
           console.log(`${approach.name} failed with status: ${response.status}`)
         }
       } catch (error) {
-        console.log(`${approach.name} failed:`, error instanceof Error ? error.message : 'Unknown error')
+        console.log(
+          `${approach.name} failed:`,
+          error instanceof Error ? error.message : 'Unknown error'
+        )
         continue
       }
     }
