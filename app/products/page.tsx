@@ -69,6 +69,15 @@ export default function ProductsPage() {
   const fetchProducts = async () => {
     try {
       setLoading(true)
+
+      // First run diagnostics to understand the issue
+      console.log('Running diagnostics...')
+      const diagnosticResponse = await fetch('/api/products/diagnostic')
+      if (diagnosticResponse.ok) {
+        const diagnosticData = await diagnosticResponse.json()
+        console.log('Diagnostic results:', diagnosticData)
+      }
+
       // Try alternative API first, then fallback to main API
       let response = await fetch('/api/products/alternative')
 
