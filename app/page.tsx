@@ -110,23 +110,6 @@ export default function Home() {
     loadEvents()
   }, [])
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-
-    if (element) {
-      // Use native smooth scroll with offset
-      const elementPosition = element.offsetTop
-      const offsetPosition = elementPosition - 100
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      })
-    } else {
-      console.log('Element not found:', sectionId)
-    }
-  }
-
   return (
     <>
       <section className='h-screen w-screen bg-black relative'>
