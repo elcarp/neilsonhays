@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
       'images.unsplash.com',
       'assets.aceternity.com',
       'store.neilsonhayslibrary.org',
+      'neilsonhayslibrary.org',
     ],
   },
   async rewrites() {
