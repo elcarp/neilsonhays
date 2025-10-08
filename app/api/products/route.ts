@@ -107,25 +107,51 @@ export async function GET(
       console.error(`WooCommerce API error: ${response.status} - ${errorText}`)
 
       // Try to parse the error response
-      let errorData: any = {}
+      let errorData: Record<string, unknown> = {}
       try {
-        errorData = JSON.parse(errorText)
-      } catch (e) {
+        errorData = JSON.parse(errorText) as Record<string, unknown>
+      } catch {
         console.log('Could not parse error response as JSON')
       }
 
       console.error('Parsed error data:', errorData)
 
+      // Helper function to safely get nested error properties
+      const getErrorProperty = (obj: unknown, path: string): string => {
+        if (typeof obj === 'object' && obj !== null) {
+          const parts = path.split('.')
+          let current: unknown = obj
+          for (const part of parts) {
+            if (
+              typeof current === 'object' &&
+              current !== null &&
+              part in current
+            ) {
+              current = (current as Record<string, unknown>)[part]
+            } else {
+              return ''
+            }
+          }
+          return typeof current === 'string' ? current : ''
+        }
+        return ''
+      }
+
       // Provide more specific error messages
+      const errorId = getErrorProperty(errorData, 'error.id')
+      const errorMessage =
+        getErrorProperty(errorData, 'error.message') ||
+        getErrorProperty(errorData, 'message')
+
       if (response.status === 403) {
         // Check if this is a CDN/security layer blocking the request
-        if (errorData.error?.id && errorData.error.id.includes(':')) {
+        if (errorId && errorId.includes(':')) {
           return NextResponse.json(
             {
               error:
                 'Request blocked by security layer. This may be due to CDN/firewall restrictions on the WooCommerce store.',
-              details: errorData.error?.message || 'Forbidden',
-              errorId: errorData.error?.id,
+              details: errorMessage || 'Forbidden',
+              errorId: errorId,
             },
             { status: 403 }
           )
@@ -135,8 +161,7 @@ export async function GET(
           {
             error:
               'Access denied to WooCommerce API. Please check your API credentials and permissions.',
-            details:
-              errorData.message || errorData.error?.message || 'Forbidden',
+            details: errorMessage || 'Forbidden',
           },
           { status: 403 }
         )
@@ -144,8 +169,7 @@ export async function GET(
         return NextResponse.json(
           {
             error: 'Invalid WooCommerce API credentials.',
-            details:
-              errorData.message || errorData.error?.message || 'Unauthorized',
+            details: errorMessage || 'Unauthorized',
           },
           { status: 401 }
         )
@@ -154,15 +178,14 @@ export async function GET(
           {
             error:
               'WooCommerce API endpoint not found. Please check your store URL.',
-            details:
-              errorData.message || errorData.error?.message || 'Not Found',
+            details: errorMessage || 'Not Found',
           },
           { status: 404 }
         )
       }
 
       throw new Error(
-        `Failed to fetch products: ${response.status} - ${errorData.error?.message || errorData.message || 'Unknown error'}`
+        `Failed to fetch products: ${response.status} - ${errorMessage || 'Unknown error'}`
       )
     }
 

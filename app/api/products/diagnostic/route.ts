@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
         'User-Agent': 'NeilsonHaysLibrary-Diagnostic/1.0',
       },
     })
-    
+
     tests.push({
       name: 'WordPress REST API Base',
       url: `${diagnostics.wcUrl}/wp-json/`,
@@ -44,12 +44,15 @@ export async function GET(request: NextRequest) {
   // Test WooCommerce API endpoint without auth
   try {
     console.log('Testing WooCommerce API without auth...')
-    const wcResponse = await fetch(`${diagnostics.wcUrl}/wp-json/wc/v3/products?per_page=1`, {
-      headers: {
-        'User-Agent': 'NeilsonHaysLibrary-Diagnostic/1.0',
-      },
-    })
-    
+    const wcResponse = await fetch(
+      `${diagnostics.wcUrl}/wp-json/wc/v3/products?per_page=1`,
+      {
+        headers: {
+          'User-Agent': 'NeilsonHaysLibrary-Diagnostic/1.0',
+        },
+      }
+    )
+
     tests.push({
       name: 'WooCommerce API (no auth)',
       url: `${diagnostics.wcUrl}/wp-json/wc/v3/products?per_page=1`,
@@ -72,22 +75,25 @@ export async function GET(request: NextRequest) {
       const authHeader = `Basic ${Buffer.from(
         `${process.env.WC_CONSUMER_KEY}:${process.env.WC_CONSUMER_SECRET}`
       ).toString('base64')}`
-      
-      const wcAuthResponse = await fetch(`${diagnostics.wcUrl}/wp-json/wc/v3/products?per_page=1`, {
-        headers: {
-          'Authorization': authHeader,
-          'Content-Type': 'application/json',
-          'User-Agent': 'NeilsonHaysLibrary-Diagnostic/1.0',
-        },
-      })
-      
+
+      const wcAuthResponse = await fetch(
+        `${diagnostics.wcUrl}/wp-json/wc/v3/products?per_page=1`,
+        {
+          headers: {
+            Authorization: authHeader,
+            'Content-Type': 'application/json',
+            'User-Agent': 'NeilsonHaysLibrary-Diagnostic/1.0',
+          },
+        }
+      )
+
       let responseText = ''
       try {
         responseText = await wcAuthResponse.text()
-      } catch (e) {
+      } catch {
         responseText = 'Could not read response'
       }
-      
+
       tests.push({
         name: 'WooCommerce API (with auth)',
         url: `${diagnostics.wcUrl}/wp-json/wc/v3/products?per_page=1`,
@@ -111,7 +117,7 @@ export async function GET(request: NextRequest) {
     recommendations: [
       'Check the test results above to identify where the 403 is coming from',
       'If WordPress REST API Base fails, check hosting provider firewall',
-      'If WooCommerce API (no auth) returns 401, that\'s normal',
+      "If WooCommerce API (no auth) returns 401, that's normal",
       'If WooCommerce API (with auth) returns 403, check API credentials and permissions',
       'Look at response headers for clues (server, x-powered-by, etc.)',
     ],
