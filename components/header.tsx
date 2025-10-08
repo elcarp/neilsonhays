@@ -47,7 +47,7 @@ const events = [
   },
   {
     name: 'Venue',
-    description: 'Hire the library for your next event.',
+    description: 'Moments shared at the library',
     href: '/venue',
     icon: Building,
   },
