@@ -8,7 +8,10 @@ import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import { EventCard } from '@/components/event-card'
-import getUpcomingEvents, { fallbackEventData, type WpEvent } from '@/lib/wp-events'
+import getUpcomingEvents, {
+  fallbackEventData,
+  type WpEvent,
+} from '@/lib/wp-events'
 import { type Event } from '@/components/event-card'
 
 // map WP → your EventCard shape
@@ -77,7 +80,9 @@ export default function Home() {
   const supportInView = useInView(supportRef, { once: false })
 
   // State for events
-  const [formattedEvents, setFormattedEvents] = useState<Event[]>(convertFallbackData(fallbackEventData))
+  const [formattedEvents, setFormattedEvents] = useState<Event[]>(
+    convertFallbackData(fallbackEventData)
+  )
   const [isLoading, setIsLoading] = useState(true)
 
   // Load WordPress events on component mount
@@ -88,9 +93,10 @@ export default function Home() {
         console.log(`Loaded ${wpEvents?.length || 0} events from WordPress`)
 
         // Convert WordPress events to Event format, fallback to shared event data
-        const events = wpEvents.length > 0
-          ? wpEvents.map(toEventCard)
-          : convertFallbackData(fallbackEventData)
+        const events =
+          wpEvents.length > 0
+            ? wpEvents.map(toEventCard)
+            : convertFallbackData(fallbackEventData)
 
         setFormattedEvents(events)
       } catch (error) {
@@ -134,7 +140,11 @@ export default function Home() {
         <div className='absolute inset-0 bg-stone-900/60 z-[1]'></div>
         <div className='relative z-10 flex items-center justify-center flex-col h-screen'>
           <div className='max-w-3xl mx-auto text-center px-4'>
-            <img src='/images/logo-white.svg' alt='Neilson Hays Library' className='w-1/3 mx-auto mb-4' />
+            <img
+              src='/images/logo-white.svg'
+              alt='Neilson Hays Library'
+              className='w-1/3 mx-auto mb-4'
+            />
             <h1 className={`text-white text-4xl lg:text-6xl font-extrabold`}>
               Bangkok&apos;s Historic <br />
               English-Language Library
@@ -143,13 +153,14 @@ export default function Home() {
               An oasis for readers, families, and the community since 1869
             </p>
             <div className='mt-8 flex gap-4 justify-center'>
-              <Button
-                className='cursor-pointer bg-teal-500 hover:bg-teal-600'
-                variant='default'
-                onClick={() => scrollToSection('events')}
-              >
-                Explore Upcoming Events
-              </Button>
+              <Link href='/events'>
+                <Button
+                  className='cursor-pointer bg-teal-500 hover:bg-teal-600'
+                  variant='default'
+                >
+                  Explore Upcoming Events
+                </Button>
+              </Link>
               <Link href='/membership'>
                 <Button
                   className='cursor-pointer bg-transparent text-white'
@@ -348,7 +359,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </motion.div >
+      </motion.div>
     </>
   )
 }
