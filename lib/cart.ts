@@ -5,6 +5,7 @@ export interface CartItem {
   id: string
   product_id: number
   name: string
+  slug?: string
   price: number
   quantity: number
   image?: string
@@ -96,6 +97,7 @@ export class CartManager {
         id: `${product.id}-${Date.now()}`,
         product_id: product.id,
         name: product.name,
+        slug: product.slug || undefined,
         price: parseFloat(product.price),
         quantity,
         image: product.images[0]?.src,
