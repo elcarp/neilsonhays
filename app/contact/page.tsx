@@ -49,7 +49,7 @@ export default function Contact() {
             </h2>
 
             <form
-              action='https://public.herotofu.com/v1/2c9617f0-a29b-11f0-af3b-2b9f9788a627'
+              action='https://public.herotofu.com/v1/24c9c7f0-a409-11f0-9728-0fbabc94705e'
               method='post'
               acceptCharset='UTF-8'
               className='space-y-6'
