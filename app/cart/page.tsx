@@ -324,7 +324,7 @@ export default function CartPage() {
                 </Button>
 
                 {/* Continue Shopping */}
-                <Link href='/products' className='block'>
+                <Link href='/membership' className='block'>
                   <Button variant='outline' className='w-full cursor-pointer'>
                     Continue Shopping
                   </Button>
