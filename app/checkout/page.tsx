@@ -39,6 +39,7 @@ export default function CheckoutPage() {
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [omiseLoaded, setOmiseLoaded] = useState(false)
+  const [isRedirecting, setIsRedirecting] = useState(false)
 
   // Load Omise.js
   useEffect(() => {
@@ -63,16 +64,16 @@ export default function CheckoutPage() {
     }
   }, [])
 
-  // Redirect if cart is empty (with a small delay to allow for cart updates)
+  // Redirect if cart is empty (but not if we're processing payment or redirecting)
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (cart.items.length === 0) {
-        router.push('/products')
+      if (cart.items.length === 0 && !isProcessing && !isRedirecting) {
+        router.push('/membership')
       }
     }, 100) // 100ms delay to allow cart state to update
 
     return () => clearTimeout(timer)
-  }, [cart.items.length, router])
+  }, [cart.items.length, router, isProcessing, isRedirecting])
 
   const handleCustomerChange = (field: keyof CustomerInfo, value: string) => {
     const updatedCustomer = { ...customer, [field]: value }
@@ -126,6 +127,8 @@ export default function CheckoutPage() {
       const result: CheckoutResponse = await response.json()
 
       if (result.success && result.redirect_url) {
+        // Set redirecting state to prevent the empty cart redirect
+        setIsRedirecting(true)
         // Clear cart and redirect to success page
         clearCart()
         CartManager.clearCustomerInfo()
@@ -141,13 +144,13 @@ export default function CheckoutPage() {
     }
   }
 
-  if (cart.items.length === 0) {
+  if (cart.items.length === 0 && !isProcessing && !isRedirecting) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
           <div className="space-x-4">
-            <Button onClick={() => router.push('/products')}>Browse Products</Button>
+            <Button onClick={() => router.push('/membership')}>Browse Memberships</Button>
             <Button onClick={() => router.push('/events')} variant="outline">Browse Events</Button>
           </div>
         </div>
