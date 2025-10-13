@@ -40,6 +40,7 @@ export default function CheckoutPage() {
   const [error, setError] = useState<string | null>(null)
   const [omiseLoaded, setOmiseLoaded] = useState(false)
   const [isRedirecting, setIsRedirecting] = useState(false)
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'bank_transfer'>('card')
 
   // Load Omise.js
   useEffect(() => {
@@ -83,37 +84,53 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!omiseLoaded || isProcessing) return
+    if (isProcessing) return
+
+    // For bank transfer, we don't need Omise to be loaded
+    if (paymentMethod === 'card' && !omiseLoaded) return
 
     setIsProcessing(true)
     setError(null)
 
     try {
-      // Create Omise token
-      const token = await new Promise<{ id: string }>((resolve, reject) => {
-        window.Omise.createToken('card', {
-          name: `${customer.first_name} ${customer.last_name}`,
-          number: (document.getElementById('card-number') as HTMLInputElement).value,
-          expiration_month: parseInt((document.getElementById('expiry-month') as HTMLInputElement).value),
-          expiration_year: parseInt((document.getElementById('expiry-year') as HTMLInputElement).value),
-          security_code: (document.getElementById('cvv') as HTMLInputElement).value,
-        }, (statusCode: number, response: { id: string; message?: string }) => {
-          if (statusCode === 200) {
-            resolve(response)
-          } else {
-            reject(new Error(response.message || 'Failed to create payment token'))
-          }
-        })
-      })
+      let checkoutData: CheckoutRequest
 
-      // Process checkout
-      const checkoutData: CheckoutRequest = {
-        cart,
-        customer,
-        payment: {
-          token: token.id,
-          save_card: false,
-        },
+      if (paymentMethod === 'card') {
+        // Create Omise token for card payment
+        const token = await new Promise<{ id: string }>((resolve, reject) => {
+          window.Omise.createToken('card', {
+            name: `${customer.first_name} ${customer.last_name}`,
+            number: (document.getElementById('card-number') as HTMLInputElement).value,
+            expiration_month: parseInt((document.getElementById('expiry-month') as HTMLInputElement).value),
+            expiration_year: parseInt((document.getElementById('expiry-year') as HTMLInputElement).value),
+            security_code: (document.getElementById('cvv') as HTMLInputElement).value,
+          }, (statusCode: number, response: { id: string; message?: string }) => {
+            if (statusCode === 200) {
+              resolve(response)
+            } else {
+              reject(new Error(response.message || 'Failed to create payment token'))
+            }
+          })
+        })
+
+        checkoutData = {
+          cart,
+          customer,
+          payment: {
+            method: 'card',
+            token: token.id,
+            save_card: false,
+          },
+        }
+      } else {
+        // Bank transfer payment
+        checkoutData = {
+          cart,
+          customer,
+          payment: {
+            method: 'bank_transfer',
+          },
+        }
       }
 
       const response = await fetch('/api/checkout', {
@@ -214,6 +231,41 @@ export default function CheckoutPage() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Payment Method Selection */}
+              <div className="border-b pb-4 mb-4">
+                <h3 className="text-lg font-medium text-gray-900 mb-4">Payment Method</h3>
+                <div className="space-y-3">
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="payment-method"
+                      value="card"
+                      checked={paymentMethod === 'card'}
+                      onChange={(e) => setPaymentMethod(e.target.value as 'card' | 'bank_transfer')}
+                      className="mr-3 text-teal-600 focus:ring-teal-500"
+                    />
+                    <div className="flex items-center">
+                      <span className="font-medium text-gray-900">Credit/Debit Card</span>
+                      <span className="ml-2 text-sm text-gray-500">(Visa, Mastercard)</span>
+                    </div>
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="payment-method"
+                      value="bank_transfer"
+                      checked={paymentMethod === 'bank_transfer'}
+                      onChange={(e) => setPaymentMethod(e.target.value as 'card' | 'bank_transfer')}
+                      className="mr-3 text-teal-600 focus:ring-teal-500"
+                    />
+                    <div className="flex items-center">
+                      <span className="font-medium text-gray-900">Bank Transfer</span>
+                      <span className="ml-2 text-sm text-gray-500">(Manual transfer)</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
               {/* Customer Information */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -267,85 +319,114 @@ export default function CheckoutPage() {
                 />
               </div>
 
-              {/* Card Information */}
-              <div className="border-t pt-4">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">Card Information</h3>
+              {/* Card Information - Only show for card payments */}
+              {paymentMethod === 'card' && (
+                <div className="border-t pt-4">
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">Card Information</h3>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Card Number *
-                  </label>
-                  <input
-                    type="text"
-                    id="card-number"
-                    required
-                    placeholder="1234 5678 9012 3456"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  />
-                </div>
-
-                <div className="grid grid-cols-3 gap-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Month *
-                    </label>
-                    <select
-                      id="expiry-month"
-                      required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    >
-                      <option value="">MM</option>
-                      {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                        <option key={month} value={month}>
-                          {month.toString().padStart(2, '0')}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Year *
-                    </label>
-                    <select
-                      id="expiry-year"
-                      required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    >
-                      <option value="">YYYY</option>
-                      {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map((year) => (
-                        <option key={year} value={year}>
-                          {year}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      CVV *
+                      Card Number *
                     </label>
                     <input
                       type="text"
-                      id="cvv"
-                      required
-                      placeholder="123"
-                      maxLength={4}
+                      id="card-number"
+                      required={paymentMethod === 'card'}
+                      placeholder="1234 5678 9012 3456"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
                   </div>
+
+                  <div className="grid grid-cols-3 gap-4 mt-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Month *
+                      </label>
+                      <select
+                        id="expiry-month"
+                        required={paymentMethod === 'card'}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      >
+                        <option value="">MM</option>
+                        {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                          <option key={month} value={month}>
+                            {month.toString().padStart(2, '0')}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Year *
+                      </label>
+                      <select
+                        id="expiry-year"
+                        required={paymentMethod === 'card'}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      >
+                        <option value="">YYYY</option>
+                        {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map((year) => (
+                          <option key={year} value={year}>
+                            {year}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        CVV *
+                      </label>
+                      <input
+                        type="text"
+                        id="cvv"
+                        required={paymentMethod === 'card'}
+                        placeholder="123"
+                        maxLength={4}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Bank Transfer Information - Only show for bank transfer */}
+              {paymentMethod === 'bank_transfer' && (
+                <div className="border-t pt-4">
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">Bank Transfer Instructions</h3>
+                  <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
+                    <p className="text-sm text-gray-700 mb-3">
+                      <span className="text-gray-600">To complete payment, please use the account information below to transfer funds.</span>
+                    </p>
+                    <p className="text-sm text-gray-700 mb-3">
+                      Email your transfer confirmation to <span className="font-medium text-black underline">info@neilsonhayslibrary.org</span> with your Order Number in the subject line. Transfers must be completed within 3 days or your order will be cancelled.
+                    </p>
+                    <p className="text-sm text-gray-700 mb-3">
+                      <span className="text-gray-600">หลังจากโอนเงินแล้ว กรุณาอีเมล์สลิปไปที่</span> <span className="font-medium text-black underline">info@neilsonhayslibrary.org</span> <span className="text-gray-600">พร้อมระบุ Order Number ในหัวข้อของอีเมล์</span> <span className="text-red-600 font-medium">หากไม่โอนเงินภายใน 3 วัน order จะถูกตัดออกจากระบบ</span>
+                    </p>
+                  </div>
+                </div>
+              )}
 
               <Button
                 type="submit"
-                disabled={!omiseLoaded || isProcessing}
+                disabled={(paymentMethod === 'card' && !omiseLoaded) || isProcessing}
                 className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3 text-lg"
               >
-                {isProcessing ? 'Processing...' : `Pay ฿${cart.total.toFixed(2)}`}
+                {isProcessing
+                  ? 'Processing...'
+                  : paymentMethod === 'card'
+                    ? `Pay ฿${cart.total.toFixed(2)}`
+                    : `Place Order ฿${cart.total.toFixed(2)}`
+                }
               </Button>
             </form>
 
             <div className="mt-4 text-center text-sm text-gray-600">
-              <p>Secured by Omise</p>
+              {paymentMethod === 'card' ? (
+                <p>Secured by Omise</p>
+              ) : (
+                <p>Your order will be held for 3 days pending payment confirmation</p>
+              )}
             </div>
           </div>
         </div>

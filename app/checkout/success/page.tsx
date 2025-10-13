@@ -18,6 +18,7 @@ interface OrderDetails {
 function CheckoutSuccessPageContent() {
   const searchParams = useSearchParams()
   const orderId = searchParams.get('order_id')
+  const paymentMethod = searchParams.get('payment_method')
 
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null)
   const [loading, setLoading] = useState(true)
@@ -62,8 +63,8 @@ function CheckoutSuccessPageContent() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-red-600 mb-4">Error</h1>
           <p className="text-gray-600 mb-4">{error || 'Order not found'}</p>
-          <Link href="/events">
-            <Button>Browse Events</Button>
+          <Link href="/membership">
+            <Button>Browse Memberships</Button>
           </Link>
         </div>
       </div>
@@ -77,11 +78,14 @@ function CheckoutSuccessPageContent() {
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
 
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Payment Successful!
+            {paymentMethod === 'bank_transfer' ? 'Order Placed Successfully!' : 'Payment Successful!'}
           </h1>
 
           <p className="text-lg text-gray-600 mb-8">
-            Thank you for your booking. Your payment has been processed successfully.
+            {paymentMethod === 'bank_transfer'
+              ? 'Thank you for your order. Please complete the bank transfer to confirm your booking.'
+              : 'Thank you for your booking. Your payment has been processed successfully.'
+            }
           </p>
 
           <div className="bg-gray-50 rounded-lg p-6 mb-8">
@@ -121,17 +125,48 @@ function CheckoutSuccessPageContent() {
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
-            <h3 className="font-semibold text-blue-900 mb-2">What&apos;s Next?</h3>
-            <p className="text-blue-800 text-sm">
-              You will receive a confirmation email shortly with your booking details and any additional information about your event(s).
-            </p>
-          </div>
+          {paymentMethod === 'bank_transfer' ? (
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8">
+              <h3 className="font-semibold text-yellow-900 mb-3">Bank Transfer Instructions</h3>
+              <div className="text-left text-sm text-yellow-800 space-y-2">
+                <p>
+                  <span className="text-gray-700">To complete payment, please use the account information below to transfer funds.</span>
+                </p>
+                <p>
+                  Email your transfer confirmation to <span className="font-medium text-black underline">info@neilsonhayslibrary.org</span> with your Order Number <span className="font-bold">#{orderDetails?.order_id}</span> in the subject line.
+                </p>
+                <p className="font-medium text-red-600">
+                  Transfers must be completed within 3 days or your order will be cancelled.
+                </p>
+                <div className="mt-3 pt-3 border-t border-yellow-300">
+                  <p className="text-gray-700">
+                    หลังจากโอนเงินแล้ว กรุณาอีเมล์สลิปไปที่ <span className="font-medium text-black underline">info@neilsonhayslibrary.org</span> พร้อมระบุ Order Number <span className="font-bold">#{orderDetails?.order_id}</span> ในหัวข้อของอีเมล์
+                  </p>
+                  <p className="text-red-600 font-medium">
+                    หากไม่โอนเงินภายใน 3 วัน order จะถูกตัดออกจากระบบ
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+              <h3 className="font-semibold text-blue-900 mb-2">What&apos;s Next?</h3>
+              <p className="text-blue-800 text-sm">
+                You will receive a confirmation email shortly with your booking details and any additional information about your event(s).
+              </p>
+            </div>
+          )}
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/events">
+            <Link href="/membership">
               <Button className="bg-teal-600 hover:bg-teal-700 text-white">
-                Browse More Events
+                Browse Memberships
+              </Button>
+            </Link>
+
+            <Link href="/events">
+              <Button variant="outline">
+                Browse Events
               </Button>
             </Link>
 

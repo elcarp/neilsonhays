@@ -8,7 +8,8 @@ export interface CheckoutRequest {
   cart: Cart
   customer: CustomerInfo
   payment: {
-    token: string // Omise token from frontend
+    method: 'card' | 'bank_transfer'
+    token?: string // Omise token from frontend (required for card payments)
     save_card?: boolean
   }
 }
@@ -43,9 +44,12 @@ export async function POST(
       )
     }
 
-    if (!payment.token) {
+    if (payment.method === 'card' && !payment.token) {
       return NextResponse.json(
-        { success: false, error: 'Payment token is required' },
+        {
+          success: false,
+          error: 'Payment token is required for card payments',
+        },
         { status: 400 }
       )
     }
@@ -53,6 +57,12 @@ export async function POST(
     // Step 1: Create WooCommerce order (pending payment)
     console.log('Creating WooCommerce order...')
     const orderData = CartManager.cartToWooCommerceOrder(cart, customer)
+
+    // Set payment method in order data
+    orderData.payment_method = payment.method === 'card' ? 'omise' : 'bacs'
+    orderData.payment_method_title =
+      payment.method === 'card' ? 'Credit Card (Omise)' : 'Direct Bank Transfer'
+
     const order = await wcPost<WcOrder>('orders', orderData)
 
     if (!order.id) {
@@ -60,6 +70,33 @@ export async function POST(
     }
 
     console.log(`Created WooCommerce order #${order.id}`)
+
+    // Handle bank transfer separately
+    if (payment.method === 'bank_transfer') {
+      // For bank transfer, create order as "on-hold" waiting for payment
+      await wcPost(`orders/${order.id}`, {
+        status: 'on-hold',
+        meta_data: [
+          ...order.meta_data,
+          {
+            key: '_payment_method',
+            value: 'bank_transfer',
+          },
+          {
+            key: '_awaiting_payment',
+            value: 'yes',
+          },
+        ],
+      })
+
+      console.log(`Bank transfer order #${order.id} created and set to on-hold`)
+
+      return NextResponse.json({
+        success: true,
+        order_id: order.id,
+        redirect_url: `/checkout/success?order_id=${order.id}&payment_method=bank_transfer`,
+      })
+    }
 
     try {
       // Step 2: Create Omise customer (optional, for saved cards)
