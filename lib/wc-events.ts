@@ -332,14 +332,33 @@ export function transformWcEventToEvent(wcEvent: EventProduct) {
       50
   )
 
+  // Debug the longDescription assignment
+  const finalLongDescription =
+    wcEvent.description ||
+    wcEvent.short_description ||
+    '<p>Join us for this special event at Neilson Hays Library. Please contact us at <a href="mailto:info@neilsonhayslibrary.org">info@neilsonhayslibrary.org</a> for more information about this event.</p>'
+
+  console.log('=== WC TRANSFORMATION DEBUG ===')
+  console.log('wcEvent.description exists?', !!wcEvent.description)
+  console.log('wcEvent.description length:', wcEvent.description?.length || 0)
+  console.log('wcEvent.short_description exists?', !!wcEvent.short_description)
+  console.log(
+    'wcEvent.short_description length:',
+    wcEvent.short_description?.length || 0
+  )
+  console.log('Final longDescription being used:', finalLongDescription)
+  console.log('Final longDescription length:', finalLongDescription.length)
+
   return {
     slug: wcEvent.slug,
     title: wcEvent.name,
     date: eventDate,
     time: eventTime,
     location: eventLocation,
-    description: wcEvent.short_description.replace(/<[^>]+>/g, ''),
-    longDescription: wcEvent.description.replace(/<[^>]+>/g, ''),
+    description:
+      wcEvent.short_description?.replace(/<[^>]+>/g, '') ||
+      'A special event at Neilson Hays Library.',
+    longDescription: finalLongDescription,
     image: wcEvent.images?.[0]?.src || '/images/libraryexterior.jpg',
     author: 'Library Staff', // Default, could be in meta_data
     attendees: wcEvent.current_attendees || 0,

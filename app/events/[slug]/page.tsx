@@ -11,6 +11,7 @@ import { getEventProductBySlug, transformWcEventToEvent } from '@/lib/wc-events'
 // import EventBooking from '@/components/event-booking'
 import { format } from 'date-fns'
 
+
 // Transform WordPress event to expected format
 function transformWpEvent(wpEvent: WpEvent) {
   const img =
@@ -22,7 +23,6 @@ function transformWpEvent(wpEvent: WpEvent) {
   const getMetaString = (value: unknown): string => {
     return typeof value === 'string' ? value : ''
   }
-  console.log(wpEvent)
 
   return {
     slug: wpEvent.slug,
@@ -35,7 +35,7 @@ function transformWpEvent(wpEvent: WpEvent) {
     location:
       getMetaString(m._event_location) || getMetaString(m._event_venue) || getMetaString(m._event_address) || 'N/A',
     description: (wpEvent.content?.rendered ?? wpEvent.excerpt?.rendered ?? '').replace(/<[^>]+>/g, '').substring(0, 200) + '...',
-    longDescription: wpEvent.content?.rendered ?? wpEvent.excerpt?.rendered ?? '',
+    longDescription: wpEvent.content?.rendered ?? wpEvent.excerpt?.rendered ?? '<p>Join us for this special event at Neilson Hays Library. Please contact us at <a href="mailto:info@neilsonhayslibrary.org">info@neilsonhayslibrary.org</a> for more information about this event.</p>',
     image: img,
     author:
       getMetaString(m._event_presenter) ||
@@ -59,8 +59,10 @@ interface PageProps {
 
 export default async function EventPage({ params }: PageProps) {
   const { slug } = await params
-
-  // Try to get the event from WooCommerce first (for bookable events)
+  console.log(slug, 'slug!')
+  // Try to get the event from both WooCommerce and WordPress
+  let wcEvent = null
+  let wpEvent = null
   let event:
     | ReturnType<typeof transformWcEventToEvent>
     | ReturnType<typeof transformWpEvent>
@@ -68,28 +70,69 @@ export default async function EventPage({ params }: PageProps) {
     | null = null
   let isWooCommerceEvent = false
 
+  // Try WooCommerce first
   try {
-    const wcEvent = await getEventProductBySlug(slug)
+    wcEvent = await getEventProductBySlug(slug)
     if (wcEvent) {
-      event = transformWcEventToEvent(wcEvent)
-      isWooCommerceEvent = true
-      console.log('Found WooCommerce event:', event.title)
+      console.log('=== RAW WOOCOMMERCE EVENT DATA ===')
+      console.log('wcEvent.name:', wcEvent.name)
+      console.log('wcEvent.description:', wcEvent.description)
+      console.log('wcEvent.short_description:', wcEvent.short_description)
+      console.log('wcEvent full object:', wcEvent)
     }
-  } catch {
-    console.log('WooCommerce event not found, trying WordPress...')
+  } catch (error) {
+    console.log('WooCommerce event not found:', error)
   }
 
-  // If not found in WooCommerce, try WordPress
-  if (!event) {
-    try {
-      const wpEvent = await getEventBySlug(slug)
-      if (wpEvent) {
-        event = transformWpEvent(wpEvent)
-        console.log('Found WordPress event:', event.title)
-      }
-    } catch {
-      console.log('WordPress event not found, using fallback...')
+  // Try WordPress
+  try {
+    wpEvent = await getEventBySlug(slug)
+    if (wpEvent) {
+      console.log('=== RAW WORDPRESS EVENT DATA ===')
+      console.log('wpEvent.title:', wpEvent.title)
+      console.log('wpEvent.content:', wpEvent.content)
+      console.log('wpEvent.excerpt:', wpEvent.excerpt)
+      console.log('wpEvent full object:', wpEvent)
     }
+  } catch (error) {
+    console.log('WordPress event not found:', error)
+  }
+
+  // Decide which source to use based on content richness
+  if (wpEvent && wcEvent) {
+    // Both exist - check if WordPress has richer content
+    const wpContentLength = wpEvent.content?.rendered?.length || 0
+    const wcContentLength = wcEvent.description?.length || 0
+
+    console.log('=== CONTENT COMPARISON ===')
+    console.log('WordPress content length:', wpContentLength)
+    console.log('WooCommerce content length:', wcContentLength)
+
+    if (wpContentLength > wcContentLength) {
+      console.log('Using WordPress event (richer content)')
+      event = transformWpEvent(wpEvent)
+      isWooCommerceEvent = false
+    } else {
+      console.log('Using WooCommerce event')
+      event = transformWcEventToEvent(wcEvent)
+      isWooCommerceEvent = true
+    }
+  } else if (wcEvent) {
+    console.log('Using WooCommerce event (only source)')
+    event = transformWcEventToEvent(wcEvent)
+    isWooCommerceEvent = true
+  } else if (wpEvent) {
+    console.log('Using WordPress event (only source)')
+    event = transformWpEvent(wpEvent)
+    isWooCommerceEvent = false
+  }
+
+  if (event) {
+    console.log('=== FINAL TRANSFORMED EVENT DATA ===')
+    console.log('event.title:', event.title)
+    console.log('event.description:', event.description)
+    console.log('event.longDescription:', event.longDescription)
+    console.log('event.longDescription length:', event.longDescription?.length || 0)
   }
 
   // Final fallback to shared event data
@@ -101,7 +144,7 @@ export default async function EventPage({ params }: PageProps) {
     event = mockEvent
     console.log('Using fallback event:', event.title)
   }
-
+  console.log(event, 'event!')
   return (
     <div className='min-h-screen bg-gray-50'>
       {/* Hero Section */}
