@@ -230,7 +230,7 @@ export default function ProductCategoriesPage() {
               Looking for something specific?
             </h2>
             <p className="text-xl text-gray-700 mb-8">
-              Can't find the right category? Browse all products or contact us for assistance
+              Can&apos;t find the right category? Browse all products or contact us for assistance
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/products">

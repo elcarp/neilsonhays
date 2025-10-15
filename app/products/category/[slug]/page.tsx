@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -38,27 +38,7 @@ export default function CategoryProductsPage() {
   const [addingToCart, setAddingToCart] = useState<number | null>(null)
   const [addedToCart, setAddedToCart] = useState<number | null>(null)
 
-  // Fetch products and category info on component mount
-  useEffect(() => {
-    if (categorySlug) {
-      fetchCategoryData()
-    }
-  }, [categorySlug])
-
-  // Filter products when search term changes
-  useEffect(() => {
-    if (searchTerm) {
-      const filtered = products.filter(product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-      setFilteredProducts(filtered)
-    } else {
-      setFilteredProducts(products)
-    }
-  }, [products, searchTerm])
-
-  const fetchCategoryData = async () => {
+  const fetchCategoryData = useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
@@ -86,7 +66,27 @@ export default function CategoryProductsPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [categorySlug])
+
+  // Fetch products and category info on component mount
+  useEffect(() => {
+    if (categorySlug) {
+      fetchCategoryData()
+    }
+  }, [categorySlug, fetchCategoryData])
+
+  // Filter products when search term changes
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      setFilteredProducts(filtered)
+    } else {
+      setFilteredProducts(products)
+    }
+  }, [products, searchTerm])
 
   const handleAddToCart = async (product: WcProduct) => {
     try {

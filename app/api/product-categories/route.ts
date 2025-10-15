@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { getProductCategories, WcCategory } from '@/lib/woocommerce'
 
 export interface CategoriesResponse {
@@ -6,9 +6,9 @@ export interface CategoriesResponse {
   total: number
 }
 
-export async function GET(
-  request: NextRequest
-): Promise<NextResponse<CategoriesResponse | { error: string }>> {
+export async function GET(): Promise<
+  NextResponse<CategoriesResponse | { error: string }>
+> {
   try {
     console.log('API: Fetching product categories...')
 
