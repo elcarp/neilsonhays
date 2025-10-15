@@ -249,7 +249,7 @@ export default function CheckoutPage() {
                       <span className="ml-2 text-sm text-gray-500">(Visa, Mastercard)</span>
                     </div>
                   </label>
-                  <label className="flex items-center">
+                  {/* <label className="flex items-center">
                     <input
                       type="radio"
                       name="payment-method"
@@ -262,7 +262,7 @@ export default function CheckoutPage() {
                       <span className="font-medium text-gray-900">Bank Transfer</span>
                       <span className="ml-2 text-sm text-gray-500">(Manual transfer)</span>
                     </div>
-                  </label>
+                  </label> */}
                 </div>
               </div>
 
