@@ -445,3 +445,71 @@ export interface WcCustomer {
     value: string | number | boolean | null
   }>
 }
+
+export interface WcCategory {
+  id: number
+  name: string
+  slug: string
+  parent: number
+  description: string
+  display: 'default' | 'products' | 'subcategories' | 'both'
+  image: {
+    id: number
+    date_created: string
+    date_modified: string
+    src: string
+    name: string
+    alt: string
+  } | null
+  menu_order: number
+  count: number
+}
+
+// Get all product categories
+export async function getProductCategories(): Promise<WcCategory[]> {
+  try {
+    console.log('Fetching WooCommerce product categories...')
+    const categories = await wcGet<WcCategory[]>(
+      'products/categories?per_page=100'
+    )
+    console.log(`Retrieved ${categories?.length || 0} product categories`)
+    return categories || []
+  } catch (error) {
+    console.error('Error fetching product categories:', error)
+    return []
+  }
+}
+
+// Get products by category (using category ID)
+export async function getProductsByCategory(
+  categorySlug: string,
+  limit = 20,
+  page = 1
+): Promise<WcProduct[]> {
+  try {
+    console.log(`Fetching products for category: ${categorySlug}`)
+
+    // First, get the category ID from the slug
+    const categories = await getProductCategories()
+    const category = categories.find(cat => cat.slug === categorySlug)
+
+    if (!category) {
+      console.log(`Category not found: ${categorySlug}`)
+      return []
+    }
+
+    const products = await wcGet<WcProduct[]>(
+      `products?category=${category.id}&per_page=${limit}&page=${page}&status=publish`
+    )
+    console.log(
+      `Retrieved ${products?.length || 0} products for category ${categorySlug}`
+    )
+    return products || []
+  } catch (error) {
+    console.error(
+      `Error fetching products for category ${categorySlug}:`,
+      error
+    )
+    return []
+  }
+}

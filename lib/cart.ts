@@ -70,6 +70,8 @@ export class CartManager {
 
     try {
       localStorage.setItem(this.CART_KEY, JSON.stringify(cart))
+      // Dispatch custom event to notify all components of cart changes
+      window.dispatchEvent(new CustomEvent('cartUpdated', { detail: cart }))
     } catch (error) {
       console.error('Failed to save cart:', error)
     }

@@ -14,6 +14,26 @@ export function useCart() {
 
   useEffect(() => {
     setCart(CartManager.getCart())
+
+    // Listen for cart changes from other components
+    const handleCartChange = () => {
+      setCart(CartManager.getCart())
+    }
+
+    // Listen for custom cart update events
+    window.addEventListener('cartUpdated', handleCartChange)
+
+    // Listen for localStorage changes (in case of multiple tabs)
+    window.addEventListener('storage', e => {
+      if (e.key === 'neilson_hays_cart') {
+        handleCartChange()
+      }
+    })
+
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartChange)
+      window.removeEventListener('storage', handleCartChange)
+    }
   }, [])
 
   const addItem = (
