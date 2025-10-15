@@ -249,6 +249,7 @@ export default function CheckoutPage() {
                       <span className="ml-2 text-sm text-gray-500">(Visa, Mastercard)</span>
                     </div>
                   </label>
+                  {/*Temporarily HIDE*/}
                   {/* <label className="flex items-center">
                     <input
                       type="radio"
